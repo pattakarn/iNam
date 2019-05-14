@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
 import com.sungkunn.inam.R
-import com.sungkunn.inam.db.WrapMarket
+import com.sungkunn.inam.db.*
 import com.sungkunn.inam.fragment.show.ShowMainFragment
 import com.sungkunn.inam.viewholder.ViewHolderHomeMenu
 
@@ -17,7 +17,7 @@ class RV_Adapter_Home_Market(var items: MutableList<Any>?, var fragmentManager: 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         inflater = LayoutInflater.from(parent.getContext())
-        var itemView = inflater.inflate(R.layout.card_home_menu, parent, false)
+        var itemView = inflater.inflate(R.layout.card_show_market_menu, parent, false)
         return ViewHolderHomeMenu(itemView)
     }
 
@@ -41,7 +41,53 @@ class RV_Adapter_Home_Market(var items: MutableList<Any>?, var fragmentManager: 
                     .addToBackStack(null)
                     .commit()
             }
+        } else if (items!!.get(position) is WrapShop) {
+            val data = items!!.get(position) as WrapShop
+            vh1.tv.text = data.data.name
+            vh1.iv.setOnClickListener { v ->
+//                fragmentManager!!.beginTransaction()
+//                    .replace(R.id.container_home, ShowMainFragment.newInstance(data))
+//                    .addToBackStack(null)
+//                    .commit()
+            }
+        } else if (items!!.get(position) is WrapHotel) {
+            val data = items!!.get(position) as WrapHotel
+            vh1.tv.text = data.data.name
+            vh1.iv.setOnClickListener { v ->
+//                fragmentManager!!.beginTransaction()
+//                    .replace(R.id.container_home, ShowMainFragment.newInstance(data))
+//                    .addToBackStack(null)
+//                    .commit()
+            }
+        } else if (items!!.get(position) is WrapTravel) {
+            val data = items!!.get(position) as WrapTravel
+            vh1.tv.text = data.data.name
+            vh1.iv.setOnClickListener { v ->
+//                fragmentManager!!.beginTransaction()
+//                    .replace(R.id.container_home, ShowMainFragment.newInstance(data))
+//                    .addToBackStack(null)
+//                    .commit()
+            }
+        } else if (items!!.get(position) is WrapNetwork) {
+            val data = items!!.get(position) as WrapNetwork
+            vh1.tv.text = data.data.name
+            vh1.iv.setOnClickListener { v ->
+//                fragmentManager!!.beginTransaction()
+//                    .replace(R.id.container_home, ShowMainFragment.newInstance(data))
+//                    .addToBackStack(null)
+//                    .commit()
+            }
+        } else if (items!!.get(position) is WrapService) {
+            val data = items!!.get(position) as WrapService
+            vh1.tv.text = data.data.name
+            vh1.iv.setOnClickListener { v ->
+//                fragmentManager!!.beginTransaction()
+//                    .replace(R.id.container_home, ShowMainFragment.newInstance(data))
+//                    .addToBackStack(null)
+//                    .commit()
+            }
         }
+
 
     }
 

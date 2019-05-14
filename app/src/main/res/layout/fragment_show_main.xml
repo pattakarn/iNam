@@ -27,15 +27,6 @@
                 app:layout_scrollFlags="scroll|exitUntilCollapsed"
                 app:titleEnabled="false">
 
-            <com.google.android.material.tabs.TabLayout
-                    android:id="@+id/tabs"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="#ffffff"
-                    app:tabGravity="fill"
-                    app:tabIndicatorColor="@color/colorPrimary"
-                    android:layout_gravity="bottom"
-                    app:tabMode="scrollable"/>
 
             <androidx.appcompat.widget.Toolbar
                     android:id="@+id/toolbar"
@@ -48,25 +39,40 @@
         </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>
 
-    <androidx.core.widget.NestedScrollView
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    <LinearLayout
+            android:id="@+id/ll"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            android:orientation="vertical">
 
-        <LinearLayout
-                android:id="@+id/ll"
+        <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tabs"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:layout_height="wrap_content"
+                android:background="#ffffff"
+                app:tabGravity="fill"
+                app:tabIndicatorColor="@color/colorPrimary"
+                app:tabMode="scrollable"/>
 
-            <androidx.viewpager.widget.ViewPager
-                    android:id="@+id/pager_main"
+        <androidx.core.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="600dp"/>
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
 
-        </LinearLayout>
+                <androidx.viewpager.widget.ViewPager
+                        android:id="@+id/pager_main"
+                        android:layout_width="match_parent"
+                        android:layout_height="600dp"/>
 
-    </androidx.core.widget.NestedScrollView>
+            </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
+    </LinearLayout>
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

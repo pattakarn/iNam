@@ -12,10 +12,6 @@ import com.google.android.material.tabs.TabLayout
 import com.sungkunn.inam.R
 import com.sungkunn.inam.adapter.Pager_Adapter_Title
 import com.sungkunn.inam.db.WrapMarket
-import com.sungkunn.inam.fragment.manage.item.NetworkItemFragment
-import com.sungkunn.inam.fragment.manage.item.ServiceItemFragment
-import com.sungkunn.inam.fragment.manage.list.HotelListFragment
-import com.sungkunn.inam.fragment.manage.list.TravelListFragment
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -64,10 +60,12 @@ class ShowMainFragment : Fragment(), View.OnClickListener {
 
         val adapter = Pager_Adapter_Title(this!!.fragmentManager!!)
         tabs!!.setupWithViewPager(pager)
-        adapter.addFragment(HotelListFragment.newInstance("", ""), "Hotel")
-        adapter.addFragment(TravelListFragment.newInstance("", ""), "Travel")
-        adapter.addFragment(NetworkItemFragment.newInstance(null), "Network")
-        adapter.addFragment(ServiceItemFragment.newInstance(null), "Service")
+        adapter.addFragment(MarketInfoFragment.newInstance("", ""), "Info")
+        adapter.addFragment(MarketShopFragment.newInstance("", ""), "Shop")
+        adapter.addFragment(MarketHotelFragment.newInstance("", ""), "Hotel")
+        adapter.addFragment(MarketTravelFragment.newInstance("", ""), "Travel")
+        adapter.addFragment(MarketNetworkFragment.newInstance("", ""), "Network")
+        adapter.addFragment(MarketServiceFragment.newInstance("", ""), "Service")
         pager!!.adapter = adapter
         pager!!.setOnTouchListener(View.OnTouchListener { v, event -> true })
 
