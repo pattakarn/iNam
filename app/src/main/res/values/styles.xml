@@ -1,0 +1,104 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:screenOrientation">portrait</item>
+    </style>
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
+    <style name="AppTheme.NoActionBar.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+    <style name="AppTheme.NoActionBar.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
+    <style name="AppTheme.NoActionBar.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
+
+    <style name="TitleText">
+        <item name="android:layout_margin">@dimen/text_margin</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:textSize">@dimen/title_text_size</item>
+    </style>
+
+    <style name="MenuText">
+        <item name="android:textSize">@dimen/menu_text_size</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:layout_gravity">center</item>
+    </style>
+
+    <style name="TextMoreMenu">
+        <item name="android:textSize">@dimen/title_text_size</item>
+        <item name="android:layout_gravity">center_vertical</item>
+    </style>
+
+    <style name="MenuManageText">
+        <item name="android:textSize">@dimen/menu_manage_text_size</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="AppTheme.FullScreenDialog" parent="Theme.MaterialComponents.Light.Dialog">
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:windowBackground">@android:color/white</item>
+        <item name="actionMenuTextColor">@android:color/white</item>
+    </style>
+
+    <style name="TextInputLayoutItem" parent="Widget.Design.TextInputLayout">
+        <item name="android:layout_marginLeft">@dimen/text_margin</item>
+        <item name="android:layout_marginRight">@dimen/text_margin</item>
+        <item name="android:layout_marginTop">8dp</item>
+        <item name="android:layout_marginBottom">8dp</item>
+    </style>
+
+    <style name="CardViewItem" parent="CardView.Light">
+        <item name="android:layout_gravity">center</item>
+        <item name="android:layout_margin">4dp</item>
+    </style>
+
+    <style name="TextInputEditTextItem" parent="Widget.MaterialComponents.TextInputLayout.FilledBox">
+
+    </style>
+
+    <style name="TextTitleItem">
+        <item name="android:layout_margin">@dimen/text_margin</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:textSize">@dimen/body_text_size</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="SpinnerItem" parent="Widget.AppCompat.Spinner">
+        <item name="android:paddingLeft">@dimen/text_margin</item>
+        <item name="android:paddingRight">@dimen/text_margin</item>
+    </style>
+
+    <style name="SwitchItem">
+        <item name="android:layout_marginTop">@dimen/text_margin</item>
+        <item name="android:layout_marginBottom">@dimen/text_margin</item>
+        <item name="android:layout_marginEnd">@dimen/text_margin</item>
+        <item name="android:layout_marginStart">20dp</item>
+    </style>
+
+    <style name="LinearLayoutDivider" >
+        <item name="android:showDividers">middle|end</item>
+        <item name="android:divider">?android:listDivider</item>
+    </style>
+
+    <style name="LinearLayoutItem" >
+    </style>
+
+    <style name="AppTheme.Slide">
+        <item name="android:windowEnterAnimation">@anim/slide_up</item>
+        <item name="android:windowExitAnimation">@anim/slide_down</item>
+    </style>
+
+</resources>

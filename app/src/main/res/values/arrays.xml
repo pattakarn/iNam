@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="region_data">
+        <item>north</item>
+        <item>east</item>
+        <item>west</item>
+        <item>south</item>
+        <item>northeast</item>
+        <item>central</item>
+    </string-array>
+
+    <string-array name="more_menu">
+        <item>Account</item>
+        <item>Shop Manager</item>
+        <item>Setting</item>
+    </string-array>
+
+    <string-array name="manage_menu">
+        <item>*ตลาด &amp; ร้านค้า</item>
+        <item>ตลาด</item>
+        <item>โซน</item>
+        <item>ร้านค้า</item>
+        <item>สินค้า</item>
+        <item>สต๊อค</item>
+        <item>*ที่พัก</item>
+        <item>ที่พัก</item>
+        <item>ห้องพัก</item>
+        <item>จอง</item>
+        <item>*ท่องเที่ยว &amp; เครือข่าย &amp; บริการ</item>
+        <item>ท่องเที่ยว</item>
+        <item>เครือข่าย</item>
+        <item>บริการ</item>
+    </string-array>
+
+    <string-array name="bed_list">
+        <item>1 bed</item>
+        <item>2 bed</item>
+        <item>3 bed</item>
+        <item>4 bed</item>
+    </string-array>
+
+    <string-array name="guest_list">
+        <item>1 guest</item>
+        <item>2 guest</item>
+        <item>3 guest</item>
+        <item>4 guest</item>
+        <item>5 guest</item>
+        <item>6 guest</item>
+        <item>7 guest</item>
+        <item>8 guest</item>
+        <item>9 guest</item>
+        <item>10 guest</item>
+    </string-array>
+</resources>

@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1027859571981",
+    "firebase_url": "https://istyle-global.firebaseio.com",
+    "project_id": "istyle-global",
+    "storage_bucket": "istyle-global.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1027859571981:android:99140b527c11e3a2",
+        "android_client_info": {
+          "package_name": "com.sungkunn.inam"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1027859571981-2mdfcii07358eihajcmq5e8pue9pnlom.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBG2qL7-0_tbVN6Qk7JItajfcICSRtRmng"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1027859571981-2mdfcii07358eihajcmq5e8pue9pnlom.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

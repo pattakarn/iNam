@@ -1,0 +1,55 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory
+            android:key="market_category"
+            android:title="Market"
+    >
+        <Preference
+                android:key="market"
+                android:summary="-"
+                android:title="Market"/>
+
+        <Preference
+                android:key="zone"
+                android:summary="-"
+                android:title="Zone"/>
+
+        <Preference
+                android:key="shop"
+                android:summary="-"
+                android:title="Shop"/>
+    </PreferenceCategory>
+
+    <PreferenceCategory
+            android:key="market_category"
+            android:title="Market">
+        <EditTextPreference
+                android:key="name"
+                android:summary="ไอติมโบราณ"
+                android:title="Name"
+                android:singleLine="true"
+                android:selectAllOnFocus="true"/>
+
+        <EditTextPreference
+                android:key="type"
+                android:summary="ของหวาน"
+                android:title="Type"
+                android:singleLine="true"
+                android:selectAllOnFocus="true"/>
+
+        <EditTextPreference
+                android:key="detail"
+                android:summary="home made"
+                android:title="Detail"
+                android:singleLine="true"
+                android:selectAllOnFocus="true"/>
+
+        <EditTextPreference
+                android:key="price"
+                android:summary="100"
+                android:title="Price"
+                android:singleLine="true"
+                android:selectAllOnFocus="true"/>
+    </PreferenceCategory>
+
+</PreferenceScreen>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          xmlns:dist="http://schemas.android.com/apk/distribution"
+          package="com.sungkunn.inam">
+
+    <dist:module dist:instant="true"/>
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <application
+            android:allowBackup="true"
+            android:icon="@mipmap/inam_logo"
+            android:label="@string/app_name"
+            android:roundIcon="@mipmap/inam_logo"
+            android:supportsRtl="true"
+            android:theme="@style/AppTheme.NoActionBar">
+        <activity android:name=".home.HomeActivity">
+        </activity>
+        <activity android:name=".AccountActivity">
+        </activity>
+        <activity
+                android:name=".HomeNewActivity"
+                android:label="@string/title_activity_home_new">
+        </activity>
+        <activity android:name=".home.HomeRegionActivity">
+        </activity>
+        <activity
+                android:name=".TestSettingsActivity"
+                android:label="@string/title_activity_test_settings">
+        </activity>
+        <activity android:name=".ManageActivity">
+        </activity>
+        <activity
+                android:name=".home.Home"
+                android:label="@string/title_activity_home"
+                android:screenOrientation="portrait"
+                android:theme="@style/AppTheme.NoActionBar.NoActionBar">
+        </activity>
+        <activity android:name=".SplashScreen">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <activity
+                android:name=".Temp"
+                android:label="@string/title_activity_temp">
+        </activity>
+        <activity android:name=".MainActivity">
+        </activity>
+    </application>
+
+</manifest>

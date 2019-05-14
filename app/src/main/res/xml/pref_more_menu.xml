@@ -1,0 +1,23 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory>
+        <Preference
+                android:key="account"
+                android:title="Account"/>
+
+        <Preference
+                android:key="shop"
+                android:title="Shop"/>
+
+        <Preference
+                android:key="setting"
+                android:title="Setting"/>
+    </PreferenceCategory>
+    <PreferenceCategory >
+        <Preference
+                android:key="signout"
+                android:title="Sign out"
+        />
+    </PreferenceCategory>
+
+</PreferenceScreen>

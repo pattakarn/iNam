@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        tools:context=".fragment.manage.item.MarketItemFragment">
+
+    <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/app_bar"
+            android:fitsSystemWindows="true"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:theme="@style/AppTheme.NoActionBar.AppBarOverlay">
+
+        <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_height="?attr/actionBarSize"
+                android:layout_width="match_parent"
+                app:contentInsetStartWithNavigation="0dp"
+                android:paddingEnd="16dp"
+                android:paddingStart="6dp"
+                app:navigationIcon="@drawable/ic_close_white"
+                android:background="@android:color/transparent"
+                app:title="@string/title_item_room"
+                app:popupTheme="@style/AppTheme.NoActionBar.PopupOverlay"/>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+            <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/CardViewItem"
+                    android:elevation="8dp"
+                    card_view:cardCornerRadius="10dp"
+                    card_view:cardUseCompatPadding="true">
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        style="@style/LinearLayoutItem">
+
+                    <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            style="@style/TextTitleItem"
+                            android:text="@string/title_item_info"/>
+
+                    <Spinner
+                            android:id="@+id/spin_market"
+                            style="@style/SpinnerItem"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+
+                    <Spinner
+                            android:id="@+id/spin_hotel"
+                            style="@style/SpinnerItem"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/CardViewItem"
+                    android:elevation="8dp"
+                    card_view:cardCornerRadius="10dp"
+                    card_view:cardUseCompatPadding="true">
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        style="@style/LinearLayoutItem">
+
+                    <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            style="@style/TextTitleItem"
+                            android:text="@string/title_item_room"/>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            style="@style/TextInputLayoutItem"
+                            android:hint="Name">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                style="@style/TextInputEditTextItem"/>
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            style="@style/TextInputLayoutItem"
+                            android:hint="Type">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                style="@style/TextInputEditTextItem"/>
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            style="@style/TextInputLayoutItem"
+                            android:hint="Detail">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                style="@style/TextInputEditTextItem"/>
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            style="@style/TextInputLayoutItem"
+                            android:hint="Price">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                style="@style/TextInputEditTextItem"/>
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            style="@style/TextInputLayoutItem"
+                            android:hint="Quantity">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                style="@style/TextInputEditTextItem"/>
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/CardViewItem"
+                    android:elevation="8dp"
+                    card_view:cardCornerRadius="10dp"
+                    card_view:cardUseCompatPadding="true">
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        style="@style/LinearLayoutItem">
+
+                    <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            style="@style/TextTitleItem"
+                            android:text="@string/title_item_option"/>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            style="@style/TextInputLayoutItem"
+                            android:hint="Size">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                style="@style/TextInputEditTextItem"/>
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <Spinner
+                            android:id="@+id/spin_guest"
+                            style="@style/SpinnerItem"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+
+                    <Spinner
+                            android:id="@+id/spin_bed"
+                            style="@style/SpinnerItem"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+
+                    <com.google.android.material.switchmaterial.SwitchMaterial
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            style="@style/SwitchItem"
+                            android:checked="true"
+                            android:text="Breakfast"/>
+
+                    <com.google.android.material.switchmaterial.SwitchMaterial
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            style="@style/SwitchItem"
+                            android:checked="true"
+                            android:text="Wifi"/>
+
+                    <com.google.android.material.switchmaterial.SwitchMaterial
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            style="@style/SwitchItem"
+                            android:checked="true"
+                            android:text="Air"/>
+
+                    <com.google.android.material.switchmaterial.SwitchMaterial
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            style="@style/SwitchItem"
+                            android:checked="false"
+                            android:text="Smoking"/>
+
+                    <com.google.android.material.switchmaterial.SwitchMaterial
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            style="@style/SwitchItem"
+                            android:checked="true"
+                            android:text="Car Service"/>
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
