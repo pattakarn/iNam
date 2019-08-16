@@ -2,6 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           xmlns:dist="http://schemas.android.com/apk/distribution"
           package="com.sungkunn.inam">
+    <!--
+         The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
+         Google Maps Android API v2, but you must specify either coarse or fine
+         location permissions for the 'MyLocation' functionality.
+    -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
 
     <dist:module dist:instant="true"/>
 
@@ -13,30 +19,51 @@
             android:label="@string/app_name"
             android:roundIcon="@mipmap/inam_logo"
             android:supportsRtl="true"
-            android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".home.HomeActivity">
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait">
+        <activity android:name=".activity.PhotoItemActivity">
         </activity>
-        <activity android:name=".AccountActivity">
+        <activity android:name=".activity.UIItemActivity">
+        </activity>
+        <!--
+             The API key for Google Maps-based APIs is defined as a string resource.
+             (See the file "res/values/google_maps_api.xml").
+             Note that the API key is linked to the encryption key used to sign the APK.
+             You need a different API key for each encryption key, including the release key that is used to
+             sign the APK for publishing.
+             You can define the keys for the debug and release targets in src/debug/ and src/release/.
+        -->
+        <meta-data
+                android:name="com.google.android.geo.API_KEY"
+                android:value="@string/google_maps_key"/>
+
+        <activity
+                android:name=".example.MapsTestActivity"
+                android:label="@string/title_activity_maps_test">
+        </activity>
+        <activity android:name=".example.HomeActivity">
+        </activity>
+        <activity android:name=".activity.AccountActivity">
         </activity>
         <activity
-                android:name=".HomeNewActivity"
+                android:name=".activity.HomeNewActivity"
                 android:label="@string/title_activity_home_new">
         </activity>
-        <activity android:name=".home.HomeRegionActivity">
+        <activity android:name=".example.HomeRegionActivity">
         </activity>
         <activity
-                android:name=".TestSettingsActivity"
+                android:name=".example.TestSettingsActivity"
                 android:label="@string/title_activity_test_settings">
         </activity>
-        <activity android:name=".ManageActivity">
+        <activity android:name=".activity.ManageActivity">
         </activity>
         <activity
-                android:name=".home.Home"
+                android:name=".example.Home"
                 android:label="@string/title_activity_home"
                 android:screenOrientation="portrait"
                 android:theme="@style/AppTheme.NoActionBar.NoActionBar">
         </activity>
-        <activity android:name=".SplashScreen">
+        <activity android:name=".activity.SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -44,10 +71,10 @@
             </intent-filter>
         </activity>
         <activity
-                android:name=".Temp"
+                android:name=".example.Temp"
                 android:label="@string/title_activity_temp">
         </activity>
-        <activity android:name=".MainActivity">
+        <activity android:name=".example.MainActivity">
         </activity>
     </application>
 

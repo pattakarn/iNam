@@ -6,7 +6,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         xmlns:card_view="http://schemas.android.com/apk/res-auto"
-        tools:context=".ui.account.AccountFragment">
+        tools:context=".fragment.account.AccountFragment">
 
     <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/app_bar"

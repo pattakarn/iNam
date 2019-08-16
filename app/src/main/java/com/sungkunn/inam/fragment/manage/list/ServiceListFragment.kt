@@ -16,10 +16,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.firestore.FirebaseFirestore
 import com.sungkunn.inam.R
 import com.sungkunn.inam.adapter.RV_Adapter_Manage_List
-import com.sungkunn.inam.db.Market
-import com.sungkunn.inam.db.Service
-import com.sungkunn.inam.db.WrapMarket
-import com.sungkunn.inam.db.WrapService
+import com.sungkunn.inam.model.Market
+import com.sungkunn.inam.model.Service
+import com.sungkunn.inam.model.WrapMarket
+import com.sungkunn.inam.model.WrapService
 import com.sungkunn.inam.fragment.manage.item.ServiceItemFragment
 
 // TODO: Rename parameter arguments, choose names that match

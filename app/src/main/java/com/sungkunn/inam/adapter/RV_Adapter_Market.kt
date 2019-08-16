@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.sungkunn.inam.R
-import com.sungkunn.inam.db.Market
+import com.sungkunn.inam.model.Market
 import com.sungkunn.inam.viewholder.ViewHolderMenuCardView
 
 class RV_Adapter_Market(var items: MutableList<Market>?) : RecyclerView.Adapter<RecyclerView.ViewHolder>(){

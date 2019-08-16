@@ -79,6 +79,8 @@
 
             <include layout="@layout/card_address_item"/>
 
+            <include layout="@layout/card_photo_item"/>
+
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 

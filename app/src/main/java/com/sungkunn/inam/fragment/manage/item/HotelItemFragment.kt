@@ -1,5 +1,6 @@
 package com.sungkunn.inam.fragment.manage.item
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -7,6 +8,7 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.Spinner
 import androidx.appcompat.widget.Toolbar
@@ -15,10 +17,11 @@ import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.firestore.FirebaseFirestore
 import com.sungkunn.inam.R
-import com.sungkunn.inam.db.Hotel
-import com.sungkunn.inam.db.Market
-import com.sungkunn.inam.db.WrapHotel
-import com.sungkunn.inam.db.WrapMarket
+import com.sungkunn.inam.activity.PhotoItemActivity
+import com.sungkunn.inam.model.Hotel
+import com.sungkunn.inam.model.Market
+import com.sungkunn.inam.model.WrapHotel
+import com.sungkunn.inam.model.WrapMarket
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -53,6 +56,8 @@ class HotelItemFragment : Fragment(), Toolbar.OnMenuItemClickListener, View.OnCl
     var etFacebook: TextInputEditText? = null
     var etEmail: TextInputEditText? = null
 
+    var btnPhoto: Button? = null
+
     var TAG = "Hotel Item"
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -83,10 +88,21 @@ class HotelItemFragment : Fragment(), Toolbar.OnMenuItemClickListener, View.OnCl
         etFacebook = rootView.findViewById(R.id.et_facebook)
         etEmail = rootView.findViewById(R.id.et_email)
 
+        btnPhoto = rootView.findViewById(R.id.btn_photo)
+
         toolbar!!.inflateMenu(R.menu.menu_item)
         toolbar!!.setNavigationIcon(R.drawable.ic_close_white)
         toolbar!!.setNavigationOnClickListener(this)
         toolbar!!.setOnMenuItemClickListener(this)
+
+        btnPhoto!!.setOnClickListener(object: View.OnClickListener{
+            override fun onClick(v: View?) {
+                var intent = Intent(inflater.context, PhotoItemActivity::class.java)
+                intent.putExtra("key", hotelItem!!.key)
+                intent.putExtra("name", hotelItem!!.data.name)
+                inflater.context.startActivity(intent)
+            }
+        })
 //        fragmentManager!!.beginTransaction()
 //            .replace(R.id.marketItemContainer, MarketItemPreferenceFragment())
 //            .addToBackStack(null)

@@ -24,96 +24,229 @@
                 style="@style/TextTitleItem"
                 android:text="@string/title_item_servicetime"/>
 
-        <com.google.android.material.textfield.TextInputLayout
+        <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                style="@style/TextInputLayoutItem"
-                android:hint="Monday">
+                android:orientation="horizontal"
+                android:weightSum="3"
+                style="@style/ServiceTimeItem">
 
-            <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
+            <TextView
+                    android:text="Monday"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    style="@style/TextInputEditTextItem"/>
+                    android:layout_weight="1"
+                    android:textColor="@color/black"/>
 
-        </com.google.android.material.textfield.TextInputLayout>
+            <TextView
+                    android:id="@+id/tv_day1_open"
+                    android:text="8:00"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"/>
 
-        <com.google.android.material.textfield.TextInputLayout
+            <TextView
+                    android:id="@+id/tv_day1_close"
+                    android:text="16.00"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"/>
+
+        </LinearLayout>
+
+        <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                style="@style/TextInputLayoutItem"
-                android:hint="Tuesday">
+                android:orientation="horizontal"
+                android:weightSum="3"
+                style="@style/ServiceTimeItem">
 
-            <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
+            <TextView
+                    android:text="Tuesday"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    style="@style/TextInputEditTextItem"/>
+                    android:layout_weight="1"
+                    android:textColor="@color/black"/>
 
-        </com.google.android.material.textfield.TextInputLayout>
+            <TextView
+                    android:id="@+id/tv_day2_open"
+                    android:text="8:00"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"/>
 
-        <com.google.android.material.textfield.TextInputLayout
+            <TextView
+                    android:id="@+id/tv_day2_close"
+                    android:text="16.00"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"/>
+
+        </LinearLayout>
+
+        <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                style="@style/TextInputLayoutItem"
-                android:hint="Wednesday">
+                android:orientation="horizontal"
+                android:weightSum="3"
+                style="@style/ServiceTimeItem">
 
-            <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
+            <TextView
+                    android:text="Wednesday"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    style="@style/TextInputEditTextItem"/>
+                    android:layout_weight="1"
+                    android:textColor="@color/black"/>
 
-        </com.google.android.material.textfield.TextInputLayout>
+            <TextView
+                    android:id="@+id/tv_day3_open"
+                    android:text="8:00"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"/>
 
-        <com.google.android.material.textfield.TextInputLayout
+            <TextView
+                    android:id="@+id/tv_day3_close"
+                    android:text="16.00"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"/>
+
+        </LinearLayout>
+
+        <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                style="@style/TextInputLayoutItem"
-                android:hint="Thursday">
+                android:orientation="horizontal"
+                android:weightSum="3"
+                style="@style/ServiceTimeItem">
 
-            <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
+            <TextView
+                    android:text="Thursday"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    style="@style/TextInputEditTextItem"/>
+                    android:layout_weight="1"
+                    android:textColor="@color/black"/>
 
-        </com.google.android.material.textfield.TextInputLayout>
+            <TextView
+                    android:id="@+id/tv_day4_open"
+                    android:text="8:00"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"/>
 
-        <com.google.android.material.textfield.TextInputLayout
+            <TextView
+                    android:id="@+id/tv_day4_close"
+                    android:text="16.00"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"/>
+
+        </LinearLayout>
+
+        <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                style="@style/TextInputLayoutItem"
-                android:hint="Friday">
+                android:orientation="horizontal"
+                android:weightSum="3"
+                style="@style/ServiceTimeItem">
 
-            <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
+            <TextView
+                    android:text="Friday"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    style="@style/TextInputEditTextItem"/>
+                    android:layout_weight="1"
+                    android:textColor="@color/black"/>
 
-        </com.google.android.material.textfield.TextInputLayout>
+            <TextView
+                    android:id="@+id/tv_day5_open"
+                    android:text="8:00"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"/>
 
-        <com.google.android.material.textfield.TextInputLayout
+            <TextView
+                    android:id="@+id/tv_day5_close"
+                    android:text="16.00"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"/>
+
+        </LinearLayout>
+
+        <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                style="@style/TextInputLayoutItem"
-                android:hint="Saturday">
+                android:orientation="horizontal"
+                android:weightSum="3"
+                style="@style/ServiceTimeItem">
 
-            <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
+            <TextView
+                    android:text="Saturday"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    style="@style/TextInputEditTextItem"/>
+                    android:layout_weight="1"
+                    android:textColor="@color/black"/>
 
-        </com.google.android.material.textfield.TextInputLayout>
+            <TextView
+                    android:id="@+id/tv_day6_open"
+                    android:text="8:00"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"/>
 
-        <com.google.android.material.textfield.TextInputLayout
+            <TextView
+                    android:id="@+id/tv_day6_close"
+                    android:text="16.00"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"/>
+
+        </LinearLayout>
+
+        <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                style="@style/TextInputLayoutItem"
-                android:hint="Sunday">
+                android:orientation="horizontal"
+                android:weightSum="3"
+                style="@style/ServiceTimeItem">
 
-            <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
+            <TextView
+                    android:text="Sunday"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    style="@style/TextInputEditTextItem"/>
+                    android:layout_weight="1"
+                    android:textColor="@color/black"/>
 
-        </com.google.android.material.textfield.TextInputLayout>
+            <TextView
+                    android:id="@+id/tv_day7_open"
+                    android:text="8:00"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"/>
+
+            <TextView
+                    android:id="@+id/tv_day7_close"
+                    android:text="16.00"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"/>
+
+        </LinearLayout>
     </LinearLayout>
 
 

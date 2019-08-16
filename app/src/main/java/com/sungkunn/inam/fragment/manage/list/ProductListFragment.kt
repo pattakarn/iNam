@@ -16,7 +16,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.firestore.FirebaseFirestore
 import com.sungkunn.inam.R
 import com.sungkunn.inam.adapter.RV_Adapter_Manage_List
-import com.sungkunn.inam.db.*
+import com.sungkunn.inam.model.*
 import com.sungkunn.inam.fragment.manage.item.ProductItemFragment
 
 // TODO: Rename parameter arguments, choose names that match

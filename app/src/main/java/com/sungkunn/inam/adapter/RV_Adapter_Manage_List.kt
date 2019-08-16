@@ -6,7 +6,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
 import com.istyleglobalnetwork.istyleapplication.istyle.pack_new.viewholder.VHInfoMenuKT
 import com.sungkunn.inam.R
-import com.sungkunn.inam.db.*
+import com.sungkunn.inam.model.*
 import com.sungkunn.inam.fragment.manage.item.*
 
 class RV_Adapter_Manage_List(var items: MutableList<Any>?, var fragmentManager: FragmentManager) :

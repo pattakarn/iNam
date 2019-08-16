@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
 import com.sungkunn.inam.R
-import com.sungkunn.inam.home.HomeActivity
+import com.sungkunn.inam.example.HomeActivity
 import com.sungkunn.inam.viewholder.ViewHolderHomeMenu
 
 class RV_Adapter_Home_Menu(var items: Array<String>, var fragmentManager: FragmentManager) :

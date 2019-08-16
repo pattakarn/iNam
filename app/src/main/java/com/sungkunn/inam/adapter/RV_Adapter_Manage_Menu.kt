@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.istyleglobalnetwork.istyleapplication.istyle.pack_new.viewholder.VHInfoMenuKT
 import com.istyleglobalnetwork.istyleapplication.istyle.pack_new.viewholder.VHInfoTitleKT
 import com.sungkunn.inam.R
-import com.sungkunn.inam.db.MapMenu
+import com.sungkunn.inam.model.MapMenu
 
 class RV_Adapter_Manage_Menu(var items: ArrayList<MapMenu>, var fragmentManager: FragmentManager) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {

@@ -7,7 +7,7 @@
         android:id="@+id/cl_home2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".fragment.Home2Fragment">
+        tools:context=".fragment.main.Home2Fragment">
 
     <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/app_bar"
@@ -139,7 +139,6 @@
                 android:id="@+id/rv"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginBottom="?attr/actionBarSize"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 
 

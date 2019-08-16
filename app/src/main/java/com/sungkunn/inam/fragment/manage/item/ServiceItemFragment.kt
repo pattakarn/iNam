@@ -1,5 +1,6 @@
 package com.sungkunn.inam.fragment.manage.item
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -7,6 +8,7 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.Spinner
 import androidx.appcompat.widget.Toolbar
@@ -15,10 +17,11 @@ import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.firestore.FirebaseFirestore
 import com.sungkunn.inam.R
-import com.sungkunn.inam.db.Market
-import com.sungkunn.inam.db.Service
-import com.sungkunn.inam.db.WrapMarket
-import com.sungkunn.inam.db.WrapService
+import com.sungkunn.inam.activity.PhotoItemActivity
+import com.sungkunn.inam.model.Market
+import com.sungkunn.inam.model.Service
+import com.sungkunn.inam.model.WrapMarket
+import com.sungkunn.inam.model.WrapService
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -53,6 +56,8 @@ class ServiceItemFragment : Fragment(), Toolbar.OnMenuItemClickListener, View.On
     var etFacebook: TextInputEditText? = null
     var etEmail: TextInputEditText? = null
 
+    var btnPhoto: Button? = null
+
     var TAG = "Service Item"
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -83,11 +88,22 @@ class ServiceItemFragment : Fragment(), Toolbar.OnMenuItemClickListener, View.On
         etFacebook = rootView.findViewById(R.id.et_facebook)
         etEmail = rootView.findViewById(R.id.et_email)
 
+        btnPhoto = rootView.findViewById(R.id.btn_photo)
+
 
         toolbar!!.inflateMenu(R.menu.menu_item)
         toolbar!!.setNavigationIcon(R.drawable.ic_close_white)
         toolbar!!.setNavigationOnClickListener(this)
         toolbar!!.setOnMenuItemClickListener(this)
+
+        btnPhoto!!.setOnClickListener(object: View.OnClickListener{
+            override fun onClick(v: View?) {
+                var intent = Intent(inflater.context, PhotoItemActivity::class.java)
+                intent.putExtra("key", serviceItem!!.key)
+                intent.putExtra("name", serviceItem!!.data.name)
+                inflater.context.startActivity(intent)
+            }
+        })
 //        fragmentManager!!.beginTransaction()
 //            .replace(R.id.marketItemContainer, MarketItemPreferenceFragment())
 //            .addToBackStack(null)

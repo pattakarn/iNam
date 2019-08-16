@@ -1,11 +1,13 @@
 package com.sungkunn.inam.fragment.manage.item
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.LinearLayout
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
@@ -13,8 +15,9 @@ import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.firestore.FirebaseFirestore
 import com.sungkunn.inam.R
-import com.sungkunn.inam.db.Market
-import com.sungkunn.inam.db.WrapMarket
+import com.sungkunn.inam.activity.PhotoItemActivity
+import com.sungkunn.inam.model.Market
+import com.sungkunn.inam.model.WrapMarket
 
 class MarketItemFragment : Fragment(), Toolbar.OnMenuItemClickListener, View.OnClickListener {
 
@@ -26,6 +29,9 @@ class MarketItemFragment : Fragment(), Toolbar.OnMenuItemClickListener, View.OnC
     var toolbar: Toolbar? = null
     var ll: LinearLayout? = null
     var etName: TextInputEditText? = null
+    var btnPhoto: Button? = null
+
+
 
     var TAG = "Market Item"
 
@@ -45,6 +51,7 @@ class MarketItemFragment : Fragment(), Toolbar.OnMenuItemClickListener, View.OnC
         toolbar = rootView.findViewById(R.id.toolbar)
         ll = rootView.findViewById(R.id.ll)
         etName = rootView.findViewById(R.id.et_name)
+        btnPhoto = rootView.findViewById(R.id.btn_photo)
 
         toolbar!!.inflateMenu(R.menu.menu_item)
         toolbar!!.setNavigationIcon(R.drawable.ic_close_white)
@@ -57,6 +64,14 @@ class MarketItemFragment : Fragment(), Toolbar.OnMenuItemClickListener, View.OnC
 //            .replace(R.id.marketItemContainer, MarketItemPreferenceFragment())
 //            .addToBackStack(null)
 //            .commit()
+        btnPhoto!!.setOnClickListener(object: View.OnClickListener{
+            override fun onClick(v: View?) {
+                var intent = Intent(inflater.context, PhotoItemActivity::class.java)
+                intent.putExtra("key", marketItem!!.key)
+                intent.putExtra("name", marketItem!!.data.name)
+                inflater.context.startActivity(intent)
+            }
+        })
 
         return rootView
     }

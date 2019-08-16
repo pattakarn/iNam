@@ -107,11 +107,13 @@
     <string name="title_item_contact">Contact</string>
     <string name="title_item_option">Option</string>
     <string name="title_item_address">Address</string>
+    <string name="title_item_photo">Photo</string>
     <string name="title_item_award">Award</string>
     <string name="title_item_servicetime">Service Time</string>
     <string name="save_process">Saving...</string>
     <string name="save_success">Complete</string>
     <string name="save_fault">Fault</string>
+    <string name="title_activity_maps_test">Map</string>
 
 
 </resources>

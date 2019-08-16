@@ -7,7 +7,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fitsSystemWindows="true"
-        tools:context=".HomeNewActivity">
+        tools:context=".activity.HomeNewActivity">
 
     <FrameLayout
             android:id="@+id/homeNewContainer"

@@ -1,22 +1,21 @@
 package com.sungkunn.inam.fragment.manage.item
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.LinearLayout
-import android.widget.Spinner
+import android.widget.*
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.firestore.FirebaseFirestore
 import com.sungkunn.inam.R
-import com.sungkunn.inam.db.*
+import com.sungkunn.inam.activity.PhotoItemActivity
+import com.sungkunn.inam.model.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -54,6 +53,9 @@ class ProductItemFragment : Fragment(), Toolbar.OnMenuItemClickListener, View.On
     var etDetail: TextInputEditText? = null
     var etPrice: TextInputEditText? = null
 
+
+    var btnPhoto: Button? = null
+
     var TAG = "Product Item"
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -85,10 +87,21 @@ class ProductItemFragment : Fragment(), Toolbar.OnMenuItemClickListener, View.On
         etDetail = rootView.findViewById(R.id.et_detail)
         etPrice = rootView.findViewById(R.id.et_price)
 
+        btnPhoto = rootView.findViewById(R.id.btn_photo)
+
         toolbar!!.inflateMenu(R.menu.menu_item)
         toolbar!!.setNavigationIcon(R.drawable.ic_close_white)
         toolbar!!.setNavigationOnClickListener(this)
         toolbar!!.setOnMenuItemClickListener(this)
+
+        btnPhoto!!.setOnClickListener(object: View.OnClickListener{
+            override fun onClick(v: View?) {
+                var intent = Intent(inflater.context, PhotoItemActivity::class.java)
+                intent.putExtra("key", productItem!!.key)
+                intent.putExtra("name", productItem!!.data.name)
+                inflater.context.startActivity(intent)
+            }
+        })
 //        fragmentManager!!.beginTransaction()
 //            .replace(R.id.marketItemContainer, MarketItemPreferenceFragment())
 //            .addToBackStack(null)

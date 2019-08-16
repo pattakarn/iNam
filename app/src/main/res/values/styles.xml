@@ -93,6 +93,13 @@
         <item name="android:divider">?android:listDivider</item>
     </style>
 
+    <style name="ServiceTimeItem">
+        <item name="android:layout_marginTop">8dp</item>
+        <item name="android:layout_marginBottom">8dp</item>
+        <item name="android:layout_marginEnd">@dimen/text_margin</item>
+        <item name="android:layout_marginStart">@dimen/text_margin</item>
+    </style>
+
     <style name="LinearLayoutItem" >
     </style>
 
