@@ -41,6 +41,14 @@ class NetworkInfoFragment : Fragment() {
     var contactFacebook: TextView? = null
     var contactEmail: TextView? = null
 
+    var tvOpentimeMonday: TextView? = null
+    var tvOpentimeTuesday: TextView? = null
+    var tvOpentimeWednesday: TextView? = null
+    var tvOpentimeThursday: TextView? = null
+    var tvOpentimeFriday: TextView? = null
+    var tvOpentimeSaturday: TextView? = null
+    var tvOpentimeSunday: TextView? = null
+
 
     var TAG = "Network Info"
 
@@ -66,6 +74,14 @@ class NetworkInfoFragment : Fragment() {
         contactLine = rootView.findViewById(R.id.tv_contact_line)
         contactFacebook = rootView.findViewById(R.id.tv_contact_fb)
         contactEmail = rootView.findViewById(R.id.tv_contact_email)
+
+        tvOpentimeMonday = rootView.findViewById(R.id.tv_opentime_monday)
+        tvOpentimeTuesday = rootView.findViewById(R.id.tv_opentime_tuesday)
+        tvOpentimeWednesday = rootView.findViewById(R.id.tv_opentime_wednesday)
+        tvOpentimeThursday = rootView.findViewById(R.id.tv_opentime_thursday)
+        tvOpentimeFriday = rootView.findViewById(R.id.tv_opentime_friday)
+        tvOpentimeSaturday = rootView.findViewById(R.id.tv_opentime_saturday)
+        tvOpentimeSunday = rootView.findViewById(R.id.tv_opentime_sunday)
 
         getNetwork()
 
@@ -101,7 +117,24 @@ class NetworkInfoFragment : Fragment() {
         contactFacebook!!.setText(data!!.data.facebook)
         contactEmail!!.setText(data!!.data.email)
 
+        tvOpentimeMonday!!.setText(checkOpentime(data!!.data.monday_open, data!!.data.monday_close))
+        tvOpentimeTuesday!!.setText(checkOpentime(data!!.data.tuesday_open, data!!.data.tuesday_close))
+        tvOpentimeWednesday!!.setText(checkOpentime(data!!.data.wednesday_open, data!!.data.wednesday_close))
+        tvOpentimeThursday!!.setText(checkOpentime(data!!.data.thursday_open, data!!.data.thursday_close))
+        tvOpentimeFriday!!.setText(checkOpentime(data!!.data.friday_open, data!!.data.friday_close))
+        tvOpentimeSaturday!!.setText(checkOpentime(data!!.data.saturday_open, data!!.data.saturday_close))
+        tvOpentimeSunday!!.setText(checkOpentime(data!!.data.sunday_open, data!!.data.sunday_close))
 
+    }
+
+    fun checkOpentime(open: String?, close: String?): String {
+        var result = ""
+        if (open.equals("") && close.equals("")) {
+            result = getString(R.string.title_opentime_close)
+        } else {
+            result = open + " - " + close
+        }
+        return result
     }
 
     companion object {

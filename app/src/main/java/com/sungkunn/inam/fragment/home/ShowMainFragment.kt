@@ -1,6 +1,8 @@
 package com.sungkunn.inam.fragment.home
 
+import android.app.Activity
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -39,6 +41,7 @@ class ShowMainFragment : Fragment(), View.OnClickListener {
     var ll: LinearLayout? = null
     var tabs: TabLayout? = null
     var pager: ViewPager? = null
+//    var pagerPhoto: ViewPager? = null
 
     var backdrop: ImageView? = null
 
@@ -61,6 +64,7 @@ class ShowMainFragment : Fragment(), View.OnClickListener {
         ll = rootView.findViewById(R.id.ll)
         tabs = rootView.findViewById(R.id.tabs)
         pager = rootView.findViewById(R.id.pager_main)
+//        pagerPhoto = rootView.findViewById(R.id.pager_photo)
         backdrop = rootView.findViewById(R.id.backdrop)
 
         toolbar!!.setTitle(marketItem!!.data.name)
@@ -68,14 +72,26 @@ class ShowMainFragment : Fragment(), View.OnClickListener {
         toolbar!!.setNavigationOnClickListener(this)
 
         setPhoto()
+//        setPagerPhoto()
         setFragment()
 
 
         return rootView
     }
 
+//    private fun setPagerPhoto(){
+//        val adapter = Pager_Adapter_Title(this!!.fragmentManager!!)
+//        adapter.addFragment(PhotoPagerFragment.newInstance("images/" + marketItem!!.key + "_0", ""), "Photo0")
+//        adapter.addFragment(PhotoPagerFragment.newInstance("images/" + marketItem!!.key + "_1", ""), "Photo1")
+//        adapter.addFragment(PhotoPagerFragment.newInstance("images/" + marketItem!!.key + "_2", ""), "Photo2")
+//        adapter.addFragment(PhotoPagerFragment.newInstance("images/" + marketItem!!.key + "_3", ""), "Photo3")
+//        adapter.addFragment(PhotoPagerFragment.newInstance("images/" + marketItem!!.key + "_4", ""), "Photo4")
+//        pagerPhoto!!.adapter = adapter
+////        pager!!.setOnTouchListener(View.OnTouchListener { v, event -> true })
+//    }
+
     private fun setFragment(){
-        val adapter = Pager_Adapter_Title(this!!.fragmentManager!!)
+        var adapter = Pager_Adapter_Title(this!!.fragmentManager!!)
         tabs!!.setupWithViewPager(pager)
         adapter.addFragment(MarketInfoFragment.newInstance(marketItem!!.key, marketItem!!.data.name, "market"), "Info")
         adapter.addFragment(MarketShopFragment.newInstance("", ""), "Shop")
@@ -130,5 +146,45 @@ class ShowMainFragment : Fragment(), View.OnClickListener {
                     putParcelable("marketItem", marketItem)
                 }
             }
+    }
+
+    override fun onAttach(activity: Activity) {
+        super.onAttach(activity)
+        Log.i("Check", "onAttach")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.i("Check", "onDestroy")
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        Log.i("Check", "onDestroyView")
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        Log.i("Check", "onDetach")
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Log.i("Check", "onPause")
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Log.i("Check", "onResume")
+    }
+
+    override fun onStart() {
+        super.onStart()
+        Log.i("Check", "onStart")
+    }
+
+    override fun onStop() {
+        super.onStop()
+        Log.i("Check", "onStop")
     }
 }

@@ -77,7 +77,7 @@
 
             <include layout="@layout/card_contact_item"/>
 
-            <include layout="@layout/card_opentime"/>
+            <include layout="@layout/card_opentime_item"/>
 
             <include layout="@layout/card_photo_item"/>
 

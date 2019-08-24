@@ -34,7 +34,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Monday"/>
+                    android:text="@string/title_monday"/>
 
             <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="0dp"
@@ -81,7 +81,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Tuesday"/>
+                    android:text="@string/title_tuesday"/>
 
             <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="0dp"
@@ -128,7 +128,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Wednesday"/>
+                    android:text="@string/title_wednesday"/>
 
             <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="0dp"
@@ -175,7 +175,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Thursday"/>
+                    android:text="@string/title_thursday"/>
 
             <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="0dp"
@@ -222,7 +222,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Friday"/>
+                    android:text="@string/title_friday"/>
 
             <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="0dp"
@@ -269,7 +269,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Saturday"/>
+                    android:text="@string/title_saturday"/>
 
             <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="0dp"
@@ -316,7 +316,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Monday"/>
+                    android:text="@string/title_sunday"/>
 
             <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="0dp"

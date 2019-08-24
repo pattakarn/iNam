@@ -16,6 +16,7 @@ import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.firestore.FirebaseFirestore
 import com.sungkunn.inam.activity.PhotoItemActivity
 import com.sungkunn.inam.model.*
+import java.sql.Timestamp
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -181,23 +182,38 @@ class ShopItemFragment : Fragment(), Toolbar.OnMenuItemClickListener, View.OnCli
         return rootView
     }
 
-    fun setShop(){
+    fun setShop() {
         shopItem ?: return
-        etName!!.text!!.append(shopItem!!.data.name)
-        etOwner!!.text!!.append(shopItem!!.data.owner)
-        etPhone!!.text!!.append(shopItem!!.data.phone)
-        etLine!!.text!!.append(shopItem!!.data.line)
-        etFacebook!!.text!!.append(shopItem!!.data.facebook)
-        etEmail!!.text!!.append(shopItem!!.data.email)
+        etName!!.setText(shopItem!!.data.name)
+        etOwner!!.setText(shopItem!!.data.owner)
+        etPhone!!.setText(shopItem!!.data.phone)
+        etLine!!.setText(shopItem!!.data.line)
+        etFacebook!!.setText(shopItem!!.data.facebook)
+        etEmail!!.setText(shopItem!!.data.email)
         spinMarket!!.setSelection(getIndexMarket(shopItem!!.data.marketId))
         spinZone!!.setSelection(getIndexZone(shopItem!!.data.zoneId))
 
+        etMondayOpen!!.setText(shopItem!!.data.monday_open)
+        etMondayClose!!.setText(shopItem!!.data.monday_close)
+        etTuesdayOpen!!.setText(shopItem!!.data.tuesday_open)
+        etTuesdayClose!!.setText(shopItem!!.data.tuesday_close)
+        etWednesdayOpen!!.setText(shopItem!!.data.wednesday_open)
+        etWednesdayClose!!.setText(shopItem!!.data.wednesday_close)
+        etThursdayOpen!!.setText(shopItem!!.data.thursday_open)
+        etThursdayClose!!.setText(shopItem!!.data.thursday_close)
+        etFridayOpen!!.setText(shopItem!!.data.friday_open)
+        etFridayClose!!.setText(shopItem!!.data.friday_close)
+        etSaturdayOpen!!.setText(shopItem!!.data.saturday_open)
+        etSaturdayClose!!.setText(shopItem!!.data.saturday_close)
+        etSundayOpen!!.setText(shopItem!!.data.sunday_open)
+        etSundayClose!!.setText(shopItem!!.data.sunday_close)
+
     }
 
-    fun getIndexMarket(marketId: String?): Int{
+    fun getIndexMarket(marketId: String?): Int {
         var index = 0
-        for (item in this!!.marketList!!){
-            if (item.key.equals(marketId)){
+        for (item in this!!.marketList!!) {
+            if (item.key.equals(marketId)) {
                 return index
             }
             index++
@@ -205,10 +221,10 @@ class ShopItemFragment : Fragment(), Toolbar.OnMenuItemClickListener, View.OnCli
         return 0
     }
 
-    fun getIndexZone(zoneId: String?): Int{
+    fun getIndexZone(zoneId: String?): Int {
         var index = 0
-        for (item in this!!.zoneList!!){
-            if (item.key.equals(zoneId)){
+        for (item in this!!.zoneList!!) {
+            if (item.key.equals(zoneId)) {
                 return index
             }
             index++
@@ -291,52 +307,117 @@ class ShopItemFragment : Fragment(), Toolbar.OnMenuItemClickListener, View.OnCli
 
     override fun onClick(v: View?) {
         //fragmentManager!!.popBackStack()
-        if (v == btnPhoto){
-            var intent = Intent(inflater!!.context, PhotoItemActivity::class.java)
-            intent.putExtra("key", shopItem!!.key)
-            intent.putExtra("name", shopItem!!.data.name)
-            inflater!!.context.startActivity(intent)
-        } else if (v == etMondayOpen || v == etTuesdayOpen || v == etWednesdayOpen || v == etThursdayOpen || v == etFridayOpen || v == etSaturdayOpen || v == etSundayOpen) {
-            val mcurrentTime = Calendar.getInstance()
-            mcurrentTime.set(Calendar.HOUR_OF_DAY, 8)
-            mcurrentTime.set(Calendar.MINUTE, 0)
-            val hour = mcurrentTime.get(Calendar.HOUR_OF_DAY)
-            val minute = mcurrentTime.get(Calendar.MINUTE)
-            val mTimePicker: TimePickerDialog
-            var etTemp = v as TextInputEditText
-            mTimePicker = TimePickerDialog(inflater!!.context,
-                TimePickerDialog.OnTimeSetListener { timePicker, selectedHour, selectedMinute ->
-                    etTemp!!.setText(
-                        "$selectedHour:$selectedMinute"
-                    )
-                }, hour, minute, true
-            )//Yes 24 hour time
-            mTimePicker.setTitle("Select Time")
-            mTimePicker.show()
-        } else if (v == etMondayClose || v == etTuesdayClose || v == etWednesdayClose || v == etThursdayClose || v == etFridayClose || v == etSaturdayClose || v == etSundayClose) {
-            val mcurrentTime = Calendar.getInstance()
-            mcurrentTime.set(Calendar.HOUR_OF_DAY, 17)
-            mcurrentTime.set(Calendar.MINUTE, 0)
-            val hour = mcurrentTime.get(Calendar.HOUR_OF_DAY)
-            val minute = mcurrentTime.get(Calendar.MINUTE)
-            val mTimePicker: TimePickerDialog
-            var etTemp = v as TextInputEditText
-            mTimePicker = TimePickerDialog(inflater!!.context,
-                TimePickerDialog.OnTimeSetListener { timePicker, selectedHour, selectedMinute ->
-                    etTemp!!.setText(
-                        "$selectedHour:$selectedMinute"
-                    )
-                }, hour, minute, true
-            )//Yes 24 hour time
-            mTimePicker.setTitle("Select Time")
-            mTimePicker.show()
-        } else {
-            if (fragmentManager!!.backStackEntryCount > 0) {
-                fragmentManager!!.popBackStack()
-            } else {
-                activity!!.finish()
+        when (v) {
+            btnPhoto -> {
+                var intent = Intent(inflater!!.context, PhotoItemActivity::class.java)
+                intent.putExtra("key", shopItem!!.key)
+                intent.putExtra("name", shopItem!!.data.name)
+                inflater!!.context.startActivity(intent)
             }
+            etMondayOpen -> getTimeDialog(etMondayOpen!!, "open")
+            etMondayClose -> getTimeDialog(etMondayClose!!, "close")
+            etTuesdayOpen -> getTimeDialog(etTuesdayOpen!!, "open")
+            etTuesdayClose -> getTimeDialog(etTuesdayClose!!, "close")
+            etWednesdayOpen -> getTimeDialog(etWednesdayOpen!!, "open")
+            etWednesdayClose -> getTimeDialog(etWednesdayClose!!, "close")
+            etThursdayOpen -> getTimeDialog(etThursdayOpen!!, "open")
+            etThursdayClose -> getTimeDialog(etThursdayClose!!, "close")
+            etFridayOpen -> getTimeDialog(etFridayOpen!!, "open")
+            etFridayClose -> getTimeDialog(etFridayClose!!, "close")
+            etSaturdayOpen -> getTimeDialog(etSaturdayOpen!!, "open")
+            etSaturdayClose -> getTimeDialog(etSaturdayClose!!, "close")
+            etSundayOpen -> getTimeDialog(etSundayOpen!!, "open")
+            etSundayClose -> getTimeDialog(etSundayClose!!, "close")
+            else -> {
+                if (fragmentManager!!.backStackEntryCount > 0) {
+                    fragmentManager!!.popBackStack()
+                } else {
+                    activity!!.finish()
+                }
+            }
+
+
         }
+//        if (v == btnPhoto) {
+//            var intent = Intent(inflater!!.context, PhotoItemActivity::class.java)
+//            intent.putExtra("key", shopItem!!.key)
+//            intent.putExtra("name", shopItem!!.data.name)
+//            inflater!!.context.startActivity(intent)
+//        } else if (v == etMondayOpen || v == etTuesdayOpen || v == etWednesdayOpen || v == etThursdayOpen || v == etFridayOpen || v == etSaturdayOpen || v == etSundayOpen) {
+//            val mcurrentTime = Calendar.getInstance()
+//            mcurrentTime.set(Calendar.HOUR_OF_DAY, 8)
+//            mcurrentTime.set(Calendar.MINUTE, 0)
+//            val hour = mcurrentTime.get(Calendar.HOUR_OF_DAY)
+//            val minute = mcurrentTime.get(Calendar.MINUTE)
+//            val mTimePicker: TimePickerDialog
+//            var etTemp = v as TextInputEditText
+//            mTimePicker = TimePickerDialog(
+//                inflater!!.context,
+//                TimePickerDialog.OnTimeSetListener { timePicker, selectedHour, selectedMinute ->
+//                    etTemp!!.setText(
+//                        "$selectedHour:$selectedMinute"
+//                    )
+//                }, hour, minute, true
+//            )//Yes 24 hour time
+//            mTimePicker.setTitle("Select Time")
+//            mTimePicker.show()
+//        } else if (v == etMondayClose || v == etTuesdayClose || v == etWednesdayClose || v == etThursdayClose || v == etFridayClose || v == etSaturdayClose || v == etSundayClose) {
+//            val mcurrentTime = Calendar.getInstance()
+//            mcurrentTime.set(Calendar.HOUR_OF_DAY, 17)
+//            mcurrentTime.set(Calendar.MINUTE, 0)
+//            val hour = mcurrentTime.get(Calendar.HOUR_OF_DAY)
+//            val minute = mcurrentTime.get(Calendar.MINUTE)
+//            val mTimePicker: TimePickerDialog
+//            var etTemp = v as TextInputEditText
+//            mTimePicker = TimePickerDialog(
+//                inflater!!.context,
+//                TimePickerDialog.OnTimeSetListener { timePicker, selectedHour, selectedMinute ->
+//                    etTemp!!.setText(
+//                        "$selectedHour:$selectedMinute"
+//                    )
+//                }, hour, minute, true
+//            )//Yes 24 hour time
+//            mTimePicker.setTitle("Select Time")
+//            mTimePicker.show()
+//        } else {
+//            if (fragmentManager!!.backStackEntryCount > 0) {
+//                fragmentManager!!.popBackStack()
+//            } else {
+//                activity!!.finish()
+//            }
+//        }
+    }
+
+    private fun getTimeDialog(tv: TextView, duration: String) {
+        var c = Calendar.getInstance()
+
+        if (duration.equals("open")){
+            c.set(Calendar.HOUR_OF_DAY, 8)
+            c.set(Calendar.MINUTE, 0)
+        } else if (duration.equals("close")){
+            c.set(Calendar.HOUR_OF_DAY, 17)
+            c.set(Calendar.MINUTE, 0)
+        }
+
+        var mYear = c.get(Calendar.YEAR)
+        var mMonth = c.get(Calendar.MONTH)
+        var mDate = c.get(Calendar.DATE)
+        var mHour = c.get(Calendar.HOUR_OF_DAY)
+        var mMinute = c.get(Calendar.MINUTE)
+        var mSecond = c.get(Calendar.SECOND)
+
+
+        var test = Timestamp(c.timeInMillis)
+        Log.d(TAG, test.toString() + " -> " + c.timeInMillis)
+
+        val timePickerDialog = TimePickerDialog(
+            context,
+            TimePickerDialog.OnTimeSetListener { view, hourOfDay, minute -> tv!!.setText("$hourOfDay:$minute") },
+            mHour,
+            mMinute,
+            true
+        )
+        timePickerDialog.show()
     }
 
     override fun onMenuItemClick(item: MenuItem?): Boolean {
@@ -349,7 +430,12 @@ class ShopItemFragment : Fragment(), Toolbar.OnMenuItemClickListener, View.OnCli
     }
 
     private fun saveShop() {
-        val snackbar: Snackbar = Snackbar.make(ll!!, resources.getString(com.sungkunn.inam.R.string.save_process), Snackbar.LENGTH_INDEFINITE)
+        val snackbar: Snackbar = Snackbar.make(
+            ll!!,
+            resources.getString(com.sungkunn.inam.R.string.save_process),
+            Snackbar.LENGTH_INDEFINITE
+        )
+
 
         snackbar.show()
         if (shopItem == null) {
@@ -363,19 +449,41 @@ class ShopItemFragment : Fragment(), Toolbar.OnMenuItemClickListener, View.OnCli
                 etFacebook!!.text.toString(),
                 etEmail!!.text.toString(),
                 marketList!!.get(indexMarket).key,
-                zoneList!!.get(indexZone).key
+                zoneList!!.get(indexZone).key,
+                etMondayOpen!!.text!!.toString(),
+                etMondayClose!!.text!!.toString(),
+                etTuesdayOpen!!.text!!.toString(),
+                etTuesdayClose!!.text!!.toString(),
+                etWednesdayOpen!!.text!!.toString(),
+                etWednesdayClose!!.text!!.toString(),
+                etThursdayOpen!!.text!!.toString(),
+                etThursdayClose!!.text!!.toString(),
+                etFridayOpen!!.text!!.toString(),
+                etFridayClose!!.text!!.toString(),
+                etSaturdayOpen!!.text!!.toString(),
+                etSaturdayClose!!.text!!.toString(),
+                etSundayOpen!!.text!!.toString(),
+                etSundayClose!!.text!!.toString()
             )
             db.collection("shops").add(temp!!)
                 .addOnSuccessListener { documentReference ->
                     Log.d(TAG, "DocumentSnapshot successfully written!")
                     snackbar.dismiss()
-                    Snackbar.make(ll!!, resources.getString(com.sungkunn.inam.R.string.save_success), Snackbar.LENGTH_SHORT).show()
+                    Snackbar.make(
+                        ll!!,
+                        resources.getString(com.sungkunn.inam.R.string.save_success),
+                        Snackbar.LENGTH_SHORT
+                    ).show()
                     shopItem = WrapShop(documentReference.id, temp)
                 }
                 .addOnFailureListener { e ->
                     Log.w(TAG, "False", e)
                     snackbar.dismiss()
-                    Snackbar.make(ll!!, resources.getString(com.sungkunn.inam.R.string.save_fault), Snackbar.LENGTH_SHORT).show()
+                    Snackbar.make(
+                        ll!!,
+                        resources.getString(com.sungkunn.inam.R.string.save_fault),
+                        Snackbar.LENGTH_SHORT
+                    ).show()
                 }
         } else {
             shopItem!!.data.name = etName!!.text!!.toString()
@@ -384,17 +492,40 @@ class ShopItemFragment : Fragment(), Toolbar.OnMenuItemClickListener, View.OnCli
             shopItem!!.data.line = etLine!!.text!!.toString()
             shopItem!!.data.facebook = etFacebook!!.text!!.toString()
             shopItem!!.data.email = etEmail!!.text!!.toString()
+            shopItem!!.data.monday_open = etMondayOpen!!.text!!.toString()
+            shopItem!!.data.monday_close = etMondayClose!!.text!!.toString()
+            shopItem!!.data.tuesday_open = etTuesdayOpen!!.text!!.toString()
+            shopItem!!.data.tuesday_close = etTuesdayClose!!.text!!.toString()
+            shopItem!!.data.wednesday_open = etWednesdayOpen!!.text!!.toString()
+            shopItem!!.data.wednesday_close = etWednesdayClose!!.text!!.toString()
+            shopItem!!.data.thursday_open = etThursdayOpen!!.text!!.toString()
+            shopItem!!.data.thursday_close = etThursdayClose!!.text!!.toString()
+            shopItem!!.data.friday_open = etFridayOpen!!.text!!.toString()
+            shopItem!!.data.friday_close = etFridayClose!!.text!!.toString()
+            shopItem!!.data.saturday_open = etSaturdayOpen!!.text!!.toString()
+            shopItem!!.data.saturday_close = etSaturdayClose!!.text!!.toString()
+            shopItem!!.data.sunday_open = etSundayOpen!!.text!!.toString()
+            shopItem!!.data.sunday_close = etSundayClose!!.text!!.toString()
+
             db.collection("shops").document(shopItem!!.key)
                 .set(shopItem!!.data)
                 .addOnSuccessListener { documentReference ->
                     Log.d(TAG, "DocumentSnapshot successfully written!")
                     snackbar.dismiss()
-                    Snackbar.make(ll!!, resources.getString(com.sungkunn.inam.R.string.save_success), Snackbar.LENGTH_SHORT).show()
+                    Snackbar.make(
+                        ll!!,
+                        resources.getString(com.sungkunn.inam.R.string.save_success),
+                        Snackbar.LENGTH_SHORT
+                    ).show()
                 }
                 .addOnFailureListener { e ->
                     Log.w(TAG, "False", e)
                     snackbar.dismiss()
-                    Snackbar.make(ll!!, resources.getString(com.sungkunn.inam.R.string.save_fault), Snackbar.LENGTH_SHORT).show()
+                    Snackbar.make(
+                        ll!!,
+                        resources.getString(com.sungkunn.inam.R.string.save_fault),
+                        Snackbar.LENGTH_SHORT
+                    ).show()
                 }
         }
     }

@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -39,6 +40,9 @@ class HomeMarketFragment : Fragment(), View.OnClickListener {
 
     var rv: RecyclerView? = null
     var toolbar: Toolbar? = null
+//    var pager: ViewPager? = null
+
+    var backdrop: ImageView? = null
 
     var TAG = "Home Market"
 
@@ -62,11 +66,15 @@ class HomeMarketFragment : Fragment(), View.OnClickListener {
         var rootView = inflater.inflate(R.layout.fragment_home_market, container, false)
         rv = rootView.findViewById<RecyclerView>(R.id.rv)
         toolbar = rootView.findViewById<Toolbar>(R.id.toolbar)
+//        pager = rootView.findViewById(R.id.pager_photo)
 
         toolbar!!.setTitle(category!!.toUpperCase())
         toolbar!!.setNavigationIcon(R.drawable.ic_arrow_back)
         toolbar!!.setNavigationOnClickListener(this)
 
+        backdrop = rootView.findViewById(R.id.backdrop)
+
+//        setPhotoPage()
 //        var listItem = this.resources.getStringArray(R.array.region_data)
 //        val adapter = RV_Adapter_Home_Market(marketList, fragmentManager!!)
 //        val llm = LinearLayoutManager(context)
@@ -75,6 +83,15 @@ class HomeMarketFragment : Fragment(), View.OnClickListener {
 //        rv!!.setAdapter(adapter)
         return rootView
     }
+
+//    private fun setPhotoPage(){
+//        val adapter = Pager_Adapter_Title(this!!.fragmentManager!!)
+////        tabs!!.setupWithViewPager(pager)
+//        adapter.addFragment(PhotoPagerFragment.newInstance("", ""), "Photo")
+//        adapter.addFragment(PhotoPagerFragment.newInstance("", ""), "Photo")
+//        pager!!.adapter = adapter
+////        pager!!.setOnTouchListener(View.OnTouchListener { v, event -> true })
+//    }
 
     fun getMarket() {
         marketList = ArrayList()

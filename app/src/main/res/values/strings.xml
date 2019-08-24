@@ -110,6 +110,15 @@
     <string name="title_item_photo">Photo</string>
     <string name="title_item_award">Award</string>
     <string name="title_item_servicetime">Service Time</string>
+    <string name="title_monday">Monday</string>
+    <string name="title_tuesday">Tuesday</string>
+    <string name="title_wednesday">Wednesday</string>
+    <string name="title_thursday">Thursday</string>
+    <string name="title_friday">Friday</string>
+    <string name="title_saturday">Saturday</string>
+    <string name="title_sunday">Sunday</string>
+    <string name="title_opentime_close">Close</string>
+
     <string name="save_process">Saving...</string>
     <string name="save_success">Complete</string>
     <string name="save_fault">Fault</string>

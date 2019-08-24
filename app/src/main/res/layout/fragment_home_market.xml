@@ -22,10 +22,23 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:toolbarId="@+id/toolbar"
-                android:background="@drawable/ic_region"
                 app:contentScrim="?attr/colorPrimary"
                 app:layout_scrollFlags="scroll|exitUntilCollapsed"
                 app:titleEnabled="false">
+
+            <!--<androidx.viewpager.widget.ViewPager-->
+                    <!--android:id="@+id/pager_photo"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="200dp"/>-->
+
+            <ImageView
+                    android:id="@+id/backdrop"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_region"
+                    app:layout_collapseMode="parallax"/>
+
 
             <androidx.appcompat.widget.Toolbar
                     android:id="@+id/toolbar"

@@ -1,5 +1,6 @@
 package com.sungkunn.inam.fragment.ui.market
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -15,10 +16,13 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.firebase.firestore.FirebaseFirestore
-import com.sungkunn.inam.R
 import com.sungkunn.inam.example.MapsTestActivity
 import com.sungkunn.inam.model.Market
 import com.sungkunn.inam.model.WrapMarket
+
+
+
+
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -84,18 +88,18 @@ class MarketInfoFragment : Fragment(), OnMapReadyCallback {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        var rootView = inflater.inflate(R.layout.fragment_market_info, container, false)
+        var rootView = inflater.inflate(com.sungkunn.inam.R.layout.fragment_market_info, container, false)
 
-        infoDetail = rootView.findViewById(R.id.info_detail)
-        contactLink = rootView.findViewById(R.id.tv_contact_link)
-        contactPhone = rootView.findViewById(R.id.tv_contact_phone)
-        contactLine = rootView.findViewById(R.id.tv_contact_line)
-        contactFacebook = rootView.findViewById(R.id.tv_contact_fb)
-        contactEmail = rootView.findViewById(R.id.tv_email)
+        infoDetail = rootView.findViewById(com.sungkunn.inam.R.id.info_detail)
+        contactLink = rootView.findViewById(com.sungkunn.inam.R.id.tv_contact_link)
+        contactPhone = rootView.findViewById(com.sungkunn.inam.R.id.tv_contact_phone)
+        contactLine = rootView.findViewById(com.sungkunn.inam.R.id.tv_contact_line)
+        contactFacebook = rootView.findViewById(com.sungkunn.inam.R.id.tv_contact_fb)
+        contactEmail = rootView.findViewById(com.sungkunn.inam.R.id.tv_email)
 
         getMarket()
 
-        vMap = rootView.findViewById(R.id.v_map)
+        vMap = rootView.findViewById(com.sungkunn.inam.R.id.v_map)
         vMap?.setOnClickListener(object: View.OnClickListener{
             override fun onClick(v: View?) {
                 var intent = Intent(inflater.context, MapsTestActivity::class.java)
@@ -140,9 +144,12 @@ class MarketInfoFragment : Fragment(), OnMapReadyCallback {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val mapFragment = childFragmentManager
-            .findFragmentById(R.id.map_item) as SupportMapFragment
+            .findFragmentById(com.sungkunn.inam.R.id.map_item) as SupportMapFragment
         mapFragment.getMapAsync(this)
     }
+
+
+
 
     companion object {
         @JvmStatic
@@ -154,5 +161,45 @@ class MarketInfoFragment : Fragment(), OnMapReadyCallback {
                     putString("type", type)
                 }
             }
+    }
+
+    override fun onAttach(activity: Activity) {
+        super.onAttach(activity)
+        Log.i(TAG, "onAttach")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.i(TAG, "onDestroy")
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        Log.i(TAG, "onDestroyView")
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        Log.i(TAG, "onDetach")
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Log.i(TAG, "onPause")
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Log.i(TAG, "onResume")
+    }
+
+    override fun onStart() {
+        super.onStart()
+        Log.i(TAG, "onStart")
+    }
+
+    override fun onStop() {
+        super.onStop()
+        Log.i(TAG, "onStop")
     }
 }

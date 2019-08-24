@@ -57,20 +57,21 @@ class TravelItemFragment : Fragment(), Toolbar.OnMenuItemClickListener, View.OnC
     var etFacebook: TextInputEditText? = null
     var etEmail: TextInputEditText? = null
 
-    var tvDay1Open: TextView? = null
-    var tvDay1Close: TextView? = null
-    var tvDay2Open: TextView? = null
-    var tvDay2Close: TextView? = null
-    var tvDay3Open: TextView? = null
-    var tvDay3Close: TextView? = null
-    var tvDay4Open: TextView? = null
-    var tvDay4Close: TextView? = null
-    var tvDay5Open: TextView? = null
-    var tvDay5Close: TextView? = null
-    var tvDay6Open: TextView? = null
-    var tvDay6Close: TextView? = null
-    var tvDay7Open: TextView? = null
-    var tvDay7Close: TextView? = null
+    var inflater: LayoutInflater? = null
+    var etMondayOpen: TextInputEditText? = null
+    var etMondayClose: TextInputEditText? = null
+    var etTuesdayOpen: TextInputEditText? = null
+    var etTuesdayClose: TextInputEditText? = null
+    var etWednesdayOpen: TextInputEditText? = null
+    var etWednesdayClose: TextInputEditText? = null
+    var etThursdayOpen: TextInputEditText? = null
+    var etThursdayClose: TextInputEditText? = null
+    var etFridayOpen: TextInputEditText? = null
+    var etFridayClose: TextInputEditText? = null
+    var etSaturdayOpen: TextInputEditText? = null
+    var etSaturdayClose: TextInputEditText? = null
+    var etSundayOpen: TextInputEditText? = null
+    var etSundayClose: TextInputEditText? = null
 
     var btnPhoto: Button? = null
 
@@ -95,6 +96,7 @@ class TravelItemFragment : Fragment(), Toolbar.OnMenuItemClickListener, View.OnC
     ): View? {
         // Inflate the layout for this fragment
         var rootView = inflater.inflate(com.sungkunn.inam.R.layout.fragment_travel_item, container, false)
+        this.inflater = inflater
         toolbar = rootView.findViewById<Toolbar>(com.sungkunn.inam.R.id.toolbar)
         ll = rootView.findViewById(com.sungkunn.inam.R.id.ll)
         spinMarket = rootView.findViewById(com.sungkunn.inam.R.id.spin_market)
@@ -105,37 +107,38 @@ class TravelItemFragment : Fragment(), Toolbar.OnMenuItemClickListener, View.OnC
         etFacebook = rootView.findViewById(com.sungkunn.inam.R.id.et_facebook)
         etEmail = rootView.findViewById(com.sungkunn.inam.R.id.et_email)
 
-        tvDay1Open = rootView.findViewById(com.sungkunn.inam.R.id.tv_day1_open)
-        tvDay1Close = rootView.findViewById(com.sungkunn.inam.R.id.tv_day1_close)
-        tvDay2Open = rootView.findViewById(com.sungkunn.inam.R.id.tv_day2_open)
-        tvDay2Close = rootView.findViewById(com.sungkunn.inam.R.id.tv_day2_close)
-        tvDay3Open = rootView.findViewById(com.sungkunn.inam.R.id.tv_day3_open)
-        tvDay3Close = rootView.findViewById(com.sungkunn.inam.R.id.tv_day3_close)
-        tvDay4Open = rootView.findViewById(com.sungkunn.inam.R.id.tv_day4_open)
-        tvDay4Close = rootView.findViewById(com.sungkunn.inam.R.id.tv_day4_close)
-        tvDay5Open = rootView.findViewById(com.sungkunn.inam.R.id.tv_day5_open)
-        tvDay5Close = rootView.findViewById(com.sungkunn.inam.R.id.tv_day5_close)
-        tvDay6Open = rootView.findViewById(com.sungkunn.inam.R.id.tv_day6_open)
-        tvDay6Close = rootView.findViewById(com.sungkunn.inam.R.id.tv_day6_close)
-        tvDay7Open = rootView.findViewById(com.sungkunn.inam.R.id.tv_day7_open)
-        tvDay7Close = rootView.findViewById(com.sungkunn.inam.R.id.tv_day7_close)
+        etMondayOpen = rootView.findViewById(com.sungkunn.inam.R.id.et_monday_open)
+        etMondayClose = rootView.findViewById(com.sungkunn.inam.R.id.et_monday_close)
+        etTuesdayOpen = rootView.findViewById(com.sungkunn.inam.R.id.et_tuesday_open)
+        etTuesdayClose = rootView.findViewById(com.sungkunn.inam.R.id.et_tuesday_close)
+        etWednesdayOpen = rootView.findViewById(com.sungkunn.inam.R.id.et_wednesday_open)
+        etWednesdayClose = rootView.findViewById(com.sungkunn.inam.R.id.et_wednesday_close)
+        etThursdayOpen = rootView.findViewById(com.sungkunn.inam.R.id.et_thursday_open)
+        etThursdayClose = rootView.findViewById(com.sungkunn.inam.R.id.et_thursday_close)
+        etFridayOpen = rootView.findViewById(com.sungkunn.inam.R.id.et_friday_open)
+        etFridayClose = rootView.findViewById(com.sungkunn.inam.R.id.et_friday_close)
+        etSaturdayOpen = rootView.findViewById(com.sungkunn.inam.R.id.et_saturday_open)
+        etSaturdayClose = rootView.findViewById(com.sungkunn.inam.R.id.et_saturday_close)
+        etSundayOpen = rootView.findViewById(com.sungkunn.inam.R.id.et_sunday_open)
+        etSundayClose = rootView.findViewById(com.sungkunn.inam.R.id.et_sunday_close)
 
         btnPhoto = rootView.findViewById(R.id.btn_photo)
 
-        tvDay1Open!!.setOnClickListener(this)
-        tvDay1Close!!.setOnClickListener(this)
-        tvDay2Open!!.setOnClickListener(this)
-        tvDay2Close!!.setOnClickListener(this)
-        tvDay3Open!!.setOnClickListener(this)
-        tvDay3Close!!.setOnClickListener(this)
-        tvDay4Open!!.setOnClickListener(this)
-        tvDay4Close!!.setOnClickListener(this)
-        tvDay5Open!!.setOnClickListener(this)
-        tvDay5Close!!.setOnClickListener(this)
-        tvDay6Open!!.setOnClickListener(this)
-        tvDay6Close!!.setOnClickListener(this)
-        tvDay7Open!!.setOnClickListener(this)
-        tvDay7Close!!.setOnClickListener(this)
+        btnPhoto!!.setOnClickListener(this)
+        etMondayOpen!!.setOnClickListener(this)
+        etMondayClose!!.setOnClickListener(this)
+        etTuesdayOpen!!.setOnClickListener(this)
+        etTuesdayClose!!.setOnClickListener(this)
+        etWednesdayOpen!!.setOnClickListener(this)
+        etWednesdayClose!!.setOnClickListener(this)
+        etThursdayOpen!!.setOnClickListener(this)
+        etThursdayClose!!.setOnClickListener(this)
+        etFridayOpen!!.setOnClickListener(this)
+        etFridayClose!!.setOnClickListener(this)
+        etSaturdayOpen!!.setOnClickListener(this)
+        etSaturdayClose!!.setOnClickListener(this)
+        etSundayOpen!!.setOnClickListener(this)
+        etSundayClose!!.setOnClickListener(this)
 
 
 
@@ -144,14 +147,14 @@ class TravelItemFragment : Fragment(), Toolbar.OnMenuItemClickListener, View.OnC
         toolbar!!.setNavigationOnClickListener(this)
         toolbar!!.setOnMenuItemClickListener(this)
 
-        btnPhoto!!.setOnClickListener(object: View.OnClickListener{
-            override fun onClick(v: View?) {
-                var intent = Intent(inflater.context, PhotoItemActivity::class.java)
-                intent.putExtra("key", travelItem!!.key)
-                intent.putExtra("name", travelItem!!.data.name)
-                inflater.context.startActivity(intent)
-            }
-        })
+//        btnPhoto!!.setOnClickListener(object: View.OnClickListener{
+//            override fun onClick(v: View?) {
+//                var intent = Intent(inflater.context, PhotoItemActivity::class.java)
+//                intent.putExtra("key", travelItem!!.key)
+//                intent.putExtra("name", travelItem!!.data.name)
+//                inflater.context.startActivity(intent)
+//            }
+//        })
 //        fragmentManager!!.beginTransaction()
 //            .replace(R.id.marketItemContainer, MarketItemPreferenceFragment())
 //            .addToBackStack(null)
@@ -173,13 +176,28 @@ class TravelItemFragment : Fragment(), Toolbar.OnMenuItemClickListener, View.OnC
 
     fun setTravel() {
         travelItem ?: return
-        etName!!.text!!.append(travelItem!!.data.name)
-        etOwner!!.text!!.append(travelItem!!.data.owner)
-        etPhone!!.text!!.append(travelItem!!.data.phone)
-        etLine!!.text!!.append(travelItem!!.data.line)
-        etFacebook!!.text!!.append(travelItem!!.data.facebook)
-        etEmail!!.text!!.append(travelItem!!.data.email)
+        etName!!.setText(travelItem!!.data.name)
+        etOwner!!.setText(travelItem!!.data.owner)
+        etPhone!!.setText(travelItem!!.data.phone)
+        etLine!!.setText(travelItem!!.data.line)
+        etFacebook!!.setText(travelItem!!.data.facebook)
+        etEmail!!.setText(travelItem!!.data.email)
         spinMarket!!.setSelection(getIndexMarket(travelItem!!.data.marketId))
+
+        etMondayOpen!!.setText(travelItem!!.data.monday_open)
+        etMondayClose!!.setText(travelItem!!.data.monday_close)
+        etTuesdayOpen!!.setText(travelItem!!.data.tuesday_open)
+        etTuesdayClose!!.setText(travelItem!!.data.tuesday_close)
+        etWednesdayOpen!!.setText(travelItem!!.data.wednesday_open)
+        etWednesdayClose!!.setText(travelItem!!.data.wednesday_close)
+        etThursdayOpen!!.setText(travelItem!!.data.thursday_open)
+        etThursdayClose!!.setText(travelItem!!.data.thursday_close)
+        etFridayOpen!!.setText(travelItem!!.data.friday_open)
+        etFridayClose!!.setText(travelItem!!.data.friday_close)
+        etSaturdayOpen!!.setText(travelItem!!.data.saturday_open)
+        etSaturdayClose!!.setText(travelItem!!.data.saturday_close)
+        etSundayOpen!!.setText(travelItem!!.data.sunday_open)
+        etSundayClose!!.setText(travelItem!!.data.sunday_close)
 
     }
 
@@ -229,22 +247,28 @@ class TravelItemFragment : Fragment(), Toolbar.OnMenuItemClickListener, View.OnC
     }
 
     override fun onClick(v: View?) {
-        Log.d(TAG, v!!.id.toString())
+//        Log.d(TAG, v!!.id.toString())
         when (v) {
-            tvDay1Open -> getTimeDialog(tvDay1Open!!)
-            tvDay1Close -> getTimeDialog(tvDay1Close!!)
-            tvDay2Open -> getTimeDialog(tvDay2Open!!)
-            tvDay2Close -> getTimeDialog(tvDay2Close!!)
-            tvDay3Open -> getTimeDialog(tvDay3Open!!)
-            tvDay3Close -> getTimeDialog(tvDay3Close!!)
-            tvDay4Open -> getTimeDialog(tvDay4Open!!)
-            tvDay4Close -> getTimeDialog(tvDay4Close!!)
-            tvDay5Open -> getTimeDialog(tvDay5Open!!)
-            tvDay5Close -> getTimeDialog(tvDay5Close!!)
-            tvDay6Open -> getTimeDialog(tvDay6Open!!)
-            tvDay6Close -> getTimeDialog(tvDay6Close!!)
-            tvDay7Open -> getTimeDialog(tvDay7Open!!)
-            tvDay7Close -> getTimeDialog(tvDay7Close!!)
+            btnPhoto -> {
+                var intent = Intent(inflater!!.context, PhotoItemActivity::class.java)
+                intent.putExtra("key", travelItem!!.key)
+                intent.putExtra("name", travelItem!!.data.name)
+                inflater!!.context.startActivity(intent)
+            }
+            etMondayOpen -> getTimeDialog(etMondayOpen!!, "open")
+            etMondayClose -> getTimeDialog(etMondayClose!!, "close")
+            etTuesdayOpen -> getTimeDialog(etTuesdayOpen!!, "open")
+            etTuesdayClose -> getTimeDialog(etTuesdayClose!!, "close")
+            etWednesdayOpen -> getTimeDialog(etWednesdayOpen!!, "open")
+            etWednesdayClose -> getTimeDialog(etWednesdayClose!!, "close")
+            etThursdayOpen -> getTimeDialog(etThursdayOpen!!, "open")
+            etThursdayClose -> getTimeDialog(etThursdayClose!!, "close")
+            etFridayOpen -> getTimeDialog(etFridayOpen!!, "open")
+            etFridayClose -> getTimeDialog(etFridayClose!!, "close")
+            etSaturdayOpen -> getTimeDialog(etSaturdayOpen!!, "open")
+            etSaturdayClose -> getTimeDialog(etSaturdayClose!!, "close")
+            etSundayOpen -> getTimeDialog(etSundayOpen!!, "open")
+            etSundayClose -> getTimeDialog(etSundayClose!!, "close")
             else -> {
                 if (fragmentManager!!.backStackEntryCount > 0) {
                     fragmentManager!!.popBackStack()
@@ -265,15 +289,23 @@ class TravelItemFragment : Fragment(), Toolbar.OnMenuItemClickListener, View.OnC
 //        }
     }
 
-    private fun getTimeDialog(tv: TextView) {
+    private fun getTimeDialog(tv: TextView, duration: String) {
         var c = Calendar.getInstance()
+
+        if (duration.equals("open")){
+            c.set(Calendar.HOUR_OF_DAY, 8)
+            c.set(Calendar.MINUTE, 0)
+        } else if (duration.equals("close")){
+            c.set(Calendar.HOUR_OF_DAY, 17)
+            c.set(Calendar.MINUTE, 0)
+        }
+
         var mYear = c.get(Calendar.YEAR)
         var mMonth = c.get(Calendar.MONTH)
         var mDate = c.get(Calendar.DATE)
         var mHour = c.get(Calendar.HOUR_OF_DAY)
         var mMinute = c.get(Calendar.MINUTE)
         var mSecond = c.get(Calendar.SECOND)
-
 
 
         var test = Timestamp(c.timeInMillis)
@@ -316,7 +348,21 @@ class TravelItemFragment : Fragment(), Toolbar.OnMenuItemClickListener, View.OnC
                 etLine!!.text.toString(),
                 etFacebook!!.text.toString(),
                 etEmail!!.text.toString(),
-                marketList!!.get(indexMarket).key
+                marketList!!.get(indexMarket).key,
+                etMondayOpen!!.text!!.toString(),
+                etMondayClose!!.text!!.toString(),
+                etTuesdayOpen!!.text!!.toString(),
+                etTuesdayClose!!.text!!.toString(),
+                etWednesdayOpen!!.text!!.toString(),
+                etWednesdayClose!!.text!!.toString(),
+                etThursdayOpen!!.text!!.toString(),
+                etThursdayClose!!.text!!.toString(),
+                etFridayOpen!!.text!!.toString(),
+                etFridayClose!!.text!!.toString(),
+                etSaturdayOpen!!.text!!.toString(),
+                etSaturdayClose!!.text!!.toString(),
+                etSundayOpen!!.text!!.toString(),
+                etSundayClose!!.text!!.toString()
             )
             db.collection("travels").add(temp!!)
                 .addOnSuccessListener { documentReference ->
@@ -345,6 +391,20 @@ class TravelItemFragment : Fragment(), Toolbar.OnMenuItemClickListener, View.OnC
             travelItem!!.data.line = etLine!!.text!!.toString()
             travelItem!!.data.facebook = etFacebook!!.text!!.toString()
             travelItem!!.data.email = etEmail!!.text!!.toString()
+            travelItem!!.data.monday_open = etMondayOpen!!.text!!.toString()
+            travelItem!!.data.monday_close = etMondayClose!!.text!!.toString()
+            travelItem!!.data.tuesday_open = etTuesdayOpen!!.text!!.toString()
+            travelItem!!.data.tuesday_close = etTuesdayClose!!.text!!.toString()
+            travelItem!!.data.wednesday_open = etWednesdayOpen!!.text!!.toString()
+            travelItem!!.data.wednesday_close = etWednesdayClose!!.text!!.toString()
+            travelItem!!.data.thursday_open = etThursdayOpen!!.text!!.toString()
+            travelItem!!.data.thursday_close = etThursdayClose!!.text!!.toString()
+            travelItem!!.data.friday_open = etFridayOpen!!.text!!.toString()
+            travelItem!!.data.friday_close = etFridayClose!!.text!!.toString()
+            travelItem!!.data.saturday_open = etSaturdayOpen!!.text!!.toString()
+            travelItem!!.data.saturday_close = etSaturdayClose!!.text!!.toString()
+            travelItem!!.data.sunday_open = etSundayOpen!!.text!!.toString()
+            travelItem!!.data.sunday_close = etSundayClose!!.text!!.toString()
             db.collection("travels").document(travelItem!!.key)
                 .set(travelItem!!.data)
                 .addOnSuccessListener { documentReference ->
