@@ -4,11 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.viewpager.widget.ViewPager
+import com.bumptech.glide.Glide
 import com.google.android.material.tabs.TabLayout
+import com.google.firebase.storage.FirebaseStorage
 import com.sungkunn.inam.R
 import com.sungkunn.inam.adapter.Pager_Adapter_Title
 import com.sungkunn.inam.fragment.ui.market.*
@@ -37,6 +40,8 @@ class ShowMainFragment : Fragment(), View.OnClickListener {
     var tabs: TabLayout? = null
     var pager: ViewPager? = null
 
+    var backdrop: ImageView? = null
+
     var TAG = "Show Main"
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -56,11 +61,13 @@ class ShowMainFragment : Fragment(), View.OnClickListener {
         ll = rootView.findViewById(R.id.ll)
         tabs = rootView.findViewById(R.id.tabs)
         pager = rootView.findViewById(R.id.pager_main)
+        backdrop = rootView.findViewById(R.id.backdrop)
 
         toolbar!!.setTitle(marketItem!!.data.name)
         toolbar!!.setNavigationIcon(R.drawable.ic_arrow_back)
         toolbar!!.setNavigationOnClickListener(this)
 
+        setPhoto()
         setFragment()
 
 
@@ -78,6 +85,19 @@ class ShowMainFragment : Fragment(), View.OnClickListener {
         adapter.addFragment(MarketServiceFragment.newInstance("", ""), "Service")
         pager!!.adapter = adapter
 //        pager!!.setOnTouchListener(View.OnTouchListener { v, event -> true })
+    }
+
+    fun setPhoto() {
+        val storageRef = FirebaseStorage.getInstance().reference
+        storageRef.child("images/" + marketItem!!.key + "_0").downloadUrl.addOnSuccessListener {
+            // Got the download URL for 'users/me/profile.png'
+            Glide.with(this)
+                .load(it.toString())
+                .placeholder(R.drawable.ic_region)
+                .into(backdrop!!)
+        }.addOnFailureListener {
+            // Handle any errors
+        }
     }
 
 //    override fun onStart() {

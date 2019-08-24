@@ -9,7 +9,6 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.sungkunn.inam.R
 import com.sungkunn.inam.fragment.main.Home2Fragment
 import com.sungkunn.inam.fragment.main.MoreFragment
-import com.sungkunn.inam.fragment.main.PinFragment
 
 class HomeNewActivity : AppCompatActivity() {
 
@@ -17,7 +16,7 @@ class HomeNewActivity : AppCompatActivity() {
     private lateinit var container: FrameLayout
 
     val fragment1: Fragment = Home2Fragment.newInstance(R.id.container, "")
-    val fragment2: Fragment = PinFragment.newInstance("", "")
+//    val fragment2: Fragment = PinFragment.newInstance("", "")
     val fragment3: Fragment = MoreFragment.newInstance(R.id.container, "")
     var active: Fragment = fragment1
 
@@ -29,12 +28,12 @@ class HomeNewActivity : AppCompatActivity() {
                 active = fragment1
                 return@OnNavigationItemSelectedListener true
             }
-            R.id.navigation_pin -> {
-                supportFragmentManager.beginTransaction().hide(active).show(fragment2).commit();
-                active = fragment2
-//                textMessage.setText(R.string.title_dashboard)
-                return@OnNavigationItemSelectedListener true
-            }
+//            R.id.navigation_pin -> {
+//                supportFragmentManager.beginTransaction().hide(active).show(fragment2).commit();
+//                active = fragment2
+////                textMessage.setText(R.string.title_dashboard)
+//                return@OnNavigationItemSelectedListener true
+//            }
             R.id.navigation_more -> {
                 supportFragmentManager.beginTransaction().hide(active).show(fragment3).commit();
                 active = fragment3
@@ -57,10 +56,10 @@ class HomeNewActivity : AppCompatActivity() {
             .add(R.id.homeNewContainer, fragment3, "more")
             .hide(fragment3)
             .commit()
-        supportFragmentManager.beginTransaction()
-            .add(R.id.homeNewContainer, fragment2, "pin")
-            .hide(fragment2)
-            .commit()
+//        supportFragmentManager.beginTransaction()
+//            .add(R.id.homeNewContainer, fragment2, "pin")
+//            .hide(fragment2)
+//            .commit()
         supportFragmentManager.beginTransaction()
             .add(R.id.homeNewContainer, fragment1, "home")
             .commit()

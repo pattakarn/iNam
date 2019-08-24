@@ -1,5 +1,6 @@
 package com.sungkunn.inam.fragment.manage.item
 
+import android.app.TimePickerDialog
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -13,9 +14,11 @@ import androidx.fragment.app.Fragment
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.firestore.FirebaseFirestore
-import com.sungkunn.inam.R
 import com.sungkunn.inam.activity.PhotoItemActivity
 import com.sungkunn.inam.model.*
+import java.util.*
+import kotlin.collections.ArrayList
+
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -42,6 +45,7 @@ class ShopItemFragment : Fragment(), Toolbar.OnMenuItemClickListener, View.OnCli
     var mZone: ArrayList<String>? = null
 
     var toolbar: Toolbar? = null
+    var inflater: LayoutInflater? = null
     var spinMarket: Spinner? = null
     var spinZone: Spinner? = null
     var ll: LinearLayout? = null
@@ -51,6 +55,22 @@ class ShopItemFragment : Fragment(), Toolbar.OnMenuItemClickListener, View.OnCli
     var etLine: TextInputEditText? = null
     var etFacebook: TextInputEditText? = null
     var etEmail: TextInputEditText? = null
+
+    var etMondayOpen: TextInputEditText? = null
+    var etMondayClose: TextInputEditText? = null
+    var etTuesdayOpen: TextInputEditText? = null
+    var etTuesdayClose: TextInputEditText? = null
+    var etWednesdayOpen: TextInputEditText? = null
+    var etWednesdayClose: TextInputEditText? = null
+    var etThursdayOpen: TextInputEditText? = null
+    var etThursdayClose: TextInputEditText? = null
+    var etFridayOpen: TextInputEditText? = null
+    var etFridayClose: TextInputEditText? = null
+    var etSaturdayOpen: TextInputEditText? = null
+    var etSaturdayClose: TextInputEditText? = null
+    var etSundayOpen: TextInputEditText? = null
+    var etSundayClose: TextInputEditText? = null
+
 
     var btnPhoto: Button? = null
 
@@ -73,33 +93,65 @@ class ShopItemFragment : Fragment(), Toolbar.OnMenuItemClickListener, View.OnCli
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        var rootView = inflater.inflate(R.layout.fragment_shop_item, container, false)
-        toolbar = rootView.findViewById(R.id.toolbar)
-        ll = rootView.findViewById(R.id.ll)
-        spinMarket = rootView.findViewById(R.id.spin_market)
-        spinZone = rootView.findViewById(R.id.spin_zone)
-        etName = rootView.findViewById(R.id.et_name)
-        etOwner = rootView.findViewById(R.id.et_owner)
-        etPhone = rootView.findViewById(R.id.et_phone)
-        etLine = rootView.findViewById(R.id.et_line)
-        etFacebook = rootView.findViewById(R.id.et_facebook)
-        etEmail = rootView.findViewById(R.id.et_email)
-        btnPhoto = rootView.findViewById(R.id.btn_photo)
+        var rootView = inflater.inflate(com.sungkunn.inam.R.layout.fragment_shop_item, container, false)
+        this.inflater = inflater
+        toolbar = rootView.findViewById(com.sungkunn.inam.R.id.toolbar)
+        ll = rootView.findViewById(com.sungkunn.inam.R.id.ll)
+        spinMarket = rootView.findViewById(com.sungkunn.inam.R.id.spin_market)
+        spinZone = rootView.findViewById(com.sungkunn.inam.R.id.spin_zone)
+        etName = rootView.findViewById(com.sungkunn.inam.R.id.et_name)
+        etOwner = rootView.findViewById(com.sungkunn.inam.R.id.et_owner)
+        etPhone = rootView.findViewById(com.sungkunn.inam.R.id.et_phone)
+        etLine = rootView.findViewById(com.sungkunn.inam.R.id.et_line)
+        etFacebook = rootView.findViewById(com.sungkunn.inam.R.id.et_facebook)
+        etEmail = rootView.findViewById(com.sungkunn.inam.R.id.et_email)
+        btnPhoto = rootView.findViewById(com.sungkunn.inam.R.id.btn_photo)
+
+        etMondayOpen = rootView.findViewById(com.sungkunn.inam.R.id.et_monday_open)
+        etMondayClose = rootView.findViewById(com.sungkunn.inam.R.id.et_monday_close)
+        etTuesdayOpen = rootView.findViewById(com.sungkunn.inam.R.id.et_tuesday_open)
+        etTuesdayClose = rootView.findViewById(com.sungkunn.inam.R.id.et_tuesday_close)
+        etWednesdayOpen = rootView.findViewById(com.sungkunn.inam.R.id.et_wednesday_open)
+        etWednesdayClose = rootView.findViewById(com.sungkunn.inam.R.id.et_wednesday_close)
+        etThursdayOpen = rootView.findViewById(com.sungkunn.inam.R.id.et_thursday_open)
+        etThursdayClose = rootView.findViewById(com.sungkunn.inam.R.id.et_thursday_close)
+        etFridayOpen = rootView.findViewById(com.sungkunn.inam.R.id.et_friday_open)
+        etFridayClose = rootView.findViewById(com.sungkunn.inam.R.id.et_friday_close)
+        etSaturdayOpen = rootView.findViewById(com.sungkunn.inam.R.id.et_saturday_open)
+        etSaturdayClose = rootView.findViewById(com.sungkunn.inam.R.id.et_saturday_close)
+        etSundayOpen = rootView.findViewById(com.sungkunn.inam.R.id.et_sunday_open)
+        etSundayClose = rootView.findViewById(com.sungkunn.inam.R.id.et_sunday_close)
 
 
-        toolbar!!.inflateMenu(R.menu.menu_item)
-        toolbar!!.setNavigationIcon(R.drawable.ic_close_white)
+        toolbar!!.inflateMenu(com.sungkunn.inam.R.menu.menu_item)
+        toolbar!!.setNavigationIcon(com.sungkunn.inam.R.drawable.ic_close_white)
         toolbar!!.setNavigationOnClickListener(this)
         toolbar!!.setOnMenuItemClickListener(this)
+        btnPhoto!!.setOnClickListener(this)
 
-        btnPhoto!!.setOnClickListener(object: View.OnClickListener{
-            override fun onClick(v: View?) {
-                var intent = Intent(inflater.context, PhotoItemActivity::class.java)
-                intent.putExtra("key", shopItem!!.key)
-                intent.putExtra("name", shopItem!!.data.name)
-                inflater.context.startActivity(intent)
-            }
-        })
+        etMondayOpen!!.setOnClickListener(this)
+        etMondayClose!!.setOnClickListener(this)
+        etTuesdayOpen!!.setOnClickListener(this)
+        etTuesdayClose!!.setOnClickListener(this)
+        etWednesdayOpen!!.setOnClickListener(this)
+        etWednesdayClose!!.setOnClickListener(this)
+        etThursdayOpen!!.setOnClickListener(this)
+        etThursdayClose!!.setOnClickListener(this)
+        etFridayOpen!!.setOnClickListener(this)
+        etFridayClose!!.setOnClickListener(this)
+        etSaturdayOpen!!.setOnClickListener(this)
+        etSaturdayClose!!.setOnClickListener(this)
+        etSundayOpen!!.setOnClickListener(this)
+        etSundayClose!!.setOnClickListener(this)
+
+//        btnPhoto!!.setOnClickListener(object: View.OnClickListener{
+//            override fun onClick(v: View?) {
+//                var intent = Intent(inflater.context, PhotoItemActivity::class.java)
+//                intent.putExtra("key", shopItem!!.key)
+//                intent.putExtra("name", shopItem!!.data.name)
+//                inflater.context.startActivity(intent)
+//            }
+//        })
 //        fragmentManager!!.beginTransaction()
 //            .replace(R.id.marketItemContainer, MarketItemPreferenceFragment())
 //            .addToBackStack(null)
@@ -239,16 +291,57 @@ class ShopItemFragment : Fragment(), Toolbar.OnMenuItemClickListener, View.OnCli
 
     override fun onClick(v: View?) {
         //fragmentManager!!.popBackStack()
-        if (fragmentManager!!.backStackEntryCount > 0) {
-            fragmentManager!!.popBackStack()
+        if (v == btnPhoto){
+            var intent = Intent(inflater!!.context, PhotoItemActivity::class.java)
+            intent.putExtra("key", shopItem!!.key)
+            intent.putExtra("name", shopItem!!.data.name)
+            inflater!!.context.startActivity(intent)
+        } else if (v == etMondayOpen || v == etTuesdayOpen || v == etWednesdayOpen || v == etThursdayOpen || v == etFridayOpen || v == etSaturdayOpen || v == etSundayOpen) {
+            val mcurrentTime = Calendar.getInstance()
+            mcurrentTime.set(Calendar.HOUR_OF_DAY, 8)
+            mcurrentTime.set(Calendar.MINUTE, 0)
+            val hour = mcurrentTime.get(Calendar.HOUR_OF_DAY)
+            val minute = mcurrentTime.get(Calendar.MINUTE)
+            val mTimePicker: TimePickerDialog
+            var etTemp = v as TextInputEditText
+            mTimePicker = TimePickerDialog(inflater!!.context,
+                TimePickerDialog.OnTimeSetListener { timePicker, selectedHour, selectedMinute ->
+                    etTemp!!.setText(
+                        "$selectedHour:$selectedMinute"
+                    )
+                }, hour, minute, true
+            )//Yes 24 hour time
+            mTimePicker.setTitle("Select Time")
+            mTimePicker.show()
+        } else if (v == etMondayClose || v == etTuesdayClose || v == etWednesdayClose || v == etThursdayClose || v == etFridayClose || v == etSaturdayClose || v == etSundayClose) {
+            val mcurrentTime = Calendar.getInstance()
+            mcurrentTime.set(Calendar.HOUR_OF_DAY, 17)
+            mcurrentTime.set(Calendar.MINUTE, 0)
+            val hour = mcurrentTime.get(Calendar.HOUR_OF_DAY)
+            val minute = mcurrentTime.get(Calendar.MINUTE)
+            val mTimePicker: TimePickerDialog
+            var etTemp = v as TextInputEditText
+            mTimePicker = TimePickerDialog(inflater!!.context,
+                TimePickerDialog.OnTimeSetListener { timePicker, selectedHour, selectedMinute ->
+                    etTemp!!.setText(
+                        "$selectedHour:$selectedMinute"
+                    )
+                }, hour, minute, true
+            )//Yes 24 hour time
+            mTimePicker.setTitle("Select Time")
+            mTimePicker.show()
         } else {
-            activity!!.finish()
+            if (fragmentManager!!.backStackEntryCount > 0) {
+                fragmentManager!!.popBackStack()
+            } else {
+                activity!!.finish()
+            }
         }
     }
 
     override fun onMenuItemClick(item: MenuItem?): Boolean {
         when (item!!.itemId) {
-            R.id.action_save ->
+            com.sungkunn.inam.R.id.action_save ->
                 saveShop()
 //                Toast.makeText(activity, "Save", Toast.LENGTH_SHORT).show()
         }
@@ -256,7 +349,7 @@ class ShopItemFragment : Fragment(), Toolbar.OnMenuItemClickListener, View.OnCli
     }
 
     private fun saveShop() {
-        val snackbar: Snackbar = Snackbar.make(ll!!, resources.getString(R.string.save_process), Snackbar.LENGTH_INDEFINITE)
+        val snackbar: Snackbar = Snackbar.make(ll!!, resources.getString(com.sungkunn.inam.R.string.save_process), Snackbar.LENGTH_INDEFINITE)
 
         snackbar.show()
         if (shopItem == null) {
@@ -276,13 +369,13 @@ class ShopItemFragment : Fragment(), Toolbar.OnMenuItemClickListener, View.OnCli
                 .addOnSuccessListener { documentReference ->
                     Log.d(TAG, "DocumentSnapshot successfully written!")
                     snackbar.dismiss()
-                    Snackbar.make(ll!!, resources.getString(R.string.save_success), Snackbar.LENGTH_SHORT).show()
+                    Snackbar.make(ll!!, resources.getString(com.sungkunn.inam.R.string.save_success), Snackbar.LENGTH_SHORT).show()
                     shopItem = WrapShop(documentReference.id, temp)
                 }
                 .addOnFailureListener { e ->
                     Log.w(TAG, "False", e)
                     snackbar.dismiss()
-                    Snackbar.make(ll!!, resources.getString(R.string.save_fault), Snackbar.LENGTH_SHORT).show()
+                    Snackbar.make(ll!!, resources.getString(com.sungkunn.inam.R.string.save_fault), Snackbar.LENGTH_SHORT).show()
                 }
         } else {
             shopItem!!.data.name = etName!!.text!!.toString()
@@ -296,12 +389,12 @@ class ShopItemFragment : Fragment(), Toolbar.OnMenuItemClickListener, View.OnCli
                 .addOnSuccessListener { documentReference ->
                     Log.d(TAG, "DocumentSnapshot successfully written!")
                     snackbar.dismiss()
-                    Snackbar.make(ll!!, resources.getString(R.string.save_success), Snackbar.LENGTH_SHORT).show()
+                    Snackbar.make(ll!!, resources.getString(com.sungkunn.inam.R.string.save_success), Snackbar.LENGTH_SHORT).show()
                 }
                 .addOnFailureListener { e ->
                     Log.w(TAG, "False", e)
                     snackbar.dismiss()
-                    Snackbar.make(ll!!, resources.getString(R.string.save_fault), Snackbar.LENGTH_SHORT).show()
+                    Snackbar.make(ll!!, resources.getString(com.sungkunn.inam.R.string.save_fault), Snackbar.LENGTH_SHORT).show()
                 }
         }
     }

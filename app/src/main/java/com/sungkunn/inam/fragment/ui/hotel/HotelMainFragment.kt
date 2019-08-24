@@ -4,12 +4,17 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.viewpager.widget.ViewPager
+import com.bumptech.glide.Glide
 import com.google.android.material.tabs.TabLayout
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.storage.FirebaseStorage
 import com.sungkunn.inam.R
 import com.sungkunn.inam.adapter.Pager_Adapter_Title
 
@@ -30,6 +35,10 @@ class HotelMainFragment : Fragment(), View.OnClickListener {
     var ll: LinearLayout? = null
     var tabs: TabLayout? = null
     var pager: ViewPager? = null
+    var backdrop: ImageView? = null
+
+    private lateinit var auth: FirebaseAuth
+    var currentUser: FirebaseUser? = null
 
     var TAG = "Hotel Main"
 
@@ -40,6 +49,8 @@ class HotelMainFragment : Fragment(), View.OnClickListener {
             name = it.getString("name")
             type = it.getString("type")
         }
+        auth = FirebaseAuth.getInstance()
+        currentUser = auth.currentUser
     }
 
     override fun onCreateView(
@@ -52,6 +63,7 @@ class HotelMainFragment : Fragment(), View.OnClickListener {
         ll = rootView.findViewById(R.id.ll)
         tabs = rootView.findViewById(R.id.tabs)
         pager = rootView.findViewById(R.id.pager_shop)
+        backdrop = rootView.findViewById(R.id.backdrop)
 
         toolbar!!.setTitle(name)
         toolbar!!.setNavigationIcon(R.drawable.ic_arrow_back)
@@ -63,7 +75,22 @@ class HotelMainFragment : Fragment(), View.OnClickListener {
         pager!!.adapter = adapter
         pager!!.setOnTouchListener(View.OnTouchListener { v, event -> true })
 
+        setPhoto()
+
         return rootView
+    }
+
+    fun setPhoto() {
+        val storageRef = FirebaseStorage.getInstance().reference
+        storageRef.child("images/" + key + "_0").downloadUrl.addOnSuccessListener {
+            // Got the download URL for 'users/me/profile.png'
+            Glide.with(this)
+                .load(it.toString())
+                .placeholder(R.drawable.ic_region)
+                .into(backdrop!!)
+        }.addOnFailureListener {
+            // Handle any errors
+        }
     }
 
     override fun onClick(v: View?) {

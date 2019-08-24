@@ -9,6 +9,10 @@
 
     <include layout="@layout/row_info_item"/>
 
+    <include layout="@layout/row_award_item"/>
+
+    <include layout="@layout/row_opentime_item"/>
+
     <include layout="@layout/row_contact_item"/>
 
     <include layout="@layout/row_rating_item"/>

@@ -230,6 +230,8 @@ class MoreFragment : Fragment(), View.OnClickListener {
     private fun saveAccount(profile: UserInfo) {
         if (currentUser != null) {
             var user = User()
+
+
             user.firstname = profile.displayName
             user.email = profile.email
             user.photoURL = profile.photoUrl.toString()

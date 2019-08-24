@@ -3,8 +3,11 @@ package com.sungkunn.inam.adapter
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.google.firebase.storage.FirebaseStorage
 import com.sungkunn.inam.R
 import com.sungkunn.inam.activity.UIItemActivity
 import com.sungkunn.inam.fragment.home.ShowMainFragment
@@ -38,6 +41,7 @@ class RV_Adapter_Home_Market(var items: MutableList<Any>?, var fragmentManager: 
             is WrapMarket -> {
                 val data = items!!.get(position) as WrapMarket
                 vh1.tv.text = data.data.name
+                setPhoto(vh1.iv, data.key)
                 vh1.iv.setOnClickListener { v ->
                     fragmentManager!!.beginTransaction()
                         .replace(R.id.container_home, ShowMainFragment.newInstance(data))
@@ -51,6 +55,7 @@ class RV_Adapter_Home_Market(var items: MutableList<Any>?, var fragmentManager: 
             is WrapShop -> {
                 val data = items!!.get(position) as WrapShop
                 vh1.tv.text = data.data.name
+                setPhoto(vh1.iv, data.key)
                 vh1.iv.setOnClickListener { v ->
 //                    fragmentManager!!.beginTransaction()
 //                        .replace(R.id.container_home, ShopMainFragment.newInstance(data))
@@ -66,6 +71,7 @@ class RV_Adapter_Home_Market(var items: MutableList<Any>?, var fragmentManager: 
             is WrapHotel -> {
                 val data = items!!.get(position) as WrapHotel
                 vh1.tv.text = data.data.name
+                setPhoto(vh1.iv, data.key)
                 vh1.iv.setOnClickListener { v ->
                     //                fragmentManager!!.beginTransaction()
 //                    .replace(R.id.container_home, ShowMainFragment.newInstance(data))
@@ -81,6 +87,7 @@ class RV_Adapter_Home_Market(var items: MutableList<Any>?, var fragmentManager: 
             is WrapTravel -> {
                 val data = items!!.get(position) as WrapTravel
                 vh1.tv.text = data.data.name
+                setPhoto(vh1.iv, data.key)
                 vh1.iv.setOnClickListener { v ->
                     //                fragmentManager!!.beginTransaction()
 //                    .replace(R.id.container_home, ShowMainFragment.newInstance(data))
@@ -96,6 +103,7 @@ class RV_Adapter_Home_Market(var items: MutableList<Any>?, var fragmentManager: 
             is WrapNetwork -> {
                 val data = items!!.get(position) as WrapNetwork
                 vh1.tv.text = data.data.name
+                setPhoto(vh1.iv, data.key)
                 vh1.iv.setOnClickListener { v ->
                     //                fragmentManager!!.beginTransaction()
 //                    .replace(R.id.container_home, ShowMainFragment.newInstance(data))
@@ -111,6 +119,7 @@ class RV_Adapter_Home_Market(var items: MutableList<Any>?, var fragmentManager: 
             is WrapService -> {
                 val data = items!!.get(position) as WrapService
                 vh1.tv.text = data.data.name
+                setPhoto(vh1.iv, data.key)
                 vh1.iv.setOnClickListener { v ->
                     //                fragmentManager!!.beginTransaction()
 //                    .replace(R.id.container_home, ShowMainFragment.newInstance(data))
@@ -126,6 +135,7 @@ class RV_Adapter_Home_Market(var items: MutableList<Any>?, var fragmentManager: 
             is WrapProduct -> {
                 val data = items!!.get(position) as WrapProduct
                 vh1.tv.text = data.data.name
+                setPhoto(vh1.iv, data.key)
                 vh1.iv.setOnClickListener { v ->
                     //                fragmentManager!!.beginTransaction()
 //                    .replace(R.id.container_home, ShowMainFragment.newInstance(data))
@@ -196,6 +206,19 @@ class RV_Adapter_Home_Market(var items: MutableList<Any>?, var fragmentManager: 
 //        }
 
 
+    }
+
+    fun setPhoto(iv: ImageView, key: String) {
+        val storageRef = FirebaseStorage.getInstance().reference
+        storageRef.child("images/" + key + "_0").downloadUrl.addOnSuccessListener {
+            // Got the download URL for 'users/me/profile.png'
+            Glide.with(inflater.context)
+                .load(it.toString())
+                .placeholder(R.drawable.ic_region)
+                .into(iv!!)
+        }.addOnFailureListener {
+            // Handle any errors
+        }
     }
 
 

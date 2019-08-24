@@ -21,9 +21,11 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme.NoActionBar"
             android:screenOrientation="portrait">
-        <activity android:name=".activity.PhotoItemActivity">
+        <activity android:name=".activity.PhotoItemActivity"
+                  android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".activity.UIItemActivity">
+        <activity android:name=".activity.UIItemActivity"
+                  android:screenOrientation="portrait">
         </activity>
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
@@ -39,23 +41,30 @@
 
         <activity
                 android:name=".example.MapsTestActivity"
-                android:label="@string/title_activity_maps_test">
+                android:label="@string/title_activity_maps_test"
+                android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".example.HomeActivity">
+        <activity android:name=".example.HomeActivity"
+                  android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".activity.AccountActivity">
+        <activity android:name=".activity.AccountActivity"
+                  android:screenOrientation="portrait">
         </activity>
         <activity
                 android:name=".activity.HomeNewActivity"
-                android:label="@string/title_activity_home_new">
+                android:label="@string/title_activity_home_new"
+                android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".example.HomeRegionActivity">
+        <activity android:name=".example.HomeRegionActivity"
+                  android:screenOrientation="portrait">
         </activity>
         <activity
                 android:name=".example.TestSettingsActivity"
-                android:label="@string/title_activity_test_settings">
+                android:label="@string/title_activity_test_settings"
+                android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".activity.ManageActivity">
+        <activity android:name=".activity.ManageActivity"
+                  android:screenOrientation="portrait">
         </activity>
         <activity
                 android:name=".example.Home"
@@ -63,7 +72,8 @@
                 android:screenOrientation="portrait"
                 android:theme="@style/AppTheme.NoActionBar.NoActionBar">
         </activity>
-        <activity android:name=".activity.SplashScreen">
+        <activity android:name=".activity.SplashScreen"
+                  android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -72,9 +82,11 @@
         </activity>
         <activity
                 android:name=".example.Temp"
-                android:label="@string/title_activity_temp">
+                android:label="@string/title_activity_temp"
+                android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".example.MainActivity">
+        <activity android:name=".example.MainActivity"
+                  android:screenOrientation="portrait">
         </activity>
     </application>
 

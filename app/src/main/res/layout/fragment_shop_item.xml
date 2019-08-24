@@ -7,7 +7,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fitsSystemWindows="true"
-        tools:context=".fragment.manage.item.MarketItemFragment">
+        tools:context=".fragment.manage.item.ShopItemFragment">
 
     <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/app_bar"
@@ -76,6 +76,8 @@
             </androidx.cardview.widget.CardView>
 
             <include layout="@layout/card_contact_item"/>
+
+            <include layout="@layout/card_opentime"/>
 
             <include layout="@layout/card_photo_item"/>
 

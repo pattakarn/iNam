@@ -12,7 +12,7 @@
     <string-array name="more_menu">
         <item>Account</item>
         <item>Shop Manager</item>
-        <item>Setting</item>
+        <!--<item>Setting</item>-->
     </string-array>
 
     <string-array name="manage_menu">
