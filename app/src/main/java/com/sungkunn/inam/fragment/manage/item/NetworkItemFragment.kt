@@ -95,6 +95,7 @@ class NetworkItemFragment : Fragment(), Toolbar.OnMenuItemClickListener, View.On
     ): View? {
         // Inflate the layout for this fragment
         var rootView = inflater.inflate(R.layout.fragment_network_item, container, false)
+        this.inflater = inflater
         toolbar = rootView.findViewById<Toolbar>(R.id.toolbar)
         ll = rootView.findViewById(R.id.ll)
         spinMarket = rootView.findViewById(R.id.spin_market)
