@@ -120,11 +120,18 @@ class RoomItemFragment : Fragment(), Toolbar.OnMenuItemClickListener, View.OnCli
 
     override fun onMenuItemClick(item: MenuItem?): Boolean {
         when (item!!.itemId) {
-            com.sungkunn.inam.R.id.action_save ->
+            R.id.action_save ->
                 Toast.makeText(activity, "Save", Toast.LENGTH_SHORT).show()
         }
         return true
     }
+
+//    private fun getPreview() {
+//        fragmentManager!!.beginTransaction()
+//            .replace(R.id.container_manage, PreviewFragment.newInstance(productItem!!.key, productItem!!.data.name.toString()))
+//            .addToBackStack(null)
+//            .commit()
+//    }
 
     companion object {
         @JvmStatic

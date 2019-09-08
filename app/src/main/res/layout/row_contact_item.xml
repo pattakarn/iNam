@@ -24,6 +24,35 @@
             android:layout_marginTop="8dp">
 
         <ImageView
+                android:id="@+id/iv_contact_owner"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:src="@drawable/ic_person_black"
+                android:layout_gravity="center"/>
+
+        <TextView
+                android:id="@+id/tv_contact_owner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:layout_gravity="center"
+                android:gravity="center_vertical"
+                android:layout_marginLeft="16dp"
+                android:lineSpacingExtra="4dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_centerVertical="true"
+            android:layout_centerInParent="true"
+            android:layout_marginRight="@dimen/text_margin"
+            android:layout_marginLeft="@dimen/text_margin"
+            android:layout_marginTop="8dp">
+
+        <ImageView
                 android:id="@+id/iv_contact_link"
                 android:layout_width="16dp"
                 android:layout_height="16dp"
@@ -34,7 +63,7 @@
                 android:id="@+id/tv_contact_link"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="link"
+                android:text=""
                 android:layout_gravity="center"
                 android:gravity="center_vertical"
                 android:layout_marginLeft="16dp"
@@ -63,7 +92,7 @@
                 android:id="@+id/tv_contact_phone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="phone"
+                android:text=""
                 android:layout_gravity="center"
                 android:gravity="center_vertical"
                 android:layout_marginLeft="16dp"/>
@@ -91,7 +120,7 @@
                 android:id="@+id/tv_contact_line"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="line"
+                android:text=""
                 android:layout_gravity="center"
                 android:gravity="center_vertical"
                 android:layout_marginLeft="16dp"/>
@@ -119,7 +148,7 @@
                 android:id="@+id/tv_contact_fb"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="facebook"
+                android:text=""
                 android:layout_gravity="center"
                 android:gravity="center_vertical"
                 android:layout_marginLeft="16dp"/>
@@ -148,7 +177,7 @@
                 android:id="@+id/tv_contact_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Email"
+                android:text=""
                 android:layout_gravity="center"
                 android:gravity="center_vertical"
                 android:layout_marginLeft="16dp"/>

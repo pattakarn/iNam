@@ -18,6 +18,7 @@ import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.firestore.FirebaseFirestore
 import com.sungkunn.inam.R
 import com.sungkunn.inam.activity.PhotoItemActivity
+import com.sungkunn.inam.fragment.home.PreviewFragment
 import com.sungkunn.inam.model.Market
 import com.sungkunn.inam.model.WrapMarket
 import com.sungkunn.inam.model.WrapZone
@@ -118,9 +119,9 @@ class ZoneItemFragment : Fragment(), Toolbar.OnMenuItemClickListener, View.OnCli
 
     fun setZone(){
         zoneItem ?: return
-        etName!!.text!!.append(zoneItem!!.data.name)
-        etOwner!!.text!!.append(zoneItem!!.data.owner)
-        etSize!!.text!!.append(zoneItem!!.data.size)
+        etName!!.setText(zoneItem!!.data.name)
+        etOwner!!.setText(zoneItem!!.data.owner)
+        etSize!!.setText(zoneItem!!.data.size)
         spinMarket!!.setSelection(getIndexMarket(zoneItem!!.data.marketId))
 
     }
@@ -182,11 +183,20 @@ class ZoneItemFragment : Fragment(), Toolbar.OnMenuItemClickListener, View.OnCli
 
     override fun onMenuItemClick(item: MenuItem?): Boolean {
         when (item!!.itemId) {
+            R.id.action_preview ->
+                getPreview()
             R.id.action_save ->
                 saveZone()
 //                Toast.makeText(activity, "Save", Toast.LENGTH_SHORT).show()
         }
         return true
+    }
+
+    private fun getPreview() {
+        fragmentManager!!.beginTransaction()
+            .replace(R.id.container_manage, PreviewFragment.newInstance(zoneItem!!.key, zoneItem!!.data.name.toString(), "zone"))
+            .addToBackStack(null)
+            .commit()
     }
 
     private fun saveZone() {

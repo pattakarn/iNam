@@ -27,6 +27,7 @@ class ShopInfoFragment : Fragment() {
     var data: WrapShop? = null
 
     var infoDetail: TextView? = null
+    var contactOwner: TextView? = null
     var contactLink: TextView? = null
     var contactPhone: TextView? = null
     var contactLine: TextView? = null
@@ -60,6 +61,7 @@ class ShopInfoFragment : Fragment() {
         // Inflate the layout for this fragment
         var rootView = inflater.inflate(R.layout.fragment_shop_info, container, false)
         infoDetail = rootView.findViewById(R.id.info_detail)
+        contactOwner = rootView.findViewById(R.id.tv_contact_owner)
         contactLink = rootView.findViewById(R.id.tv_contact_link)
         contactPhone = rootView.findViewById(R.id.tv_contact_phone)
         contactLine = rootView.findViewById(R.id.tv_contact_line)
@@ -103,6 +105,7 @@ class ShopInfoFragment : Fragment() {
     fun setValue() {
         infoDetail!!.setText(data!!.data.name)
 
+        contactOwner!!.setText(data!!.data.owner)
         contactPhone!!.setText(data!!.data.phone)
         contactLine!!.setText(data!!.data.line)
         contactFacebook!!.setText(data!!.data.facebook)

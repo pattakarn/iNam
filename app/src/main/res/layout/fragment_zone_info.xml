@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        style="@style/LinearLayoutDivider"
+        tools:context=".fragment.ui.zone.ZoneInfo">
+
+    <include layout="@layout/row_info_item"/>
+
+    <!--<include layout="@layout/row_award_item"/>-->
+
+    <!--<include layout="@layout/row_opentime_item"/>-->
+
+    <include layout="@layout/row_contact_item"/>
+
+    <!--<include layout="@layout/row_rating_item"/>-->
+
+</LinearLayout>

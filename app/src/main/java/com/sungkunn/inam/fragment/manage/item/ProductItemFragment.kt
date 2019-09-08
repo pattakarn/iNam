@@ -15,6 +15,7 @@ import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.firestore.FirebaseFirestore
 import com.sungkunn.inam.R
 import com.sungkunn.inam.activity.PhotoItemActivity
+import com.sungkunn.inam.fragment.home.PreviewFragment
 import com.sungkunn.inam.model.*
 
 // TODO: Rename parameter arguments, choose names that match
@@ -144,10 +145,10 @@ class ProductItemFragment : Fragment(), Toolbar.OnMenuItemClickListener, View.On
 
     fun setProduct(){
         productItem ?: return
-        etName!!.text!!.append(productItem!!.data.name)
-        etType!!.text!!.append(productItem!!.data.type)
-        etDetail!!.text!!.append(productItem!!.data.detail)
-        etPrice!!.text!!.append(productItem!!.data.price)
+        etName!!.setText(productItem!!.data.name)
+        etType!!.setText(productItem!!.data.type)
+        etDetail!!.setText(productItem!!.data.detail)
+        etPrice!!.setText(productItem!!.data.price)
         spinMarket!!.setSelection(getIndexMarket(productItem!!.data.marketId))
         spinZone!!.setSelection(getIndexZone(productItem!!.data.zoneId))
         spinShop!!.setSelection(getIndexShop(productItem!!.data.shopId))
@@ -307,11 +308,20 @@ class ProductItemFragment : Fragment(), Toolbar.OnMenuItemClickListener, View.On
 
     override fun onMenuItemClick(item: MenuItem?): Boolean {
         when (item!!.itemId) {
+            R.id.action_preview ->
+                getPreview()
             R.id.action_save ->
                 saveProduct()
 //                Toast.makeText(activity, "Save", Toast.LENGTH_SHORT).show()
         }
         return true
+    }
+
+    private fun getPreview() {
+        fragmentManager!!.beginTransaction()
+            .replace(R.id.container_manage, PreviewFragment.newInstance(productItem!!.key, productItem!!.data.name.toString(), "product"))
+            .addToBackStack(null)
+            .commit()
     }
 
     private fun saveProduct() {

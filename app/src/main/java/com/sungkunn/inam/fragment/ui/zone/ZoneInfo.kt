@@ -1,4 +1,4 @@
-package com.sungkunn.inam.fragment.ui.service
+package com.sungkunn.inam.fragment.ui.zone
 
 import android.os.Bundle
 import android.util.Log
@@ -9,8 +9,8 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.google.firebase.firestore.FirebaseFirestore
 import com.sungkunn.inam.R
-import com.sungkunn.inam.model.Service
-import com.sungkunn.inam.model.WrapService
+import com.sungkunn.inam.model.WrapZone
+import com.sungkunn.inam.model.Zone
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -20,19 +20,19 @@ private const val ARG_PARAM2 = "param2"
 /**
  * A simple [Fragment] subclass.
  * Activities that contain this fragment must implement the
- * [ServiceInfoFragment.OnFragmentInteractionListener] interface
+ * [ZoneInfo.OnFragmentInteractionListener] interface
  * to handle interaction events.
- * Use the [ServiceInfoFragment.newInstance] factory method to
+ * Use the [ZoneInfo.newInstance] factory method to
  * create an instance of this fragment.
  *
  */
-class ServiceInfoFragment : Fragment() {
+class ZoneInfo : Fragment() {
 
     val db = FirebaseFirestore.getInstance()
     var key: String? = null
     var name: String? = null
     var type: String? = null
-    var data: WrapService? = null
+    var data: WrapZone? = null
 
     var infoDetail: TextView? = null
     var contactOwner: TextView? = null
@@ -50,8 +50,7 @@ class ServiceInfoFragment : Fragment() {
     var tvOpentimeSaturday: TextView? = null
     var tvOpentimeSunday: TextView? = null
 
-
-    var TAG = "Service Info"
+    var TAG = "Zone Info"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -67,38 +66,38 @@ class ServiceInfoFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        var rootView = inflater.inflate(R.layout.fragment_service_info, container, false)
+        var rootView = inflater.inflate(R.layout.fragment_zone_info, container, false)
         infoDetail = rootView.findViewById(R.id.info_detail)
         contactOwner = rootView.findViewById(R.id.tv_contact_owner)
-        contactLink = rootView.findViewById(R.id.tv_contact_link)
-        contactPhone = rootView.findViewById(R.id.tv_contact_phone)
-        contactLine = rootView.findViewById(R.id.tv_contact_line)
-        contactFacebook = rootView.findViewById(R.id.tv_contact_fb)
-        contactEmail = rootView.findViewById(R.id.tv_contact_email)
+//        contactLink = rootView.findViewById(R.id.tv_contact_link)
+//        contactPhone = rootView.findViewById(R.id.tv_contact_phone)
+//        contactLine = rootView.findViewById(R.id.tv_contact_line)
+//        contactFacebook = rootView.findViewById(R.id.tv_contact_fb)
+//        contactEmail = rootView.findViewById(R.id.tv_contact_email)
+//
+//        tvOpentimeMonday = rootView.findViewById(R.id.tv_opentime_monday)
+//        tvOpentimeTuesday = rootView.findViewById(R.id.tv_opentime_tuesday)
+//        tvOpentimeWednesday = rootView.findViewById(R.id.tv_opentime_wednesday)
+//        tvOpentimeThursday = rootView.findViewById(R.id.tv_opentime_thursday)
+//        tvOpentimeFriday = rootView.findViewById(R.id.tv_opentime_friday)
+//        tvOpentimeSaturday = rootView.findViewById(R.id.tv_opentime_saturday)
+//        tvOpentimeSunday = rootView.findViewById(R.id.tv_opentime_sunday)
 
-        tvOpentimeMonday = rootView.findViewById(R.id.tv_opentime_monday)
-        tvOpentimeTuesday = rootView.findViewById(R.id.tv_opentime_tuesday)
-        tvOpentimeWednesday = rootView.findViewById(R.id.tv_opentime_wednesday)
-        tvOpentimeThursday = rootView.findViewById(R.id.tv_opentime_thursday)
-        tvOpentimeFriday = rootView.findViewById(R.id.tv_opentime_friday)
-        tvOpentimeSaturday = rootView.findViewById(R.id.tv_opentime_saturday)
-        tvOpentimeSunday = rootView.findViewById(R.id.tv_opentime_sunday)
-
-        getService()
+        getZone()
 
 
 
         return rootView
     }
 
-    fun getService() {
-        db.collection("services").document(key!!)
+    fun getZone() {
+        db.collection("zones").document(key!!)
             .get()
             .addOnSuccessListener { document ->
                 if (document != null) {
                     Log.d(TAG, "DocumentSnapshot data: ${document.data}")
 //                    WrapShop(document.id, document.toObject(Shop::class.java))
-                    data = WrapService(document.id, document.toObject(Service::class.java)!!)
+                    data = WrapZone(document.id, document.toObject(Zone::class.java)!!)
 //                    infoDetail!!.setText(document.toObject(Shop::class.java)!!.name)
                     setValue()
                 } else {
@@ -114,18 +113,18 @@ class ServiceInfoFragment : Fragment() {
         infoDetail!!.setText(data!!.data.name)
 
         contactOwner!!.setText(data!!.data.owner)
-        contactPhone!!.setText(data!!.data.phone)
-        contactLine!!.setText(data!!.data.line)
-        contactFacebook!!.setText(data!!.data.facebook)
-        contactEmail!!.setText(data!!.data.email)
-
-        tvOpentimeMonday!!.setText(checkOpentime(data!!.data.monday_open, data!!.data.monday_close))
-        tvOpentimeTuesday!!.setText(checkOpentime(data!!.data.tuesday_open, data!!.data.tuesday_close))
-        tvOpentimeWednesday!!.setText(checkOpentime(data!!.data.wednesday_open, data!!.data.wednesday_close))
-        tvOpentimeThursday!!.setText(checkOpentime(data!!.data.thursday_open, data!!.data.thursday_close))
-        tvOpentimeFriday!!.setText(checkOpentime(data!!.data.friday_open, data!!.data.friday_close))
-        tvOpentimeSaturday!!.setText(checkOpentime(data!!.data.saturday_open, data!!.data.saturday_close))
-        tvOpentimeSunday!!.setText(checkOpentime(data!!.data.sunday_open, data!!.data.sunday_close))
+//        contactPhone!!.setText(data!!.data.phone)
+//        contactLine!!.setText(data!!.data.line)
+//        contactFacebook!!.setText(data!!.data.facebook)
+//        contactEmail!!.setText(data!!.data.email)
+//
+//        tvOpentimeMonday!!.setText(checkOpentime(data!!.data.monday_open, data!!.data.monday_close))
+//        tvOpentimeTuesday!!.setText(checkOpentime(data!!.data.tuesday_open, data!!.data.tuesday_close))
+//        tvOpentimeWednesday!!.setText(checkOpentime(data!!.data.wednesday_open, data!!.data.wednesday_close))
+//        tvOpentimeThursday!!.setText(checkOpentime(data!!.data.thursday_open, data!!.data.thursday_close))
+//        tvOpentimeFriday!!.setText(checkOpentime(data!!.data.friday_open, data!!.data.friday_close))
+//        tvOpentimeSaturday!!.setText(checkOpentime(data!!.data.saturday_open, data!!.data.saturday_close))
+//        tvOpentimeSunday!!.setText(checkOpentime(data!!.data.sunday_open, data!!.data.sunday_close))
 
     }
 
@@ -139,10 +138,11 @@ class ServiceInfoFragment : Fragment() {
         return result
     }
 
+
     companion object {
         @JvmStatic
         fun newInstance(key: String?, name: String?, type: String?) =
-            ServiceInfoFragment().apply {
+            ZoneInfo().apply {
                 arguments = Bundle().apply {
                     putString("key", key)
                     putString("name", name)

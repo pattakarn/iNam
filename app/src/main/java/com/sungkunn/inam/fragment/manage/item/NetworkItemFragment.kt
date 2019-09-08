@@ -16,6 +16,7 @@ import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.firestore.FirebaseFirestore
 import com.sungkunn.inam.R
 import com.sungkunn.inam.activity.PhotoItemActivity
+import com.sungkunn.inam.fragment.home.PreviewFragment
 import com.sungkunn.inam.model.Market
 import com.sungkunn.inam.model.Network
 import com.sungkunn.inam.model.WrapMarket
@@ -312,11 +313,20 @@ class NetworkItemFragment : Fragment(), Toolbar.OnMenuItemClickListener, View.On
 
     override fun onMenuItemClick(item: MenuItem?): Boolean {
         when (item!!.itemId) {
+            R.id.action_preview ->
+                getPreview()
             R.id.action_save ->
                 saveNetwork()
 //                Toast.makeText(activity, "Save", Toast.LENGTH_SHORT).show()
         }
         return true
+    }
+
+    private fun getPreview() {
+        fragmentManager!!.beginTransaction()
+            .replace(R.id.container_manage, PreviewFragment.newInstance(networkItem!!.key, networkItem!!.data.name.toString(), "network"))
+            .addToBackStack(null)
+            .commit()
     }
 
     private fun saveNetwork() {
