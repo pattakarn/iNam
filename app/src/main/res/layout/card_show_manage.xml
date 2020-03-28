@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/cv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:layout_marginBottom="8dp"
+        android:elevation="8dp"
+        android:orientation="vertical">
+
+    <LinearLayout
+            android:id="@+id/ll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/margin_small"
+            android:orientation="vertical">
+
+        <TextView
+                android:id="@+id/tv_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLines="2"
+                android:text="Title"
+                android:textColor="@android:color/black"
+                android:textSize="16sp" />
+
+        <com.google.android.material.chip.Chip
+                android:id="@+id/chip_type"
+                style="@style/ChipType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Travel" />
+
+    </LinearLayout>
+
+</LinearLayout>

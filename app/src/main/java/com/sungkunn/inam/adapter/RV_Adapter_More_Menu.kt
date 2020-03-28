@@ -10,9 +10,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
 import com.istyleglobalnetwork.istyleapplication.istyle.pack_new.viewholder.VHInfoMenuKT
 import com.istyleglobalnetwork.istyleapplication.istyle.pack_new.viewholder.VHInfoTitleKT
-import com.sungkunn.inam.activity.AccountActivity
 import com.sungkunn.inam.R
-import com.sungkunn.inam.activity.ManageActivity
+import com.sungkunn.inam.activity.AccountActivity
+import com.sungkunn.inam.new_design.activity.NewManageActivity
 
 class RV_Adapter_More_Menu(var items: Array<String>) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -101,10 +101,12 @@ class RV_Adapter_More_Menu(var items: Array<String>) :
         vh.ll.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View?) {
                 if (items.get(position).equals("Shop Manager")) {
-                    var intent = Intent(inflater.context, ManageActivity::class.java)
+//                    var intent = Intent(inflater.context, ManageActivity::class.java)
+                    var intent = Intent(inflater.context, NewManageActivity::class.java)
                     inflater.context.startActivity(intent)
                 } else if (items.get(position).equals("Account")) {
                     var intent = Intent(inflater.context, AccountActivity::class.java)
+//                    var intent = Intent(inflater.context, NewMainActivity::class.java)
                     inflater.context.startActivity(intent)
                 } else if (items.get(position).equals("Sign out")) {
                     auth.signOut()

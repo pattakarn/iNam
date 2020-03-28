@@ -30,6 +30,6 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             android:layout_gravity="bottom"
-            app:menu="@menu/bottom_nav_menu"/>
+            app:menu="@menu/bottom_nav_menu_bak"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -51,4 +51,35 @@
         <item>9 guest</item>
         <item>10 guest</item>
     </string-array>
+
+    <string-array name="new_manage_menu">
+        <item>ชุมชน</item>
+        <item>สถานที่</item>
+        <item>สินค้า</item>
+    </string-array>
+
+    <string-array name="menu_add_manage">
+        <item>Community</item>
+        <item>Place</item>
+        <item>Product</item>
+    </string-array>
+
+    <string-array name="type_community">
+        <item>Community</item>
+        <item>Company</item>
+        <item>Government Agencies</item>
+    </string-array>
+
+    <string-array name="type_place">
+        <item>Shop</item>
+        <item>Travel</item>
+        <item>Cafe</item>
+        <item>Hotel</item>
+    </string-array>
+
+    <string-array name="type_product">
+        <item>Food</item>
+        <item>Gift</item>
+        <item>Room</item>
+    </string-array>
 </resources>

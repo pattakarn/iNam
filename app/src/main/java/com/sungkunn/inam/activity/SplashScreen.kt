@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.sungkunn.inam.R
+import com.sungkunn.inam.new_design.activity.NewMainActivity
 
 
 class SplashScreen : AppCompatActivity() {
@@ -23,7 +24,7 @@ class SplashScreen : AppCompatActivity() {
             } catch (e: InterruptedException) {
             }
 
-            val intent = Intent(this@SplashScreen, HomeNewActivity::class.java)
+            val intent = Intent(this@SplashScreen, NewMainActivity::class.java)
             startActivity(intent)
             finish()
         }).start()

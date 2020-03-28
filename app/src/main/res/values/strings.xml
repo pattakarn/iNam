@@ -74,7 +74,7 @@
         <item>3</item>
     </string-array>
 
-    <string-array name="multi_select_list_preference_default_value"/>
+    <string-array name="multi_select_list_preference_default_value" />
 
     <string name="pref_title_system_sync_settings">System sync settings</string>
 
@@ -123,6 +123,9 @@
     <string name="save_success">Complete</string>
     <string name="save_fault">Fault</string>
     <string name="title_activity_maps_test">Map</string>
+    <string name="title_activity_new_main">NewMainActivity</string>
+    <string name="title_dashboard">Product</string>
+    <string name="title_notifications">More</string>
 
 
 </resources>

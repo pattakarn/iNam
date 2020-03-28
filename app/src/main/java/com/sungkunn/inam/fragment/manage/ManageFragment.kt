@@ -14,10 +14,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.sungkunn.inam.R
 import com.sungkunn.inam.adapter.RV_Adapter_Manage_Main
 import com.sungkunn.inam.example.HomeViewModel
 import com.sungkunn.inam.example.LoginDialogFragment
+
+
 
 
 class ManageFragment : Fragment() {
@@ -50,11 +51,11 @@ class ManageFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        var rootView = inflater.inflate(R.layout.manage_fragment, container, false)
-        appBar = rootView.findViewById(R.id.app_bar)
-        toolbar = rootView.findViewById(R.id.toolbar)
-        var rv = rootView.findViewById<RecyclerView>(R.id.rv_manage)
-        var btn = rootView.findViewById<Button>(R.id.button)
+        var rootView = inflater.inflate(com.sungkunn.inam.R.layout.manage_fragment, container, false)
+        appBar = rootView.findViewById(com.sungkunn.inam.R.id.app_bar)
+        toolbar = rootView.findViewById(com.sungkunn.inam.R.id.toolbar)
+        var rv = rootView.findViewById<RecyclerView>(com.sungkunn.inam.R.id.rv_manage)
+        var btn = rootView.findViewById<Button>(com.sungkunn.inam.R.id.button)
 
         btn.visibility = View.INVISIBLE
         btn.setOnClickListener(object: View.OnClickListener{
@@ -71,7 +72,7 @@ class ManageFragment : Fragment() {
         })
 
 
-        toolbar!!.setNavigationIcon(R.drawable.ic_arrow_back)
+        toolbar!!.setNavigationIcon(com.sungkunn.inam.R.drawable.ic_arrow_back)
         toolbar!!.setNavigationOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View?) {
                 Log.d("ManageFragment", "close fragment")
@@ -85,7 +86,7 @@ class ManageFragment : Fragment() {
         })
 
 //        var listItem = ArrayList<MapMenu>()
-        var listItem = this.resources.getStringArray(R.array.manage_menu)
+        var listItem = this.resources.getStringArray(com.sungkunn.inam.R.array.manage_menu)
 //        for (item in arr)
 //            listItem.add(MapMenu(item))
 
@@ -95,6 +96,7 @@ class ManageFragment : Fragment() {
         val llm = LinearLayoutManager(inflater.context)
 
         rv.setLayoutManager(llm)
+//        rv.setLayoutManager(GridLayoutManager(inflater.context, 3))
         rv.setAdapter(adapter)
 
 

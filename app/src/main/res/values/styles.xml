@@ -3,23 +3,31 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.MaterialComponents.Light">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorPrimary">@color/colorPrimaryNew</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDarkNew</item>
+        <item name="colorAccent">@color/colorAccentNew</item>
+        <item name="actionMenuTextColor">@color/black</item>
+        <item name="android:actionMenuTextColor">@color/black</item>
     </style>
+
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="android:screenOrientation">portrait</item>
     </style>
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
-    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
     <style name="AppTheme.NoActionBar.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
-    <style name="AppTheme.NoActionBar.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
-    <style name="AppTheme.NoActionBar.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
+
+    <style name="AppTheme.NoActionBar.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.NoActionBar.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
     <style name="TitleText">
         <item name="android:layout_margin">@dimen/text_margin</item>
@@ -88,7 +96,7 @@
         <item name="android:layout_marginStart">20dp</item>
     </style>
 
-    <style name="LinearLayoutDivider" >
+    <style name="LinearLayoutDivider">
         <item name="android:showDividers">middle|end</item>
         <item name="android:divider">?android:listDivider</item>
     </style>
@@ -100,12 +108,34 @@
         <item name="android:layout_marginStart">@dimen/text_margin</item>
     </style>
 
-    <style name="LinearLayoutItem" >
-    </style>
+    <style name="LinearLayoutItem"></style>
 
     <style name="AppTheme.Slide">
         <item name="android:windowEnterAnimation">@anim/slide_up</item>
         <item name="android:windowExitAnimation">@anim/slide_down</item>
+    </style>
+
+    <style name="TextTitleToolbar">
+        <item name="android:textColor">@color/colorText</item>
+        <item name="android:textSize">@dimen/text_toolbar</item>
+        <item name="android:layout_gravity">center</item>
+    </style>
+
+    <style name="ChipType" parent="Widget.MaterialComponents.Chip.Choice">
+        <item name="android:textColor">@color/colorPrimaryDark</item>
+        <item name="android:textSize">@dimen/text_detail</item>
+        <item name="android:elevation">2dp</item>
+        <item name="chipBackgroundColor">@color/selecter_chip</item>
+        <item name="chipStrokeColor">@color/colorPrimaryDark</item>
+        <item name="chipStrokeWidth">1dp</item>
+    </style>
+
+    <style name="ChipChoiceType" parent="Widget.MaterialComponents.Chip.Filter">
+        <item name="android:textColor">@color/colorText</item>
+        <item name="android:textSize">@dimen/text_detail</item>
+        <item name="android:elevation">2dp</item>
+        <item name="android:layout_margin">4dp</item>
+        <item name="chipBackgroundColor">@color/colorPrimaryDark</item>
     </style>
 
 </resources>

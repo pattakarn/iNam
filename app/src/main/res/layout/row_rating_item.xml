@@ -48,7 +48,7 @@
                     android:text="4 out of 5" />
 
             <TextView
-                    android:id="@+id/tv_rating_all"
+                    android:id="@+id/tv_rating_sum"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
@@ -98,6 +98,19 @@
         </LinearLayout>
 
     </LinearLayout>
+
+    <Button
+            android:id="@+id/btn_review"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:text="Review"
+            android:textColor="@android:color/black"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_comment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
 
 
 </LinearLayout>

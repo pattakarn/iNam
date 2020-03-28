@@ -11,4 +11,14 @@
     <color name="black">#000000</color>
     <color name="white">#FFFFFF</color>
     <color name="colorAccent">#D81B60</color>
+
+    <color name="colorPrimaryNew">#fafafa</color>
+    <color name="colorPrimaryDarkNew">#c7c7c7</color>
+    <color name="colorAccentNew">#D81B60</color>
+    <color name="bg">#e0e0e0</color>
+    <color name="colorText">#000000</color>
+    <color name="chipTravel">#42a5f5</color>
+    <color name="chipHostel">#66bb6a</color>
+    <color name="chipShop">#ffee58</color>
+    <color name="chipCafe">#a1887f</color>
 </resources>

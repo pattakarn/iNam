@@ -1,5 +1,6 @@
 package com.sungkunn.inam.fragment.account
 
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -64,7 +65,9 @@ class AccountFragment : Fragment(), Toolbar.OnMenuItemClickListener, View.OnClic
         etEmail = rootView.findViewById(R.id.email)
 
         toolbar!!.inflateMenu(R.menu.menu_item)
-        toolbar!!.setNavigationIcon(R.drawable.ic_arrow_back)
+        toolbar!!.setNavigationIcon(R.drawable.ic_arrow_back_black)
+        toolbar!!.setTitle("Account")
+        toolbar!!.setTitleTextColor(Color.BLACK)
         toolbar!!.setNavigationOnClickListener(this)
         toolbar!!.setOnMenuItemClickListener(this)
 
