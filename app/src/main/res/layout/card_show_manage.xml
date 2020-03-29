@@ -10,29 +10,46 @@
         android:elevation="8dp"
         android:orientation="vertical">
 
-    <LinearLayout
-            android:id="@+id/ll"
+    <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/margin_small"
-            android:orientation="vertical">
+            android:layout_height="match_parent">
 
-        <TextView
-                android:id="@+id/tv_name"
+        <LinearLayout
+                android:id="@+id/ll"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:maxLines="2"
-                android:text="Title"
-                android:textColor="@android:color/black"
-                android:textSize="16sp" />
+                android:orientation="vertical"
+                android:padding="@dimen/margin_small"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-        <com.google.android.material.chip.Chip
-                android:id="@+id/chip_type"
-                style="@style/ChipType"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Travel" />
+            <TextView
+                    android:id="@+id/tv_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:maxLines="2"
+                    android:text="Title"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp" />
 
-    </LinearLayout>
+            <com.google.android.material.chip.Chip
+                    android:id="@+id/chip_type"
+                    style="@style/ChipType"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Travel" />
+
+        </LinearLayout>
+
+        <ImageButton
+                android:id="@+id/ib_stock"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@drawable/ic_box"
+                android:layout_margin="@dimen/margin_small"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/ll"
+                android:visibility="invisible"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </LinearLayout>

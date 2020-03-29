@@ -9,5 +9,6 @@ class ShowManageViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     var ll = view.ll
     var tv_name = view.tv_name
     var chip_type = view.chip_type
+    var ib_stock = view.ib_stock
 
 }

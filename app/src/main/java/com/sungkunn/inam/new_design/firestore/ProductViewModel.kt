@@ -42,13 +42,13 @@ class ProductViewModel : ViewModel() {
                 return@EventListener
             }
 
-            var productList : ArrayList<ProductDao> = ArrayList()
+            var itemList : ArrayList<ProductDao> = ArrayList()
             for (doc in value!!) {
-                var productItem = doc.toObject(Product::class.java)
+                var item = doc.toObject(Product::class.java)
 
-                productList.add(ProductDao(doc.id, productItem))
+                itemList.add(ProductDao(doc.id, item))
             }
-            product.value = productList
+            product.value = itemList
         })
 
         return product
@@ -62,13 +62,13 @@ class ProductViewModel : ViewModel() {
                 return@EventListener
             }
 
-            var productList : ArrayList<ProductDao> = ArrayList()
+            var itemList : ArrayList<ProductDao> = ArrayList()
             for (doc in value!!) {
-                var productItem = doc.toObject(Product::class.java)
+                var item = doc.toObject(Product::class.java)
 
-                productList.add(ProductDao(doc.id, productItem))
+                itemList.add(ProductDao(doc.id, item))
             }
-            product.value = productList
+            product.value = itemList
         })
 
         return product
@@ -82,13 +82,13 @@ class ProductViewModel : ViewModel() {
                 return@EventListener
             }
 
-            var productList : ArrayList<ProductDao> = ArrayList()
+            var itemList : ArrayList<ProductDao> = ArrayList()
             for (doc in value!!) {
-                var productItem = doc.toObject(Product::class.java)
+                var item = doc.toObject(Product::class.java)
 
-                productList.add(ProductDao(doc.id, productItem))
+                itemList.add(ProductDao(doc.id, item))
             }
-            product.value = productList
+            product.value = itemList
         })
 
         return product

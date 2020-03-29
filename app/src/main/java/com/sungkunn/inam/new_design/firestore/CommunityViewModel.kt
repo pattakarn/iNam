@@ -42,13 +42,13 @@ class CommunityViewModel : ViewModel() {
                 return@EventListener
             }
 
-            var communityList : ArrayList<CommunityDao> = ArrayList()
+            var itemList : ArrayList<CommunityDao> = ArrayList()
             for (doc in value!!) {
-                var communityItem = doc.toObject(Community::class.java)
+                var item = doc.toObject(Community::class.java)
 
-                communityList.add(CommunityDao(doc.id, communityItem))
+                itemList.add(CommunityDao(doc.id, item))
             }
-            community.value = communityList
+            community.value = itemList
         })
 
         return community

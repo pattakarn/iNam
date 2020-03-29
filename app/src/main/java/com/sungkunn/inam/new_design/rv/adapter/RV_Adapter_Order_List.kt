@@ -1,8 +1,10 @@
 package com.istyleglobalnetwork.talatnoi.rv.adapter
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
@@ -117,6 +119,10 @@ class RV_Adapter_Order_List() :
 //                dialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.BLACK)
 //                dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.BLACK)
                 dialog.show()
+                val positiveButton: Button = dialog.getButton(AlertDialog.BUTTON_POSITIVE)
+                val negativeButton: Button = dialog.getButton(AlertDialog.BUTTON_NEGATIVE)
+                positiveButton.setTextColor(Color.BLACK)
+                negativeButton.setTextColor(Color.BLACK)
                 
             }
         })

@@ -21,7 +21,8 @@
             android:screenOrientation="portrait"
             android:supportsRtl="true"
             android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".new_design.ShowCartActivity"></activity>
+        <activity android:name=".new_design.activity.StockManageActivity"></activity>
+        <activity android:name=".new_design.ShowCartActivity" />
         <activity android:name=".new_design.activity.ShowProductActivity" />
         <activity android:name=".new_design.activity.ShowCommunityActivity" />
         <activity android:name=".new_design.activity.NewEditProductActivity" />

@@ -10,41 +10,42 @@ class ProductRepository {
 
     val TAG = "PRODUCT_REPOSITORY"
     var firestoreDB = FirebaseFirestore.getInstance()
+    var collectionPath = "products-new"
 
     fun addProduct(item: Product): Task<DocumentReference> {
-        var documentReference = firestoreDB.collection("products-new")
+        var documentReference = firestoreDB.collection(collectionPath)
         return documentReference.add(item)
     }
 
     fun saveProduct(item: ProductDao): Task<Void> {
-        var documentReference = firestoreDB.collection("products-new").document(item.id)
+        var documentReference = firestoreDB.collection(collectionPath).document(item.id)
         return documentReference.set(item.data)
     }
 
     fun getProductAll(): CollectionReference {
-        var collectionReference = firestoreDB.collection("products-new")
+        var collectionReference = firestoreDB.collection(collectionPath)
         return collectionReference
     }
 
     fun getProductByPlace(placeId: String): Query {
-        var queryReference = firestoreDB.collection("products-new").whereEqualTo("place_id", placeId)
+        var queryReference = firestoreDB.collection(collectionPath).whereEqualTo("place_id", placeId)
         return queryReference
     }
 
     fun getProductByOrder(orderList: ArrayList<ProductOrderDao>): Query {
-        var queryReference = firestoreDB.collection("products-new")
+        var queryReference = firestoreDB.collection(collectionPath)
         for (temp in orderList)
             queryReference.whereEqualTo(FieldPath.documentId(), temp.data.product_id)
         return queryReference
     }
 
     fun getProduct(productId: String): DocumentReference {
-        var documentReference = firestoreDB.collection("products-new").document(productId)
+        var documentReference = firestoreDB.collection(collectionPath).document(productId)
         return documentReference
     }
 
     fun deleteProduct(item: ProductDao): Task<Void> {
-        var documentReference =  firestoreDB.collection("products-new").document(item.id)
+        var documentReference =  firestoreDB.collection(collectionPath).document(item.id)
         return documentReference.delete()
     }
 }

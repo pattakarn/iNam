@@ -38,13 +38,13 @@ class CommentViewModel : ViewModel() {
                 return@EventListener
             }
 
-            var commentList : ArrayList<CommentDao> = ArrayList()
+            var itemList : ArrayList<CommentDao> = ArrayList()
             for (doc in value!!) {
-                var commentItem = doc.toObject(Comment::class.java)
+                var item = doc.toObject(Comment::class.java)
 
-                commentList.add(CommentDao(doc.id, commentItem))
+                itemList.add(CommentDao(doc.id, item))
             }
-            comment.value = commentList
+            comment.value = itemList
         })
 
         return comment
@@ -58,13 +58,13 @@ class CommentViewModel : ViewModel() {
                 return@EventListener
             }
 
-            var commentList : ArrayList<CommentDao> = ArrayList()
+            var itemList : ArrayList<CommentDao> = ArrayList()
             for (doc in value!!) {
-                var commentItem = doc.toObject(Comment::class.java)
+                var item = doc.toObject(Comment::class.java)
 
-                commentList.add(CommentDao(doc.id, commentItem))
+                itemList.add(CommentDao(doc.id, item))
             }
-            comment.value = commentList
+            comment.value = itemList
         })
 
         return comment

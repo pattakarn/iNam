@@ -26,8 +26,11 @@ import com.sungkunn.inam.R
 import com.sungkunn.inam.new_design.firestore.CommentViewModel
 import com.sungkunn.inam.new_design.firestore.PlaceViewModel
 import com.sungkunn.inam.new_design.firestore.ProductViewModel
+import com.sungkunn.inam.new_design.firestore.UserViewModel
 import com.sungkunn.inam.new_design.model.Comment
+import com.sungkunn.inam.new_design.model.CommentDao
 import com.sungkunn.inam.new_design.model.CommunityDao
+import com.sungkunn.inam.new_design.model.UserDao
 
 class ShowCommunityFragment : Fragment(), View.OnClickListener {
 
@@ -51,7 +54,10 @@ class ShowCommunityFragment : Fragment(), View.OnClickListener {
     private lateinit var placeVM: PlaceViewModel
     private lateinit var productVM: ProductViewModel
     private lateinit var commentVM: CommentViewModel
+    private var userVM: UserViewModel? = null
     private var communityItem: CommunityDao? = null
+    private var commentList: ArrayList<CommentDao>? = null
+    private var userList: ArrayList<UserDao>? = null
     var inflater: LayoutInflater? = null
     private lateinit var auth: FirebaseAuth
     var currentUser: FirebaseUser? = null
@@ -89,6 +95,8 @@ class ShowCommunityFragment : Fragment(), View.OnClickListener {
             ViewModelProviders.of(this).get(ProductViewModel::class.java)
         commentVM =
             ViewModelProviders.of(this).get(CommentViewModel::class.java)
+        userVM =
+            ViewModelProviders.of(this).get(UserViewModel::class.java)
         var rootView = inflater.inflate(R.layout.show_community_fragment, container, false)
         init(rootView)
 
@@ -113,35 +121,41 @@ class ShowCommunityFragment : Fragment(), View.OnClickListener {
         })
 
         commentVM.getCommentByItem(communityItem!!.id).observe(this, Observer {
-            var adapt_product = RV_Adapter_Comment_List(it, fragmentManager!!)
-            val llm = LinearLayoutManager(inflater!!.context)
+            commentList = it
 
-            rvComment!!.setLayoutManager(llm)
-            rvComment!!.setAdapter(adapt_product)
-            var count = IntArray(5) { i -> 0 }
-            var sum: Float = 0.0F
-            for (temp in it) {
-                Log.d(TAG, "================== " + temp.data.rating)
-                var rating: Float = temp.data.rating!!.toFloat()
-                sum += rating
-                when (rating) {
-                    in 1.0..1.9 -> {
-                        count[0]++
-                    }
-                    in 2.0..2.9 -> {
-                        count[1]++
-                    }
-                    in 3.0..3.9 -> {
-                        count[2]++
-                    }
-                    in 4.0..4.9 -> {
-                        count[3]++
-                    }
-                    5.0F -> {
-                        count[4]++
+            userVM!!.getUserByComment(commentList!!).observe(this, Observer {
+                userList = it
+                var adapt_product = RV_Adapter_Comment_List(commentList!!, userList!!, fragmentManager!!)
+                val llm = LinearLayoutManager(inflater!!.context)
+
+                rvComment!!.setLayoutManager(llm)
+                rvComment!!.setAdapter(adapt_product)
+                var count = IntArray(5) { i -> 0 }
+                var sum: Float = 0.0F
+                for (temp in commentList!!) {
+                    Log.d(TAG, "================== " + temp.data.rating)
+                    var rating: Float = temp.data.rating!!.toFloat()
+                    sum += rating
+                    when (rating) {
+                        in 1.0..1.9 -> {
+                            count[0]++
+                        }
+                        in 2.0..2.9 -> {
+                            count[1]++
+                        }
+                        in 3.0..3.9 -> {
+                            count[2]++
+                        }
+                        in 4.0..4.9 -> {
+                            count[3]++
+                        }
+                        5.0F -> {
+                            count[4]++
+                        }
                     }
                 }
-            }
+
+
 
             var countAll = count[0] + count[1] + count[2] + count[3] + count[4]
             var mean: Float = sum / countAll
@@ -152,6 +166,7 @@ class ShowCommunityFragment : Fragment(), View.OnClickListener {
             tv1Star!!.setText("1 stars : " + count[0])
             tvRatingSum!!.setText(countAll.toString() + " reviews")
             tvRatingMean!!.setText(mean.toInt().toString() + " out of 5")
+            })
         })
 
         btnReview!!.setOnClickListener(this)
@@ -187,7 +202,7 @@ class ShowCommunityFragment : Fragment(), View.OnClickListener {
     override fun onClick(v: View?) {
         when (v) {
             btnReview -> {
-                var layout_popup: View = inflater!!.inflate(R.layout.dialog_comment, null);
+                var layout_popup: View = inflater!!.inflate(R.layout.dialog_comment, null)
                 var ratingBar: RatingBar = layout_popup.findViewById(R.id.rating)
                 var tvComment: TextInputEditText = layout_popup.findViewById(R.id.et_comment)
                 val builder = AlertDialog.Builder(inflater!!.context)

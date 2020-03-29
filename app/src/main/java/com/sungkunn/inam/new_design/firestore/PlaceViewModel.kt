@@ -42,13 +42,13 @@ class PlaceViewModel : ViewModel() {
                 return@EventListener
             }
 
-            var placeList : ArrayList<PlaceDao> = ArrayList()
+            var itemList : ArrayList<PlaceDao> = ArrayList()
             for (doc in value!!) {
-                var placeItem = doc.toObject(Place::class.java)
+                var item = doc.toObject(Place::class.java)
 
-                placeList.add(PlaceDao(doc.id, placeItem))
+                itemList.add(PlaceDao(doc.id, item))
             }
-            place.value = placeList
+            place.value = itemList
         })
 
         return place
@@ -62,13 +62,13 @@ class PlaceViewModel : ViewModel() {
                 return@EventListener
             }
 
-            var placeList : ArrayList<PlaceDao> = ArrayList()
+            var itemList : ArrayList<PlaceDao> = ArrayList()
             for (doc in value!!) {
-                var placeItem = doc.toObject(Place::class.java)
+                var item = doc.toObject(Place::class.java)
 
-                placeList.add(PlaceDao(doc.id, placeItem))
+                itemList.add(PlaceDao(doc.id, item))
             }
-            place.value = placeList
+            place.value = itemList
         })
 
         return place

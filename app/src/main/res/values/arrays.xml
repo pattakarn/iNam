@@ -11,7 +11,8 @@
 
     <string-array name="more_menu">
         <item>Account</item>
-        <item>Shop Manager</item>
+        <item>My Cart</item>
+        <item>Manage</item>
         <!--<item>Setting</item>-->
     </string-array>
 

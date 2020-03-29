@@ -10,6 +10,7 @@ import com.sungkunn.inam.R
 import com.sungkunn.inam.new_design.activity.NewEditCommunityActivity
 import com.sungkunn.inam.new_design.activity.NewEditPlaceActivity
 import com.sungkunn.inam.new_design.activity.NewEditProductActivity
+import com.sungkunn.inam.new_design.activity.StockManageActivity
 import com.sungkunn.inam.new_design.model.CommunityDao
 import com.sungkunn.inam.new_design.model.PlaceDao
 import com.sungkunn.inam.new_design.model.ProductDao
@@ -84,6 +85,16 @@ class RV_Adapter_Manage_List() :
                     override fun onClick(v: View?) {
                         val intent =
                             Intent(inflater.context, NewEditProductActivity::class.java).apply {
+                                putExtra("item", temp)
+                            }
+                        inflater.context.startActivity(intent)
+                    }
+                })
+                vh1.ib_stock.visibility = View.VISIBLE
+                vh1.ib_stock.setOnClickListener(object: View.OnClickListener{
+                    override fun onClick(v: View?) {
+                        val intent =
+                            Intent(inflater.context, StockManageActivity::class.java).apply {
                                 putExtra("item", temp)
                             }
                         inflater.context.startActivity(intent)
