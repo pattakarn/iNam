@@ -6,8 +6,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@android:color/white"
-        android:layout_marginBottom="8dp"
-        android:elevation="8dp"
+        android:layout_marginBottom="@dimen/row_show_view_margin"
+        android:elevation="@dimen/row_show_elevation"
         android:orientation="vertical">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -19,7 +19,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="@dimen/margin_small"
+                android:padding="@dimen/row_show_view_margin"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
@@ -37,6 +37,7 @@
                     style="@style/ChipType"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/row_show_view_margin"
                     android:text="Travel" />
 
         </LinearLayout>
@@ -46,7 +47,7 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:background="@drawable/ic_box"
-                android:layout_margin="@dimen/margin_small"
+                android:layout_margin="@dimen/row_show_view_margin"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/ll"
                 android:visibility="invisible"/>

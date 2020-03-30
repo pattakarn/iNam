@@ -55,6 +55,7 @@ class RV_Adapter_Manage_List() :
             is CommunityDao -> {
                 var temp = items!!.get(position) as CommunityDao
                 vh1.tv_name.text = temp.data.community_name
+                vh1.chip_type.text = temp.data.type
                 vh1.ll.setOnClickListener(object : View.OnClickListener {
                     override fun onClick(v: View?) {
                         val intent =
@@ -68,6 +69,7 @@ class RV_Adapter_Manage_List() :
             is PlaceDao -> {
                 var temp = items!!.get(position) as PlaceDao
                 vh1.tv_name.text = temp.data.name
+                vh1.chip_type.text = temp.data.type
                 vh1.ll.setOnClickListener(object : View.OnClickListener {
                     override fun onClick(v: View?) {
                         val intent =
@@ -81,6 +83,7 @@ class RV_Adapter_Manage_List() :
             is ProductDao -> {
                 var temp = items!!.get(position) as ProductDao
                 vh1.tv_name.text = temp.data.name
+                vh1.chip_type.text = temp.data.type
                 vh1.ll.setOnClickListener(object : View.OnClickListener {
                     override fun onClick(v: View?) {
                         val intent =

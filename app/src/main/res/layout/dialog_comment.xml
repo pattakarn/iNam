@@ -11,7 +11,7 @@
     <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="16dp"
+            android:layout_margin="@dimen/row_show_margin"
             android:orientation="vertical">
 
         <RatingBar
@@ -27,7 +27,6 @@
                 style="@style/TextInputLayoutItem"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
                 android:hint="Comment">
 
             <com.google.android.material.textfield.TextInputEditText

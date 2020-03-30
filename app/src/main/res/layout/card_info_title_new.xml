@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="vertical"
-        android:layout_margin="16dp">
+        android:layout_margin="@dimen/row_show_margin">
 
         <TextView
             android:id="@+id/tv_title"

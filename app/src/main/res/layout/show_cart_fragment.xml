@@ -45,7 +45,6 @@
             layout="@layout/row_buy_cart_item"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:layout_gravity="bottom"
-            android:layout_margin="4dp" />
+            android:layout_gravity="bottom" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

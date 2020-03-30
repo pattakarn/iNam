@@ -1,4 +1,4 @@
-package com.sungkunn.inam.new_design
+package com.sungkunn.inam.new_design.activity
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

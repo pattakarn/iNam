@@ -1,4 +1,4 @@
-package com.sungkunn.inam.new_design.ui.dashboard
+package com.sungkunn.inam.new_design.ui.home
 
 import android.os.Bundle
 import android.util.Log
@@ -19,7 +19,7 @@ import com.sungkunn.inam.R
 import com.sungkunn.inam.new_design.firestore.ProductViewModel
 
 
-class DashboardFragment : Fragment(), SearchView.OnQueryTextListener,
+class HomeProductFragment : Fragment(), SearchView.OnQueryTextListener,
     ChipGroup.OnCheckedChangeListener {
 
     private lateinit var productVM: ProductViewModel
@@ -39,7 +39,7 @@ class DashboardFragment : Fragment(), SearchView.OnQueryTextListener,
     ): View? {
         productVM =
             ViewModelProviders.of(this).get(ProductViewModel::class.java)
-        val rootView = inflater.inflate(R.layout.fragment_dashboard, container, false)
+        val rootView = inflater.inflate(R.layout.fragment_home_product, container, false)
         init(rootView)
 
         sv!!.setOnQueryTextListener(this)

@@ -20,4 +20,11 @@
     <dimen name="text_toolbar">22sp</dimen>
     <dimen name="text_title">22sp</dimen>
     <dimen name="text_detail">16sp</dimen>
+
+    // ---------------------------- Row ---------------------------
+    <dimen name="row_show_margin">16dp</dimen>
+    <dimen name="row_show_view_margin">8dp</dimen>
+    <dimen name="row_show_border">4dp</dimen>
+    <dimen name="row_show_elevation">8dp</dimen>
+    <dimen name="row_show_rv_margin">4dp</dimen>
 </resources>

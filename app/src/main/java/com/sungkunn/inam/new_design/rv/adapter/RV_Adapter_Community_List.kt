@@ -1,11 +1,13 @@
 package com.istyleglobalnetwork.talatnoi.rv.adapter
 
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.sungkunn.inam.R
 import com.sungkunn.inam.new_design.activity.ShowCommunityActivity
 import com.sungkunn.inam.new_design.model.CommunityDao
@@ -46,10 +48,15 @@ class RV_Adapter_Community_List() :
     }
 
     private fun configureViewHolderManageMarket(vh1: ViewHolderShowPlace, position: Int) {
-//        vh1.iv.setImageResource(items!!.get(position).image)
+//        vh1.iv.setImageResource(items!!.get(position).data.image_url)
         vh1.tv_name.text = items!!.get(position).data.community_name
         vh1.tv_detail.text = items!!.get(position).data.community_name
         vh1.chip_type.text = items!!.get(position).data.type!!.capitalize()
+        Log.d("Adap Community", "==================== " + items!!.get(position).data.image_url)
+        Glide.with(inflater.context)
+            .load(items!!.get(position).data.image_url)
+            .placeholder(R.drawable.inam_logo)
+            .into(vh1.iv!!)
 //        when(items!!.get(position).type){
 //            "travel" -> vh1.chip_type.chipBackgroundColor = ColorStateList.valueOf(ContextCompat.getColor(inflater.context, R.color.chipTravel))
 //            "hostel" -> vh1.chip_type.chipBackgroundColor = ColorStateList.valueOf(ContextCompat.getColor(inflater.context, R.color.chipHostel))

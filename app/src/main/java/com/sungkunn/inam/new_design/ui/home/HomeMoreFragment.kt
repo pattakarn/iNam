@@ -1,4 +1,4 @@
-package com.sungkunn.inam.new_design.ui.notifications
+package com.sungkunn.inam.new_design.ui.home
 
 import android.app.Activity
 import android.content.Intent
@@ -12,8 +12,6 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -30,9 +28,7 @@ import com.sungkunn.inam.R
 import com.sungkunn.inam.adapter.RV_Adapter_More_Menu
 import com.sungkunn.inam.model.User
 
-class NotificationsFragment : Fragment(), View.OnClickListener {
-
-    private lateinit var notificationsViewModel: NotificationsViewModel
+class HomeMoreFragment : Fragment(), View.OnClickListener {
 
     val db = FirebaseFirestore.getInstance()
     private lateinit var auth: FirebaseAuth
@@ -53,12 +49,7 @@ class NotificationsFragment : Fragment(), View.OnClickListener {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        notificationsViewModel =
-            ViewModelProviders.of(this).get(NotificationsViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_notifications, container, false)
-        notificationsViewModel.text.observe(this, Observer {
-
-        })
+        val root = inflater.inflate(R.layout.fragment_home_more, container, false)
 
         var rv = root.findViewById<RecyclerView>(R.id.rv)
         ll = root.findViewById(R.id.ll)

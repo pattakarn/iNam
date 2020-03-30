@@ -62,15 +62,13 @@
     </style>
 
     <style name="TextInputLayoutItem" parent="Widget.Design.TextInputLayout">
-        <item name="android:layout_marginLeft">@dimen/text_margin</item>
-        <item name="android:layout_marginRight">@dimen/text_margin</item>
-        <item name="android:layout_marginTop">8dp</item>
-        <item name="android:layout_marginBottom">8dp</item>
+        <item name="android:layout_marginTop">@dimen/row_show_view_margin</item>
+        <item name="android:layout_marginBottom">@dimen/row_show_view_margin</item>
     </style>
 
     <style name="CardViewItem" parent="CardView.Light">
         <item name="android:layout_gravity">center</item>
-        <item name="android:layout_margin">4dp</item>
+        <item name="android:layout_margin">@dimen/row_show_rv_margin</item>
     </style>
 
     <style name="TextInputEditTextItem" parent="Widget.MaterialComponents.TextInputLayout.FilledBox">
@@ -78,7 +76,6 @@
     </style>
 
     <style name="TextTitleItem">
-        <item name="android:layout_margin">@dimen/text_margin</item>
         <item name="android:textColor">@color/colorPrimary</item>
         <item name="android:textSize">@dimen/body_text_size</item>
         <item name="android:textStyle">bold</item>

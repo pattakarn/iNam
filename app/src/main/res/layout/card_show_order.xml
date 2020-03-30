@@ -7,7 +7,7 @@
         style="@style/CardViewItem"
         android:layout_width="match_parent"
         android:layout_height="120dp"
-        android:elevation="8dp"
+        android:elevation="@dimen/row_show_elevation"
         android:layout_margin="4dp"
         card_view:cardCornerRadius="10dp"
         card_view:cardUseCompatPadding="true">
@@ -41,7 +41,8 @@
                     android:layout_height="wrap_content"
                     android:text="Title"
                     android:textColor="@android:color/black"
-                    android:textSize="@dimen/text_title"
+                    android:textSize="18sp"
+                    android:lines="2"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -51,7 +52,7 @@
                     android:layout_height="wrap_content"
                     android:maxLines="2"
                     android:text="Detail"
-                    android:textSize="@dimen/text_detail"
+                    android:textSize="14sp"
                     app:layout_constraintTop_toBottomOf="@+id/tv_name" />
 
             <LinearLayout

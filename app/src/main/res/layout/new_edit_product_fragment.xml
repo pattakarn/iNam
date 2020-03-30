@@ -44,8 +44,8 @@
                 <androidx.cardview.widget.CardView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_margin="4dp"
-                        android:elevation="8dp"
+                        android:layout_margin="@dimen/row_show_view_margin"
+                        android:elevation="@dimen/row_show_elevation"
                         app:cardBackgroundColor="@color/bg"
                         card_view:cardCornerRadius="10dp"
                         card_view:cardUseCompatPadding="true">
@@ -54,7 +54,7 @@
                             android:id="@+id/spin_place"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp" />
+                            android:layout_marginTop="@dimen/row_show_view_margin" />
 
                 </androidx.cardview.widget.CardView>
 

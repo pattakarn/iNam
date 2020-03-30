@@ -15,10 +15,11 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.sungkunn.inam.R
-import com.sungkunn.inam.new_design.ShowCartActivity
+import com.sungkunn.inam.new_design.activity.ShowCartActivity
 import com.sungkunn.inam.new_design.activity.ShowPlaceActivity
 import com.sungkunn.inam.new_design.firestore.OrderViewModel
 import com.sungkunn.inam.new_design.firestore.PlaceViewModel
@@ -62,6 +63,7 @@ class ShowProductFragment : Fragment(), View.OnClickListener, Toolbar.OnMenuItem
 
     var toolbar: Toolbar? = null
     var tvToolbar: TextView? = null
+    var iv: ImageView? = null
 
     // -------------------- Row Price --------------------
     var tvPrice: TextView? = null
@@ -96,6 +98,11 @@ class ShowProductFragment : Fragment(), View.OnClickListener, Toolbar.OnMenuItem
         toolbar!!.setOnMenuItemClickListener(this)
         tvToolbar!!.setText(productItem!!.data.name)
 
+        Glide.with(inflater.context)
+            .load(productItem!!.data.image_url)
+            .placeholder(R.drawable.inam_logo)
+            .into(iv!!)
+
         tvPrice!!.setText("฿" + productItem!!.data.price)
 
         tvNameProduct!!.setText(productItem!!.data.name)
@@ -125,6 +132,7 @@ class ShowProductFragment : Fragment(), View.OnClickListener, Toolbar.OnMenuItem
     fun init(rootView: View) {
         toolbar = rootView.findViewById(R.id.toolbar)
         tvToolbar = rootView.findViewById(R.id.toolbar_title)
+        iv = rootView.findViewById(R.id.iv)
 
         // -------------------- Row Price --------------------
         tvPrice = rootView.findViewById(R.id.tv_price_price)

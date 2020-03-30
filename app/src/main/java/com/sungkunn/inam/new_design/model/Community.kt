@@ -4,6 +4,7 @@ import android.os.Parcel
 import android.os.Parcelable
 
 data class Community(var community_name: String? = "",
+                     var image_url: String? = "",
                      var type: String? = "",
                      var owner: String? = "",
                      var phone: String? = "",
@@ -24,12 +25,14 @@ data class Community(var community_name: String? = "",
         parcel.readString(),
         parcel.readString(),
         parcel.readString(),
+        parcel.readString(),
         parcel.readString()
     ) {
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(community_name)
+        parcel.writeString(image_url)
         parcel.writeString(type)
         parcel.writeString(owner)
         parcel.writeString(phone)

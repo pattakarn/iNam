@@ -8,7 +8,7 @@
         style="@style/CardViewItem"
         android:layout_width="150dp"
         android:layout_height="220dp"
-        android:elevation="8dp"
+        android:elevation="@dimen/row_show_elevation"
         card_view:cardCornerRadius="10dp"
         card_view:cardUseCompatPadding="true">
 
@@ -34,7 +34,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_margin="8dp"
+                android:layout_margin="@dimen/row_show_view_margin"
                 android:orientation="vertical">
 
             <TextView

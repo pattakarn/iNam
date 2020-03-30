@@ -5,10 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.RatingBar
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
@@ -16,6 +13,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -65,6 +63,7 @@ class ShowCommunityFragment : Fragment(), View.OnClickListener {
 
     var toolbar: Toolbar? = null
     var tvToolbar: TextView? = null
+    var iv: ImageView? = null
 
     var rvPlace: RecyclerView? = null
     var rvProduct: RecyclerView? = null
@@ -103,6 +102,11 @@ class ShowCommunityFragment : Fragment(), View.OnClickListener {
         toolbar!!.setNavigationIcon(R.drawable.ic_back)
         toolbar!!.setNavigationOnClickListener(this)
         tvToolbar!!.setText(communityItem!!.data.community_name)
+
+        Glide.with(inflater.context)
+            .load(communityItem!!.data.image_url)
+            .placeholder(R.drawable.inam_logo)
+            .into(iv!!)
 
         placeVM.getPlaceAll().observe(this, Observer {
             adapt_place = RV_Adapter_Place_Hori_List(it, fragmentManager!!)
@@ -177,6 +181,7 @@ class ShowCommunityFragment : Fragment(), View.OnClickListener {
     fun init(rootView: View) {
         toolbar = rootView.findViewById(R.id.toolbar)
         tvToolbar = rootView.findViewById(R.id.toolbar_title)
+        iv = rootView.findViewById(R.id.iv)
 
         rvPlace = rootView.findViewById(R.id.rv_place)
         rvProduct = rootView.findViewById(R.id.rv_product)

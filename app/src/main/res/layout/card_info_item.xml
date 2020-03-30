@@ -8,7 +8,7 @@
         android:layout_height="wrap_content"
         style="@style/CardViewItem"
         app:cardBackgroundColor="@color/bg"
-        android:elevation="8dp"
+        android:elevation="@dimen/row_show_elevation"
         card_view:cardCornerRadius="10dp"
         card_view:cardUseCompatPadding="true">
 
@@ -16,6 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
+            android:layout_margin="@dimen/row_show_margin"
             style="@style/LinearLayoutItem">
 
         <TextView

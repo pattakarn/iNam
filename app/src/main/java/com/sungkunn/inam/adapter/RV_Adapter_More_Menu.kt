@@ -12,7 +12,7 @@ import com.istyleglobalnetwork.istyleapplication.istyle.pack_new.viewholder.VHIn
 import com.istyleglobalnetwork.istyleapplication.istyle.pack_new.viewholder.VHInfoTitleKT
 import com.sungkunn.inam.R
 import com.sungkunn.inam.activity.AccountActivity
-import com.sungkunn.inam.new_design.ShowCartActivity
+import com.sungkunn.inam.new_design.activity.ShowCartActivity
 import com.sungkunn.inam.new_design.activity.NewManageActivity
 
 class RV_Adapter_More_Menu(var items: Array<String>) :

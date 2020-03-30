@@ -6,8 +6,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_margin="4dp"
-        android:elevation="8dp"
+        style="@style/CardViewItem"
+        android:elevation="@dimen/row_show_elevation"
         card_view:cardCornerRadius="10dp"
         card_view:cardUseCompatPadding="true">
 
@@ -30,7 +30,7 @@
             android:text="Hello"
             android:textSize="20sp"
             android:layout_gravity="bottom|left"
-            android:layout_marginLeft="@dimen/text_margin"
-            android:layout_marginBottom="@dimen/text_margin"/>
+            android:layout_marginLeft="@dimen/row_show_margin"
+            android:layout_marginBottom="@dimen/row_show_margin"/>
 
 </androidx.cardview.widget.CardView>
