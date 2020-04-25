@@ -1,29 +1,43 @@
 package com.sungkunn.inam.new_design.ui.manage.product
 
 import Spin_Adapter_Place_List
+import android.app.Activity.RESULT_OK
+import android.content.Intent
+import android.database.Cursor
+import android.net.Uri
 import android.os.Bundle
+import android.provider.OpenableColumns
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
-import android.widget.Spinner
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
+import com.istyleglobalnetwork.talatnoi.rv.adapter.RV_Adapter_Photo_Hori_List
+import com.istyleglobalnetwork.talatnoi.rv.adapter.RV_Adapter_Photo_List
 import com.sungkunn.inam.R
+import com.sungkunn.inam.new_design.activity.NewEditPhotoActivity
+import com.sungkunn.inam.new_design.firestore.PhotoViewModel
 import com.sungkunn.inam.new_design.firestore.PlaceViewModel
 import com.sungkunn.inam.new_design.firestore.ProductViewModel
 import com.sungkunn.inam.new_design.model.PlaceDao
 import com.sungkunn.inam.new_design.model.Product
 import com.sungkunn.inam.new_design.model.ProductDao
+
 
 class NewEditProductFragment : Fragment(), Toolbar.OnMenuItemClickListener, View.OnClickListener {
 
@@ -45,11 +59,14 @@ class NewEditProductFragment : Fragment(), Toolbar.OnMenuItemClickListener, View
 
     private lateinit var placeVM: PlaceViewModel
     private lateinit var productVM: ProductViewModel
+    private lateinit var photoVM: PhotoViewModel
     var inflater: LayoutInflater? = null
     private var productItem: ProductDao? = null
     private var adap_place: Spin_Adapter_Place_List? = null
+    private var adap_photo: RV_Adapter_Photo_Hori_List? = null
     val db = FirebaseFirestore.getInstance()
     var TAG = "EDIT_PRODUCT_FRAGMENT"
+    val RESULT_LOAD_IMAGE = 1
 
     // -------------------- Info --------------------
     var etInfoName: TextInputEditText? = null
@@ -65,6 +82,10 @@ class NewEditProductFragment : Fragment(), Toolbar.OnMenuItemClickListener, View
     var etDetail: TextInputEditText? = null
     var etPrice: TextInputEditText? = null
 
+    // -------------------- Photo --------------------
+    var btnPhoto: Button? = null
+    var rvPhoto: RecyclerView? = null
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -73,6 +94,8 @@ class NewEditProductFragment : Fragment(), Toolbar.OnMenuItemClickListener, View
             ViewModelProviders.of(this).get(PlaceViewModel::class.java)
         productVM =
             ViewModelProviders.of(this).get(ProductViewModel::class.java)
+        photoVM =
+            ViewModelProviders.of(this).get(PhotoViewModel::class.java)
 
         var rootView = inflater.inflate(R.layout.new_edit_product_fragment, container, false)
         this.inflater = inflater
@@ -93,6 +116,8 @@ class NewEditProductFragment : Fragment(), Toolbar.OnMenuItemClickListener, View
         toolbar!!.setOnMenuItemClickListener(this)
         etInfoType!!.setOnClickListener(this)
 
+        btnPhoto!!.setOnClickListener(this)
+
 
         return rootView
     }
@@ -110,6 +135,10 @@ class NewEditProductFragment : Fragment(), Toolbar.OnMenuItemClickListener, View
         contactView = rootView.findViewById(R.id.contact_item)
         etDetail = rootView.findViewById(R.id.et_product_data_detail)
         etPrice = rootView.findViewById(R.id.et_product_data_price)
+
+        // -------------------- Photo --------------------
+        btnPhoto = rootView.findViewById(R.id.btn_photo)
+        rvPhoto = rootView.findViewById(R.id.rv_photo)
 
     }
 
@@ -131,6 +160,20 @@ class NewEditProductFragment : Fragment(), Toolbar.OnMenuItemClickListener, View
 
         etDetail!!.setText(productItem!!.data.detail)
         etPrice!!.setText(productItem!!.data.price)
+
+        photoVM.getPhotoByItem(productItem!!.id).observe(this, Observer {
+            if (it != null){
+//                Glide.with(inflater!!.context)
+//                    .load(it.get(0).data.image_url!!)
+//                    .placeholder(R.drawable.inam_logo)
+//                    .into(ivPhoto!!)
+                adap_photo = RV_Adapter_Photo_Hori_List(it, fragmentManager!!)
+                val llm = LinearLayoutManager(inflater!!.context, LinearLayoutManager.HORIZONTAL, false)
+
+                rvPhoto!!.setLayoutManager(llm)
+                rvPhoto!!.setAdapter(adap_photo)
+            }
+        })
 
     }
 
@@ -167,8 +210,9 @@ class NewEditProductFragment : Fragment(), Toolbar.OnMenuItemClickListener, View
 //                }
             productVM.addProduct(temp!!)
             snackbar.dismiss()
-            Toast.makeText(inflater!!.context,"Save", Toast.LENGTH_SHORT).show()
-            activity!!.finish()
+            Snackbar.make(ll!!, resources.getString(R.string.save_success), Snackbar.LENGTH_SHORT).show()
+//            Toast.makeText(inflater!!.context, "Save", Toast.LENGTH_SHORT).show()
+//            activity!!.finish()
         } else {
             productItem!!.data.name = etInfoName!!.text!!.toString()
             productItem!!.data.type = etInfoType!!.text!!.toString()
@@ -190,8 +234,9 @@ class NewEditProductFragment : Fragment(), Toolbar.OnMenuItemClickListener, View
 //                }
             productVM.saveProduct(productItem!!)
             snackbar.dismiss()
-            Toast.makeText(inflater!!.context,"Save", Toast.LENGTH_SHORT).show()
-            activity!!.finish()
+            Snackbar.make(ll!!, resources.getString(R.string.save_success), Snackbar.LENGTH_SHORT).show()
+//            Toast.makeText(inflater!!.context, "Save", Toast.LENGTH_SHORT).show()
+//            activity!!.finish()
         }
     }
 
@@ -201,7 +246,7 @@ class NewEditProductFragment : Fragment(), Toolbar.OnMenuItemClickListener, View
     }
 
     override fun onClick(v: View?) {
-        Log.d("New Manage Fragment", "close fragment")
+//        Log.d("New Manage Fragment", "close fragment")
         //fragmentManager!!.popBackStack()
         when (v!!) {
             etInfoType -> {
@@ -217,6 +262,12 @@ class NewEditProductFragment : Fragment(), Toolbar.OnMenuItemClickListener, View
 
                 dialog.show()
             }
+            btnPhoto -> {
+                var intent = Intent(inflater!!.context, NewEditPhotoActivity::class.java)
+                intent.putExtra("id", productItem!!.id)
+                intent.putExtra("name", productItem!!.data.name)
+                inflater!!.context.startActivity(intent)
+            }
             else -> {
                 if (fragmentManager!!.backStackEntryCount > 0) {
                     fragmentManager!!.popBackStack()
@@ -231,22 +282,12 @@ class NewEditProductFragment : Fragment(), Toolbar.OnMenuItemClickListener, View
         when (item!!.itemId) {
             R.id.action_save -> {
                 saveProduct()
-//                var item: CommunityDao = spin!!.selectedItem as CommunityDao
-//                Toast.makeText(
-//                    inflater!!.context,
-//                    "===== " + item.data.community_name + " ====",
-//                    Toast.LENGTH_SHORT
-//                ).show()
-//                var intent = Intent(inflater!!.context, NewEditPlaceActivity::class.java)
-//                inflater!!.context.startActivity(intent)
             }
-//                fragmentManager!!.beginTransaction()
-//                    .replace(R.id.container_manage, MarketItemFragment.newInstance(null))
-//                    .addToBackStack(null)
-//                    .commit()
-//                        MarketItemFragment.display(fragmentManager)
         }
         return true
     }
+
+
+
 
 }

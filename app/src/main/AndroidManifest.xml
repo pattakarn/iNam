@@ -21,7 +21,10 @@
             android:screenOrientation="portrait"
             android:supportsRtl="true"
             android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".new_design.activity.StockManageActivity"></activity>
+        <activity android:name=".new_design.activity.NewAccountActivity"></activity>
+        <activity android:name=".new_design.activity.NewEditUserActivity" />
+        <activity android:name=".new_design.activity.NewEditPhotoActivity" />
+        <activity android:name=".new_design.activity.StockManageActivity" />
         <activity android:name=".new_design.activity.ShowCartActivity" />
         <activity android:name=".new_design.activity.ShowProductActivity" />
         <activity android:name=".new_design.activity.ShowCommunityActivity" />

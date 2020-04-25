@@ -57,6 +57,7 @@
         <item>ชุมชน</item>
         <item>สถานที่</item>
         <item>สินค้า</item>
+        <item>user</item>
     </string-array>
 
     <string-array name="menu_add_manage">
@@ -82,5 +83,14 @@
         <item>Food</item>
         <item>Gift</item>
         <item>Room</item>
+    </string-array>
+
+    <string-array name="role_user">
+        <item>Administrator</item>
+        <item>Community Manager</item>
+        <item>Place Manager</item>
+        <item>Shop Manager</item>
+        <item>Member</item>
+        <item>Customer</item>
     </string-array>
 </resources>

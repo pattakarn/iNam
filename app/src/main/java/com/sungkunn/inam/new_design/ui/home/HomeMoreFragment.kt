@@ -12,6 +12,8 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -24,18 +26,25 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.UserInfo
 import com.google.firebase.auth.UserProfileChangeRequest
 import com.google.firebase.firestore.FirebaseFirestore
+import com.istyleglobalnetwork.talatnoi.rv.adapter.RV_Adapter_More_List
 import com.sungkunn.inam.R
 import com.sungkunn.inam.adapter.RV_Adapter_More_Menu
-import com.sungkunn.inam.model.User
+import com.sungkunn.inam.new_design.firestore.UserViewModel
+import com.sungkunn.inam.new_design.model.User
+import com.sungkunn.inam.new_design.model.UserDao
 
 class HomeMoreFragment : Fragment(), View.OnClickListener {
 
     val db = FirebaseFirestore.getInstance()
     private lateinit var auth: FirebaseAuth
     var currentUser: FirebaseUser? = null
+    private lateinit var userVM: UserViewModel
+    private var userItem: UserDao? = null
+    var inflater: LayoutInflater? = null
 
     var ll: LinearLayout? = null
     var iv: ImageView? = null
+    var rv: RecyclerView? = null
     var tvUsername: TextView? = null
     var tvEmail: TextView? = null
     var btnLogin: MaterialButton? = null
@@ -49,34 +58,36 @@ class HomeMoreFragment : Fragment(), View.OnClickListener {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val root = inflater.inflate(R.layout.fragment_home_more, container, false)
+        userVM = ViewModelProviders.of(this).get(UserViewModel::class.java)
+        var rootView = inflater.inflate(R.layout.fragment_home_more, container, false)
+        this.inflater = inflater
 
-        var rv = root.findViewById<RecyclerView>(R.id.rv)
-        ll = root.findViewById(R.id.ll)
-        iv = root.findViewById(R.id.iv)
-        tvUsername = root.findViewById(R.id.tv_username)
-        tvEmail = root.findViewById(R.id.tv_email)
-        btnLogin = root.findViewById(R.id.btn_login)
-        btnSignout = root.findViewById(R.id.btn_signout)
+        init(rootView)
 
 //        getData()
 
-        var listItem = this.resources.getStringArray(R.array.more_menu)
-        val adapter = RV_Adapter_More_Menu(listItem)
-        val llm = LinearLayoutManager(inflater.context)
+//        var listItem = this.resources.getStringArray(R.array.more_menu)
 
-        rv.setLayoutManager(llm)
-        rv.setAdapter(adapter)
 
         btnLogin!!.setOnClickListener(this)
         btnSignout!!.setOnClickListener(this)
-        return root
+        return rootView
     }
 
     override fun onStart() {
         super.onStart()
         updateUI()
 
+    }
+
+    fun init(rootView: View) {
+        rv = rootView.findViewById(R.id.rv)
+        ll = rootView.findViewById(R.id.ll)
+        iv = rootView.findViewById(R.id.iv)
+        tvUsername = rootView.findViewById(R.id.tv_username)
+        tvEmail = rootView.findViewById(R.id.tv_email)
+        btnLogin = rootView.findViewById(R.id.btn_login)
+        btnSignout = rootView.findViewById(R.id.btn_signout)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -125,14 +136,46 @@ class HomeMoreFragment : Fragment(), View.OnClickListener {
 
     private fun getData() {
         if (currentUser != null) {
-            tvUsername!!.text = currentUser!!.displayName
-            tvEmail!!.text = currentUser!!.email
-            context?.let {
-                Glide.with(it)
-                    .load(currentUser!!.photoUrl)
+//            tvUsername!!.text = currentUser!!.displayName
+//            tvEmail!!.text = currentUser!!.email
+//            context?.let {
+//                Glide.with(it)
+//                    .load(currentUser!!.photoUrl)
+//                    .apply(RequestOptions.circleCropTransform())
+//                    .into(iv!!)
+//            }
+
+            userVM.getUser(currentUser!!.uid).observe(this, Observer {
+                //            Log.d(TAG, "================= " + it.data.community_name)
+                userItem = it
+                tvUsername!!.text = userItem!!.data.firstname + " " + userItem!!.data.lastname
+                tvEmail!!.text = userItem!!.data.email
+//                Glide.with(it)
+//                    .load(currentUser!!.photoUrl)
+//                    .apply(RequestOptions.circleCropTransform())
+//                    .into(iv!!)
+                Glide.with(inflater!!.context)
+                    .load(userItem!!.data.photoURL)
+                    .placeholder(R.drawable.inam_logo)
                     .apply(RequestOptions.circleCropTransform())
                     .into(iv!!)
-            };
+
+                var listItem: ArrayList<Any> = ArrayList()
+                if (userItem!!.data.role.equals("Administrator")) {
+                    listItem.add(userItem!!)
+                    listItem.add("My Cart")
+                    listItem.add("Manage")
+                } else {
+                    listItem.add(userItem!!)
+                    listItem.add("My Cart")
+                }
+
+                val adapter = RV_Adapter_More_List(listItem, fragmentManager!!)
+                val llm = LinearLayoutManager(inflater!!.context)
+
+                rv!!.setLayoutManager(llm)
+                rv!!.setAdapter(adapter)
+            })
 //            val docRef = db.collection("users").document(currentUser!!.uid)
 //            docRef.get()
 //                .addOnSuccessListener { document ->
@@ -223,15 +266,20 @@ class HomeMoreFragment : Fragment(), View.OnClickListener {
             user.firstname = profile.displayName
             user.email = profile.email
             user.photoURL = profile.photoUrl.toString()
+            user.role = "Customer"
 //            Log.d(TAG, currentUser!!.uid)
-            db.collection("users").document(currentUser!!.uid)
-                .set(user!!)
-                .addOnSuccessListener { documentReference ->
-                    Log.d(TAG, "DocumentSnapshot successfully written!")
-                }
-                .addOnFailureListener { e ->
-                    Log.w(TAG, "False", e)
-                }
+            userItem = UserDao(currentUser!!.uid, user)
+            userVM.saveUser(userItem!!)
+//            db.collection("users").document(currentUser!!.uid)
+//                .set(user!!)
+//                .addOnSuccessListener { documentReference ->
+//                    Log.d(TAG, "DocumentSnapshot successfully written!")
+//                }
+//                .addOnFailureListener { e ->
+//                    Log.w(TAG, "False", e)
+//                }
+
+
         }
     }
 }

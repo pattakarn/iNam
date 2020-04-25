@@ -79,6 +79,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:orientation="vertical"
+                        android:layout_margin="@dimen/row_show_margin"
                         style="@style/LinearLayoutItem">
 
                     <TextView

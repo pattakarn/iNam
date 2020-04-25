@@ -42,8 +42,6 @@ class AccountFragment : Fragment(), Toolbar.OnMenuItemClickListener, View.OnClic
         fun newInstance() = AccountFragment()
     }
 
-    private lateinit var viewModel: AccountViewModel
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         auth = FirebaseAuth.getInstance()
@@ -175,7 +173,6 @@ class AccountFragment : Fragment(), Toolbar.OnMenuItemClickListener, View.OnClic
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(AccountViewModel::class.java)
         // TODO: Use the ViewModel
     }
 

@@ -8,9 +8,11 @@ data class User(var firstname: String? = "",
                 var nickname: String? = "",
                 var phone: String? = "",
                 var email: String? = "",
-                var photoURL: String? = "") : Parcelable {
+                var photoURL: String? = "",
+                var role: String? = "" ) : Parcelable {
 
     constructor(parcel: Parcel) : this(
+        parcel.readString(),
         parcel.readString(),
         parcel.readString(),
         parcel.readString(),
@@ -27,6 +29,7 @@ data class User(var firstname: String? = "",
         parcel.writeString(phone)
         parcel.writeString(email)
         parcel.writeString(photoURL)
+        parcel.writeString(role)
     }
 
     override fun describeContents(): Int {

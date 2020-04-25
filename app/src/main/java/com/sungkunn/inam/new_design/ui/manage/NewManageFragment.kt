@@ -24,6 +24,7 @@ import com.sungkunn.inam.new_design.activity.NewEditProductActivity
 import com.sungkunn.inam.new_design.firestore.CommunityViewModel
 import com.sungkunn.inam.new_design.firestore.PlaceViewModel
 import com.sungkunn.inam.new_design.firestore.ProductViewModel
+import com.sungkunn.inam.new_design.firestore.UserViewModel
 import com.sungkunn.inam.new_design.rv.viewholder.RV_Adapter_Manage_List
 
 
@@ -37,6 +38,7 @@ class NewManageFragment : Fragment(), View.OnClickListener, Toolbar.OnMenuItemCl
     private lateinit var communityVM: CommunityViewModel
     private lateinit var placeVM: PlaceViewModel
     private lateinit var productVM: ProductViewModel
+    private lateinit var userVM: UserViewModel
     private lateinit var adapter: RV_Adapter_Manage_List
 
     var spin: Spinner? = null
@@ -53,6 +55,7 @@ class NewManageFragment : Fragment(), View.OnClickListener, Toolbar.OnMenuItemCl
             ViewModelProviders.of(this).get(CommunityViewModel::class.java)
         placeVM = ViewModelProviders.of(this).get(PlaceViewModel::class.java)
         productVM = ViewModelProviders.of(this).get(ProductViewModel::class.java)
+        userVM = ViewModelProviders.of(this).get(UserViewModel::class.java)
         var rootView = inflater.inflate(R.layout.new_manage_fragment, container, false)
         this.inflater = inflater
 
@@ -134,6 +137,15 @@ class NewManageFragment : Fragment(), View.OnClickListener, Toolbar.OnMenuItemCl
                             rv!!.setAdapter(adapter)
                         })
                     }
+                    "user" -> {
+                        userVM.getUserAll().observe(this, Observer {
+                            adapter = RV_Adapter_Manage_List(it, fragmentManager!!)
+                            val llm = LinearLayoutManager(inflater!!.context)
+
+                            rv!!.setLayoutManager(llm)
+                            rv!!.setAdapter(adapter)
+                        })
+                    }
                 }
             }
             else -> {
@@ -172,6 +184,11 @@ class NewManageFragment : Fragment(), View.OnClickListener, Toolbar.OnMenuItemCl
                             var intent =
                                 Intent(inflater!!.context, NewEditProductActivity::class.java)
                             inflater!!.context.startActivity(intent)
+                        }
+                        "User" -> {
+//                            var intent =
+//                                Intent(inflater!!.context, NewEditProductActivity::class.java)
+//                            inflater!!.context.startActivity(intent)
                         }
                     }
 

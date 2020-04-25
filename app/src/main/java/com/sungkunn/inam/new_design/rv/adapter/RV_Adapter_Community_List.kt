@@ -52,7 +52,7 @@ class RV_Adapter_Community_List() :
         vh1.tv_name.text = items!!.get(position).data.community_name
         vh1.tv_detail.text = items!!.get(position).data.community_name
         vh1.chip_type.text = items!!.get(position).data.type!!.capitalize()
-        Log.d("Adap Community", "==================== " + items!!.get(position).data.image_url)
+//        Log.d("Adap Community", "==================== " + items!!.get(position).data.image_url)
         Glide.with(inflater.context)
             .load(items!!.get(position).data.image_url)
             .placeholder(R.drawable.inam_logo)

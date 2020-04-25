@@ -7,13 +7,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
 import com.sungkunn.inam.R
-import com.sungkunn.inam.new_design.activity.NewEditCommunityActivity
-import com.sungkunn.inam.new_design.activity.NewEditPlaceActivity
-import com.sungkunn.inam.new_design.activity.NewEditProductActivity
-import com.sungkunn.inam.new_design.activity.StockManageActivity
+import com.sungkunn.inam.new_design.activity.*
 import com.sungkunn.inam.new_design.model.CommunityDao
 import com.sungkunn.inam.new_design.model.PlaceDao
 import com.sungkunn.inam.new_design.model.ProductDao
+import com.sungkunn.inam.new_design.model.UserDao
 import java.util.*
 
 
@@ -98,6 +96,21 @@ class RV_Adapter_Manage_List() :
                     override fun onClick(v: View?) {
                         val intent =
                             Intent(inflater.context, StockManageActivity::class.java).apply {
+                                putExtra("item", temp)
+                            }
+                        inflater.context.startActivity(intent)
+                    }
+                })
+            }
+            is UserDao -> {
+                var temp = items!!.get(position) as UserDao
+                vh1.tv_name.text = temp.data.email
+//                vh1.chip_type.text = temp.data.type
+                vh1.chip_type.visibility = View.INVISIBLE
+                vh1.ll.setOnClickListener(object : View.OnClickListener {
+                    override fun onClick(v: View?) {
+                        val intent =
+                            Intent(inflater.context, NewEditUserActivity::class.java).apply {
                                 putExtra("item", temp)
                             }
                         inflater.context.startActivity(intent)

@@ -1,23 +1,30 @@
 package com.sungkunn.inam.new_design.ui.manage.community
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.firestore.FirebaseFirestore
+import com.istyleglobalnetwork.talatnoi.rv.adapter.RV_Adapter_Photo_Hori_List
 import com.sungkunn.inam.R
+import com.sungkunn.inam.new_design.activity.NewEditPhotoActivity
 import com.sungkunn.inam.new_design.firestore.CommunityViewModel
+import com.sungkunn.inam.new_design.firestore.PhotoViewModel
 import com.sungkunn.inam.new_design.model.Community
 import com.sungkunn.inam.new_design.model.CommunityDao
 
@@ -40,10 +47,13 @@ class NewEditCommunityFragment : Fragment(), Toolbar.OnMenuItemClickListener, Vi
     }
 
     private lateinit var communityVM: CommunityViewModel
+    private lateinit var photoVM: PhotoViewModel
     var inflater: LayoutInflater? = null
     private var communityItem: CommunityDao? = null
+    private var adap_photo: RV_Adapter_Photo_Hori_List? = null
     val db = FirebaseFirestore.getInstance()
     var TAG = "EDIT_COMMUNITY_FRAGMENT"
+    val RESULT_LOAD_IMAGE = 1
 
     // -------------------- Type --------------------
     var toolbar: Toolbar? = null
@@ -69,11 +79,15 @@ class NewEditCommunityFragment : Fragment(), Toolbar.OnMenuItemClickListener, Vi
     var etAddressLatitude: TextInputEditText? = null
     var etAddressLongitude: TextInputEditText? = null
 
+    // -------------------- Photo --------------------
+    var btnPhoto: Button? = null
+    var rvPhoto: RecyclerView? = null
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
+        photoVM = ViewModelProviders.of(this).get(PhotoViewModel::class.java)
         var rootView = inflater.inflate(R.layout.new_edit_community_fragment, container, false)
         this.inflater = inflater
         init(rootView)
@@ -87,6 +101,8 @@ class NewEditCommunityFragment : Fragment(), Toolbar.OnMenuItemClickListener, Vi
         toolbar!!.setNavigationOnClickListener(this)
         toolbar!!.setOnMenuItemClickListener(this)
         etInfoType!!.setOnClickListener(this)
+
+        btnPhoto!!.setOnClickListener(this)
 
         return rootView
     }
@@ -115,6 +131,10 @@ class NewEditCommunityFragment : Fragment(), Toolbar.OnMenuItemClickListener, Vi
         etAddressLatitude = rootView.findViewById(R.id.et_address_latitude)
         etAddressLongitude = rootView.findViewById(R.id.et_address_longitude)
 
+        // -------------------- Photo --------------------
+        btnPhoto = rootView.findViewById(R.id.btn_photo)
+        rvPhoto = rootView.findViewById(R.id.rv_photo)
+
     }
 
     fun setCommunity() {
@@ -130,6 +150,20 @@ class NewEditCommunityFragment : Fragment(), Toolbar.OnMenuItemClickListener, Vi
         etAddressName!!.setText(communityItem!!.data.address)
         etAddressLatitude!!.setText(communityItem!!.data.latitude)
         etAddressLongitude!!.setText(communityItem!!.data.longitude)
+
+        photoVM.getPhotoByItem(communityItem!!.id).observe(this, Observer {
+            if (it != null){
+//                Glide.with(inflater!!.context)
+//                    .load(it.get(0).data.image_url!!)
+//                    .placeholder(R.drawable.inam_logo)
+//                    .into(ivPhoto!!)
+                adap_photo = RV_Adapter_Photo_Hori_List(it, fragmentManager!!)
+                val llm = LinearLayoutManager(inflater!!.context, LinearLayoutManager.HORIZONTAL, false)
+
+                rvPhoto!!.setLayoutManager(llm)
+                rvPhoto!!.setAdapter(adap_photo)
+            }
+        })
 
     }
 
@@ -165,8 +199,9 @@ class NewEditCommunityFragment : Fragment(), Toolbar.OnMenuItemClickListener, Vi
 //                }
             communityVM.addCommunity(temp!!)
             snackbar.dismiss()
-            Toast.makeText(inflater!!.context,"Save", Toast.LENGTH_SHORT).show()
-            activity!!.finish()
+            Snackbar.make(ll!!, resources.getString(R.string.save_success), Snackbar.LENGTH_SHORT).show()
+//            Toast.makeText(inflater!!.context,"Save", Toast.LENGTH_SHORT).show()
+//            activity!!.finish()
         } else {
             communityItem!!.data.community_name = etInfoName!!.text!!.toString()
             communityItem!!.data.type = etInfoType!!.text!!.toString()
@@ -193,14 +228,16 @@ class NewEditCommunityFragment : Fragment(), Toolbar.OnMenuItemClickListener, Vi
 //                }
             communityVM.saveCommunity(communityItem!!)
             snackbar.dismiss()
-            Toast.makeText(inflater!!.context,"Save",Toast.LENGTH_SHORT).show()
-            activity!!.finish()
+            Snackbar.make(ll!!, resources.getString(R.string.save_success), Snackbar.LENGTH_SHORT).show()
+//            Toast.makeText(inflater!!.context,"Save",Toast.LENGTH_SHORT).show()
+//            activity!!.finish()
         }
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         communityVM = ViewModelProviders.of(this).get(CommunityViewModel::class.java)
+
 
     }
 
@@ -220,6 +257,12 @@ class NewEditCommunityFragment : Fragment(), Toolbar.OnMenuItemClickListener, Vi
                 val dialog: AlertDialog = builder.create()
 
                 dialog.show()
+            }
+            btnPhoto -> {
+                var intent = Intent(inflater!!.context, NewEditPhotoActivity::class.java)
+                intent.putExtra("id", communityItem!!.id)
+                intent.putExtra("name", communityItem!!.data.community_name)
+                inflater!!.context.startActivity(intent)
             }
             else -> {
                 if (fragmentManager!!.backStackEntryCount > 0) {

@@ -1,12 +1,14 @@
 package com.sungkunn.inam.new_design.ui.manage.place
 
 import Spin_Adapter_Community_List
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.Spinner
 import android.widget.Toast
@@ -15,11 +17,16 @@ import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.firestore.FirebaseFirestore
+import com.istyleglobalnetwork.talatnoi.rv.adapter.RV_Adapter_Photo_Hori_List
 import com.sungkunn.inam.R
+import com.sungkunn.inam.new_design.activity.NewEditPhotoActivity
 import com.sungkunn.inam.new_design.firestore.CommunityViewModel
+import com.sungkunn.inam.new_design.firestore.PhotoViewModel
 import com.sungkunn.inam.new_design.firestore.PlaceViewModel
 import com.sungkunn.inam.new_design.model.CommunityDao
 import com.sungkunn.inam.new_design.model.Place
@@ -45,9 +52,11 @@ class NewEditPlaceFragment : Fragment(), Toolbar.OnMenuItemClickListener, View.O
 
     private lateinit var placeVM: PlaceViewModel
     private lateinit var communityVM: CommunityViewModel
+    private lateinit var photoVM: PhotoViewModel
     var inflater: LayoutInflater? = null
     private var placeItem: PlaceDao? = null
     private var adapter: Spin_Adapter_Community_List? = null
+    private var adap_photo: RV_Adapter_Photo_Hori_List? = null
     val db = FirebaseFirestore.getInstance()
     var TAG = "EDIT_PLACE_FRAGMENT"
 
@@ -92,12 +101,18 @@ class NewEditPlaceFragment : Fragment(), Toolbar.OnMenuItemClickListener, View.O
     var etSundayOpen: TextInputEditText? = null
     var etSundayClose: TextInputEditText? = null
 
+    // -------------------- Photo --------------------
+    var btnPhoto: Button? = null
+    var rvPhoto: RecyclerView? = null
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         communityVM =
             ViewModelProviders.of(this).get(CommunityViewModel::class.java)
+        photoVM =
+            ViewModelProviders.of(this).get(PhotoViewModel::class.java)
         var rootView = inflater.inflate(R.layout.new_edit_place_fragment, container, false)
 
         this.inflater = inflater
@@ -120,6 +135,8 @@ class NewEditPlaceFragment : Fragment(), Toolbar.OnMenuItemClickListener, View.O
         toolbar!!.setNavigationOnClickListener(this)
         toolbar!!.setOnMenuItemClickListener(this)
         etInfoType!!.setOnClickListener(this)
+
+        btnPhoto!!.setOnClickListener(this)
 
 //        var listItem = this.resources.getStringArray(R.array.type_place)
 //        val adapterItem: ArrayAdapter<String> = ArrayAdapter<String>(
@@ -182,6 +199,10 @@ class NewEditPlaceFragment : Fragment(), Toolbar.OnMenuItemClickListener, View.O
         etSaturdayClose = rootView.findViewById(R.id.et_saturday_close)
         etSundayOpen = rootView.findViewById(R.id.et_sunday_open)
         etSundayClose = rootView.findViewById(R.id.et_sunday_close)
+
+        // -------------------- Photo --------------------
+        btnPhoto = rootView.findViewById(R.id.btn_photo)
+        rvPhoto = rootView.findViewById(R.id.rv_photo)
     }
 
     fun setPlace() {
@@ -221,6 +242,20 @@ class NewEditPlaceFragment : Fragment(), Toolbar.OnMenuItemClickListener, View.O
         etSaturdayClose!!.setText(placeItem!!.data.saturday_close)
         etSundayOpen!!.setText(placeItem!!.data.sunday_open)
         etSundayClose!!.setText(placeItem!!.data.sunday_close)
+
+        photoVM.getPhotoByItem(placeItem!!.id).observe(this, Observer {
+            if (it != null){
+//                Glide.with(inflater!!.context)
+//                    .load(it.get(0).data.image_url!!)
+//                    .placeholder(R.drawable.inam_logo)
+//                    .into(ivPhoto!!)
+                adap_photo = RV_Adapter_Photo_Hori_List(it, fragmentManager!!)
+                val llm = LinearLayoutManager(inflater!!.context, LinearLayoutManager.HORIZONTAL, false)
+
+                rvPhoto!!.setLayoutManager(llm)
+                rvPhoto!!.setAdapter(adap_photo)
+            }
+        })
 
     }
 
@@ -277,8 +312,9 @@ class NewEditPlaceFragment : Fragment(), Toolbar.OnMenuItemClickListener, View.O
 //                }
             placeVM.addPlace(temp!!)
             snackbar.dismiss()
-            Toast.makeText(inflater!!.context,"Save",Toast.LENGTH_SHORT).show()
-            activity!!.finish()
+            Snackbar.make(ll!!, resources.getString(R.string.save_success), Snackbar.LENGTH_SHORT).show()
+//            Toast.makeText(inflater!!.context,"Save",Toast.LENGTH_SHORT).show()
+//            activity!!.finish()
         } else {
             placeItem!!.data.name = etInfoName!!.text!!.toString()
             placeItem!!.data.owner = etInfoType!!.text!!.toString()
@@ -319,8 +355,9 @@ class NewEditPlaceFragment : Fragment(), Toolbar.OnMenuItemClickListener, View.O
 //                }
             placeVM.savePlace(placeItem!!)
             snackbar.dismiss()
-            Toast.makeText(inflater!!.context,"Save",Toast.LENGTH_SHORT).show()
-            activity!!.finish()
+            Snackbar.make(ll!!, resources.getString(R.string.save_success), Snackbar.LENGTH_SHORT).show()
+//            Toast.makeText(inflater!!.context,"Save",Toast.LENGTH_SHORT).show()
+//            activity!!.finish()
         }
     }
 
@@ -347,6 +384,12 @@ class NewEditPlaceFragment : Fragment(), Toolbar.OnMenuItemClickListener, View.O
                 val dialog: AlertDialog = builder.create()
 
                 dialog.show()
+            }
+            btnPhoto -> {
+                var intent = Intent(inflater!!.context, NewEditPhotoActivity::class.java)
+                intent.putExtra("id", placeItem!!.id)
+                intent.putExtra("name", placeItem!!.data.name)
+                inflater!!.context.startActivity(intent)
             }
             else -> {
                 if (fragmentManager!!.backStackEntryCount > 0) {

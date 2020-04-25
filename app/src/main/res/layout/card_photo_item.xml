@@ -25,11 +25,18 @@
                 style="@style/TextTitleItem"
                 android:text="@string/title_item_photo"/>
 
+        <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_photo"
+                android:layout_marginTop="@dimen/row_show_view_margin"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
         <Button
                 android:text="Go to album"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/text_margin"
+                android:textColor="@color/black"
                 android:id="@+id/btn_photo"/>
 
 
