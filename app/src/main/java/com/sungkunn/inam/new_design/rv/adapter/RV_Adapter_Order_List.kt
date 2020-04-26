@@ -1,4 +1,4 @@
-package com.istyleglobalnetwork.talatnoi.rv.adapter
+package com.sungkunn.inam.new_design.rv.adapter
 
 import android.graphics.Color
 import android.view.LayoutInflater
@@ -13,6 +13,7 @@ import com.sungkunn.inam.R
 import com.sungkunn.inam.new_design.firestore.ProductOrderViewModel
 import com.sungkunn.inam.new_design.model.ProductDao
 import com.sungkunn.inam.new_design.model.ProductOrderDao
+import com.sungkunn.inam.new_design.model.ProductPackDao
 import com.sungkunn.inam.new_design.rv.viewholder.ViewHolderCartOrder
 
 
@@ -20,7 +21,7 @@ class RV_Adapter_Order_List() :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     var items: ArrayList<ProductOrderDao>? = null
-    var productList: ArrayList<ProductDao> = ArrayList()
+    var productList: ArrayList<ProductPackDao> = ArrayList()
     var fragmentManager: FragmentManager? = null
     var arrList = ArrayList<ProductOrderDao>()
     private var productOrderVM: ProductOrderViewModel? = null
@@ -28,7 +29,7 @@ class RV_Adapter_Order_List() :
 
     constructor(
         items: ArrayList<ProductOrderDao>,
-        productList: ArrayList<ProductDao>,
+        productList: ArrayList<ProductPackDao>,
         fragmentManager: FragmentManager,
         productOrderVM: ProductOrderViewModel
     ) : this() {
@@ -66,10 +67,12 @@ class RV_Adapter_Order_List() :
         if (productItem.size != 0) {
             vh1.tv_name.text = productItem.get(0).data.name
             vh1.tv_detail.text = "฿" + productItem.get(0).data.price
-            Glide.with(inflater.context)
-                .load(productItem.get(0)!!.data.image_url)
-                .placeholder(R.drawable.inam_logo)
-                .into(vh1.iv!!)
+            if (productItem.get(0).photo != null) {
+                Glide.with(inflater.context)
+                    .load(productItem.get(0).photo.get(0).data.image_url)
+                    .placeholder(R.drawable.inam_logo)
+                    .into(vh1.iv!!)
+            }
         }
         vh1.tv_quantity.text = items!!.get(position).data.quantity
 

@@ -50,12 +50,7 @@
                     android:layout_height="match_parent"
                     android:orientation="vertical">
 
-                <ImageView
-                        android:id="@+id/iv"
-                        android:layout_width="match_parent"
-                        android:layout_height="220dp"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/ic_switzerland" />
+                <include layout="@layout/row_photo_item" />
 
                 <include layout="@layout/row_info_item" />
 

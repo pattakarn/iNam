@@ -1,4 +1,4 @@
-package com.istyleglobalnetwork.talatnoi.rv.adapter
+package com.sungkunn.inam.new_design.rv.adapter
 
 import android.content.Intent
 import android.view.LayoutInflater

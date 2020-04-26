@@ -13,15 +13,18 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.istyleglobalnetwork.talatnoi.rv.adapter.RV_Adapter_Product_Hori_List
 import com.sungkunn.inam.R
+import com.sungkunn.inam.new_design.firestore.PhotoViewModel
 import com.sungkunn.inam.new_design.firestore.ProductViewModel
 import com.sungkunn.inam.new_design.model.PlaceDao
+import com.sungkunn.inam.new_design.model.PlacePackDao
+import com.sungkunn.inam.new_design.rv.adapter.RV_Adapter_Photo_Show_Hori_List
+import com.sungkunn.inam.new_design.rv.adapter.RV_Adapter_Product_Hori_List
 
 class ShowPlaceFragment : Fragment(), View.OnClickListener {
 
     companion object {
-        fun newInstance(placeItem: PlaceDao?) = ShowPlaceFragment().apply {
+        fun newInstance(placeItem: PlacePackDao?) = ShowPlaceFragment().apply {
             arguments = Bundle().apply {
                 putParcelable("item", placeItem)
             }
@@ -36,14 +39,18 @@ class ShowPlaceFragment : Fragment(), View.OnClickListener {
     }
 
     private lateinit var productVM: ProductViewModel
-    private var placeItem: PlaceDao? = null
+    private lateinit var photoVM: PhotoViewModel
+    private var placeItem: PlacePackDao? = null
+    private lateinit var adapterPhoto: RV_Adapter_Photo_Show_Hori_List
 
     var toolbar: Toolbar? = null
     var tvToolbar: TextView? = null
-    var iv: ImageView? = null
 
     var rvProduct: RecyclerView? = null
     var adap_product: RV_Adapter_Product_Hori_List? = null
+
+    // ----------------- Photo -----------------
+    var rvPhoto: RecyclerView? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -51,6 +58,8 @@ class ShowPlaceFragment : Fragment(), View.OnClickListener {
     ): View {
         productVM =
             ViewModelProviders.of(this).get(ProductViewModel::class.java)
+        photoVM =
+            ViewModelProviders.of(this).get(PhotoViewModel::class.java)
         val rootView = inflater.inflate(R.layout.show_place_fragment, container, false)
 
         init(rootView)
@@ -59,12 +68,22 @@ class ShowPlaceFragment : Fragment(), View.OnClickListener {
         toolbar!!.setNavigationOnClickListener(this)
         tvToolbar!!.setText(placeItem!!.data.name)
 
-        Glide.with(inflater.context)
-            .load(placeItem!!.data.image_url)
-            .placeholder(R.drawable.inam_logo)
-            .into(iv!!)
+        photoVM.getPhotoByItem(placeItem!!.id).observe(this, Observer {
+            if (it != null) {
+                adapterPhoto = RV_Adapter_Photo_Show_Hori_List(it, fragmentManager!!, photoVM)
+                val llm = LinearLayoutManager(
+                    inflater!!.context,
+                    LinearLayoutManager.HORIZONTAL,
+                    false
+                )
+                rvPhoto!!.setLayoutManager(llm)
+                rvPhoto!!.setAdapter(adapterPhoto)
 
-        productVM.getProductAll().observe(this, Observer {
+            }
+
+        })
+
+        productVM.getProductPackAll().observe(this, Observer {
             adap_product = RV_Adapter_Product_Hori_List(it, fragmentManager!!)
             val llm = LinearLayoutManager(inflater!!.context, LinearLayoutManager.HORIZONTAL, false)
 
@@ -79,7 +98,9 @@ class ShowPlaceFragment : Fragment(), View.OnClickListener {
     fun init(rootView: View) {
         toolbar = rootView.findViewById(R.id.toolbar)
         tvToolbar = rootView.findViewById(R.id.toolbar_title)
-        iv = rootView.findViewById(R.id.iv)
+
+        // ----------------- Photo -----------------
+        rvPhoto = rootView.findViewById(R.id.photo_rv)
 
         rvProduct = rootView.findViewById(R.id.rv_product)
     }

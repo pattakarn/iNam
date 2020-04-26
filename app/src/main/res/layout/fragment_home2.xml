@@ -7,7 +7,7 @@
         android:id="@+id/cl_home2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".fragment.main.Home2Fragment">
+        tools:context=".old_ver.fragment.main.Home2Fragment">
 
     <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/app_bar"
@@ -42,7 +42,7 @@
                     android:layout_width="match_parent"
                     app:layout_collapseMode="pin"
                     app:title="Home"
-                    app:titleTextColor="@color/black"
+                    app:titleTextColor="@color/colorTextPrimaryNew"
                     app:popupTheme="@style/AppTheme.NoActionBar.PopupOverlay"/>
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
@@ -73,7 +73,7 @@
     <!--android:padding="4dp"-->
     <!--android:weightSum="2">-->
 
-    <!--<com.sungkunn.inam.view.MenuCardView-->
+    <!--<com.sungkunn.inam.aaa.view.MenuCardView-->
     <!--android:id="@+id/menu_north"-->
     <!--android:layout_width="0dp"-->
     <!--android:layout_height="match_parent"-->
@@ -81,7 +81,7 @@
     <!--app:menu_title="North"-->
     <!--app:menu_photo="@drawable/ic_region"/>-->
 
-    <!--<com.sungkunn.inam.view.MenuCardView-->
+    <!--<com.sungkunn.inam.aaa.view.MenuCardView-->
     <!--android:id="@+id/menu_east"-->
     <!--android:layout_width="0dp"-->
     <!--android:layout_height="match_parent"-->
@@ -99,7 +99,7 @@
     <!--android:padding="4dp"-->
     <!--android:weightSum="2">-->
 
-    <!--<com.sungkunn.inam.view.MenuCardView-->
+    <!--<com.sungkunn.inam.aaa.view.MenuCardView-->
     <!--android:id="@+id/menu_west"-->
     <!--android:layout_width="0dp"-->
     <!--android:layout_height="match_parent"-->
@@ -107,7 +107,7 @@
     <!--app:menu_title="West"-->
     <!--app:menu_photo="@drawable/ic_region"/>-->
 
-    <!--<com.sungkunn.inam.view.MenuCardView-->
+    <!--<com.sungkunn.inam.aaa.view.MenuCardView-->
     <!--android:id="@+id/menu_south"-->
     <!--android:layout_width="0dp"-->
     <!--android:layout_height="match_parent"-->
@@ -124,7 +124,7 @@
     <!--android:padding="4dp"-->
     <!--android:weightSum="2">-->
 
-    <!--<com.sungkunn.inam.view.MenuCardView-->
+    <!--<com.sungkunn.inam.aaa.view.MenuCardView-->
     <!--android:id="@+id/menu_northeast"-->
     <!--android:layout_width="0dp"-->
     <!--android:layout_height="match_parent"-->
@@ -132,7 +132,7 @@
     <!--app:menu_title="Northeast"-->
     <!--app:menu_photo="@drawable/ic_region"/>-->
 
-    <!--<com.sungkunn.inam.view.MenuCardView-->
+    <!--<com.sungkunn.inam.aaa.view.MenuCardView-->
     <!--android:id="@+id/menu_central"-->
     <!--android:layout_width="0dp"-->
     <!--android:layout_height="match_parent"-->

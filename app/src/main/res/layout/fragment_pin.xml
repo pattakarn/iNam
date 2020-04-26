@@ -6,7 +6,7 @@
         android:id="@+id/cl_home"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".fragment.main.PinFragment">
+        tools:context=".old_ver.fragment.main.PinFragment">
 
 
     <com.google.android.material.appbar.AppBarLayout
@@ -41,10 +41,9 @@
 
     <androidx.core.widget.NestedScrollView
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            tools:showIn="@layout/activity_home"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:context=".example.TestFragment">
+            tools:context=".old_ver.example.TestFragment">
 
         <LinearLayout
                 android:layout_width="match_parent"
@@ -67,7 +66,7 @@
                     android:orientation="horizontal"
                     android:weightSum="2">
 
-                <com.sungkunn.inam.view.MenuCardView
+                <com.sungkunn.inam.old_ver.view.MenuCardView
                         android:id="@+id/menu_north"
                         android:layout_width="0dp"
                         android:layout_height="@dimen/menu_height"
@@ -76,7 +75,7 @@
                         app:menu_title="North"
                         app:menu_photo="@drawable/ic_region"/>
 
-                <com.sungkunn.inam.view.MenuCardView
+                <com.sungkunn.inam.old_ver.view.MenuCardView
                         android:id="@+id/menu_east"
                         android:layout_width="0dp"
                         android:layout_height="@dimen/menu_height"
@@ -93,7 +92,7 @@
                     android:orientation="horizontal"
                     android:weightSum="2">
 
-                <com.sungkunn.inam.view.MenuCardView
+                <com.sungkunn.inam.old_ver.view.MenuCardView
                         android:id="@+id/menu_west"
                         android:layout_width="0dp"
                         android:layout_height="@dimen/menu_height"
@@ -102,7 +101,7 @@
                         app:menu_title="West"
                         app:menu_photo="@drawable/ic_region"/>
 
-                <com.sungkunn.inam.view.MenuCardView
+                <com.sungkunn.inam.old_ver.view.MenuCardView
                         android:id="@+id/menu_south"
                         android:layout_width="0dp"
                         android:layout_height="@dimen/menu_height"
@@ -118,7 +117,7 @@
                     android:orientation="horizontal"
                     android:weightSum="2">
 
-                <com.sungkunn.inam.view.MenuCardView
+                <com.sungkunn.inam.old_ver.view.MenuCardView
                         android:id="@+id/menu_northeast"
                         android:layout_width="0dp"
                         android:layout_height="@dimen/menu_height"

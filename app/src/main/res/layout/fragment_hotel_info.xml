@@ -6,7 +6,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         style="@style/LinearLayoutDivider"
-        tools:context=".fragment.ui.hotel.HotelInfoFragment">
+        tools:context=".old_ver.fragment.ui.hotel.HotelInfoFragment">
 
     <include layout="@layout/row_info_item"/>
 

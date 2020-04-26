@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.sungkunn.inam.R
 import com.sungkunn.inam.new_design.model.PlaceDao
+import com.sungkunn.inam.new_design.model.PlacePackDao
 import com.sungkunn.inam.new_design.ui.show.ShowPlaceFragment
 
 class ShowPlaceActivity : AppCompatActivity() {
@@ -13,7 +14,7 @@ class ShowPlaceActivity : AppCompatActivity() {
         setContentView(R.layout.show_place_activity)
 
         var bundle = intent.extras
-        var item: PlaceDao = bundle.getParcelable("item")
+        var item: PlacePackDao = bundle.getParcelable("item")
 
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()

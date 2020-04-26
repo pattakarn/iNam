@@ -24,6 +24,7 @@
     // ---------------------------- Row ---------------------------
     <dimen name="row_show_margin">16dp</dimen>
     <dimen name="row_show_view_margin">8dp</dimen>
+    <dimen name="row_show_view_margin_small">4dp</dimen>
     <dimen name="row_show_border">4dp</dimen>
     <dimen name="row_show_elevation">8dp</dimen>
     <dimen name="row_show_rv_margin">4dp</dimen>

@@ -12,8 +12,8 @@
                 android:id="@+id/btn_cart_add"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:backgroundTint="@color/bg"
-                android:textColor="@android:color/black"
+                android:backgroundTint="@color/colorSecondary"
+                android:textColor="@color/colorTextSecondary"
                 android:text="Add Cart"
                 map:layout_constraintEnd_toEndOf="parent"
                 map:layout_constraintTop_toTopOf="parent" />

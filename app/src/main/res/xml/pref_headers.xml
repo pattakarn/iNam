@@ -3,17 +3,17 @@
     <!-- These settings headers are only used on tablets. -->
 
     <header
-            android:fragment="com.sungkunn.inam.example.TestSettingsActivity$GeneralPreferenceFragment"
+            android:fragment="com.sungkunn.inam.old_ver.example.TestSettingsActivity$GeneralPreferenceFragment"
             android:title="@string/pref_header_general"
             android:icon="@drawable/ic_info_black_24dp"/>
 
     <header
-            android:fragment="com.sungkunn.inam.example.TestSettingsActivity$NotificationPreferenceFragment"
+            android:fragment="com.sungkunn.inam.old_ver.example.TestSettingsActivity$NotificationPreferenceFragment"
             android:title="@string/pref_header_notifications"
             android:icon="@drawable/ic_notifications_black_24dp_bak"/>
 
     <header
-            android:fragment="com.sungkunn.inam.example.TestSettingsActivity$DataSyncPreferenceFragment"
+            android:fragment="com.sungkunn.inam.old_ver.example.TestSettingsActivity$DataSyncPreferenceFragment"
             android:title="@string/pref_header_data_sync"
             android:icon="@drawable/ic_sync_black_24dp"/>
 

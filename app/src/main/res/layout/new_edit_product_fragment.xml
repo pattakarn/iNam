@@ -21,7 +21,7 @@
                 app:layout_collapseMode="pin"
                 app:popupTheme="@style/AppTheme.NoActionBar.PopupOverlay"
                 app:title="Product"
-                app:titleTextColor="@color/black" />
+                app:titleTextColor="@color/colorTextPrimaryNew" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -46,7 +46,7 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/row_show_view_margin"
                         android:elevation="@dimen/row_show_elevation"
-                        app:cardBackgroundColor="@color/bg"
+                        app:cardBackgroundColor="@color/colorPrimaryLightNew"
                         card_view:cardCornerRadius="10dp"
                         card_view:cardUseCompatPadding="true">
 

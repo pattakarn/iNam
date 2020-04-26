@@ -14,9 +14,10 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.chip.ChipGroup
-import com.istyleglobalnetwork.talatnoi.rv.adapter.RV_Adapter_Product_Grid_List
 import com.sungkunn.inam.R
 import com.sungkunn.inam.new_design.firestore.ProductViewModel
+import com.sungkunn.inam.new_design.rv.adapter.RV_Adapter_Product_Grid_List
+import com.sungkunn.inam.new_design.rv.adapter.RV_Adapter_Product_Pack_Grid_List
 
 
 class HomeProductFragment : Fragment(), SearchView.OnQueryTextListener,
@@ -44,8 +45,15 @@ class HomeProductFragment : Fragment(), SearchView.OnQueryTextListener,
 
         sv!!.setOnQueryTextListener(this)
 
-        productVM.getProductAll().observe(this, Observer {
-            adap_product = RV_Adapter_Product_Grid_List(it, fragmentManager!!)
+//        productVM.getProductAll().observe(this, Observer {
+//            adap_product = RV_Adapter_Product_Grid_List(it, fragmentManager!!)
+//
+//            rvProduct!!.setLayoutManager(GridLayoutManager(inflater.context, 2))
+//            rvProduct!!.setAdapter(adap_product)
+//        })
+
+        productVM.getProductPackAll().observe(this, Observer {
+            var adap_product = RV_Adapter_Product_Pack_Grid_List(it, fragmentManager!!)
 
             rvProduct!!.setLayoutManager(GridLayoutManager(inflater.context, 2))
             rvProduct!!.setAdapter(adap_product)

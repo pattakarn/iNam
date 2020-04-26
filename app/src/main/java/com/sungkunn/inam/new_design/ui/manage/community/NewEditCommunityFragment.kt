@@ -20,13 +20,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.firestore.FirebaseFirestore
-import com.istyleglobalnetwork.talatnoi.rv.adapter.RV_Adapter_Photo_Hori_List
 import com.sungkunn.inam.R
 import com.sungkunn.inam.new_design.activity.NewEditPhotoActivity
 import com.sungkunn.inam.new_design.firestore.CommunityViewModel
 import com.sungkunn.inam.new_design.firestore.PhotoViewModel
 import com.sungkunn.inam.new_design.model.Community
 import com.sungkunn.inam.new_design.model.CommunityDao
+import com.sungkunn.inam.new_design.rv.adapter.RV_Adapter_Photo_Hori_List
 
 class NewEditCommunityFragment : Fragment(), Toolbar.OnMenuItemClickListener, View.OnClickListener {
 

@@ -25,7 +25,7 @@ import com.sungkunn.inam.new_design.firestore.CommunityViewModel
 import com.sungkunn.inam.new_design.firestore.PlaceViewModel
 import com.sungkunn.inam.new_design.firestore.ProductViewModel
 import com.sungkunn.inam.new_design.firestore.UserViewModel
-import com.sungkunn.inam.new_design.rv.viewholder.RV_Adapter_Manage_List
+import com.sungkunn.inam.new_design.rv.adapter.RV_Adapter_Manage_List
 
 
 class NewManageFragment : Fragment(), View.OnClickListener, Toolbar.OnMenuItemClickListener {

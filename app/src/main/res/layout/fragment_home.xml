@@ -40,7 +40,7 @@
                     app:layout_collapseMode="pin"
                     app:popupTheme="@style/AppTheme.NoActionBar.PopupOverlay"
                     app:title="Home"
-                    app:titleTextColor="@color/black" />
+                    app:titleTextColor="@color/colorTextPrimaryNew" />
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>
@@ -67,7 +67,7 @@
                         android:layout_height="wrap_content"
                         android:elevation="8dp"
                         card_view:cardCornerRadius="10dp"
-                        app:cardBackgroundColor="@color/bg"
+                        app:cardBackgroundColor="@color/colorPrimaryLightNew"
                         android:layout_margin="4dp"
                         card_view:cardUseCompatPadding="true">
 

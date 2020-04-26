@@ -25,7 +25,6 @@ import com.sungkunn.inam.new_design.firestore.UserViewModel
 import com.sungkunn.inam.new_design.model.Photo
 import com.sungkunn.inam.new_design.model.PhotoDao
 import com.sungkunn.inam.new_design.model.UserDao
-import kotlinx.android.synthetic.main.account_fragment.*
 import java.net.URI
 
 class NewAccountFragment : Fragment(), View.OnClickListener, Toolbar.OnMenuItemClickListener {

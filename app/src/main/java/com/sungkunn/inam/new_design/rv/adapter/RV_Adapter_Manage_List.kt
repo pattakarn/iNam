@@ -1,4 +1,4 @@
-package com.sungkunn.inam.new_design.rv.viewholder
+package com.sungkunn.inam.new_design.rv.adapter
 
 import android.content.Intent
 import android.view.LayoutInflater
@@ -12,6 +12,7 @@ import com.sungkunn.inam.new_design.model.CommunityDao
 import com.sungkunn.inam.new_design.model.PlaceDao
 import com.sungkunn.inam.new_design.model.ProductDao
 import com.sungkunn.inam.new_design.model.UserDao
+import com.sungkunn.inam.new_design.rv.viewholder.ShowManageViewHolder
 import java.util.*
 
 

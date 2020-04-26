@@ -26,12 +26,11 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.UserInfo
 import com.google.firebase.auth.UserProfileChangeRequest
 import com.google.firebase.firestore.FirebaseFirestore
-import com.istyleglobalnetwork.talatnoi.rv.adapter.RV_Adapter_More_List
 import com.sungkunn.inam.R
-import com.sungkunn.inam.adapter.RV_Adapter_More_Menu
 import com.sungkunn.inam.new_design.firestore.UserViewModel
 import com.sungkunn.inam.new_design.model.User
 import com.sungkunn.inam.new_design.model.UserDao
+import com.sungkunn.inam.new_design.rv.adapter.RV_Adapter_More_List
 
 class HomeMoreFragment : Fragment(), View.OnClickListener {
 

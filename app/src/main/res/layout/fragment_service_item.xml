@@ -8,7 +8,7 @@
         android:layout_height="match_parent"
         android:fitsSystemWindows="true"
         tools:layout="@layout/fragment_service_item"
-        tools:context=".fragment.manage.item.NetworkItemFragment">
+        tools:context=".old_ver.fragment.manage.item.NetworkItemFragment">
 
     <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/app_bar"

@@ -106,9 +106,10 @@
             android:id="@+id/btn_review"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="4dp"
+            android:layout_margin="@dimen/row_show_view_margin"
             android:text="Review"
-            android:textColor="@android:color/black" />
+            android:backgroundTint="@color/colorSecondary"
+            android:textColor="@color/colorTextSecondary" />
 
     <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_comment"

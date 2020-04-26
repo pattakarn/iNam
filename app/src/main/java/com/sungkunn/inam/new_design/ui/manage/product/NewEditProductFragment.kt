@@ -1,13 +1,7 @@
 package com.sungkunn.inam.new_design.ui.manage.product
 
-import Spin_Adapter_Place_List
-import android.app.Activity.RESULT_OK
 import android.content.Intent
-import android.database.Cursor
-import android.net.Uri
 import android.os.Bundle
-import android.provider.OpenableColumns
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
@@ -18,17 +12,11 @@ import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.storage.FirebaseStorage
-import com.google.firebase.storage.StorageReference
-import com.istyleglobalnetwork.talatnoi.rv.adapter.RV_Adapter_Photo_Hori_List
-import com.istyleglobalnetwork.talatnoi.rv.adapter.RV_Adapter_Photo_List
 import com.sungkunn.inam.R
 import com.sungkunn.inam.new_design.activity.NewEditPhotoActivity
 import com.sungkunn.inam.new_design.firestore.PhotoViewModel
@@ -37,6 +25,8 @@ import com.sungkunn.inam.new_design.firestore.ProductViewModel
 import com.sungkunn.inam.new_design.model.PlaceDao
 import com.sungkunn.inam.new_design.model.Product
 import com.sungkunn.inam.new_design.model.ProductDao
+import com.sungkunn.inam.new_design.rv.adapter.RV_Adapter_Photo_Hori_List
+import com.sungkunn.inam.new_design.rv.adapter.Spin_Adapter_Place_List
 
 
 class NewEditProductFragment : Fragment(), Toolbar.OnMenuItemClickListener, View.OnClickListener {

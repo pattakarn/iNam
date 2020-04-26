@@ -14,7 +14,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
-import com.istyleglobalnetwork.talatnoi.rv.adapter.RV_Adapter_Order_List
 import com.sungkunn.inam.R
 import com.sungkunn.inam.new_design.firestore.OrderViewModel
 import com.sungkunn.inam.new_design.firestore.ProductOrderViewModel
@@ -22,6 +21,8 @@ import com.sungkunn.inam.new_design.firestore.ProductViewModel
 import com.sungkunn.inam.new_design.model.OrderDao
 import com.sungkunn.inam.new_design.model.ProductDao
 import com.sungkunn.inam.new_design.model.ProductOrderDao
+import com.sungkunn.inam.new_design.model.ProductPackDao
+import com.sungkunn.inam.new_design.rv.adapter.RV_Adapter_Order_List
 
 class ShowCartFragment : Fragment(), View.OnClickListener {
 
@@ -45,7 +46,7 @@ class ShowCartFragment : Fragment(), View.OnClickListener {
     private var orderItem: OrderDao? = null
     private var productOrderItem: ProductOrderDao? = null
     private var productOrderList: ArrayList<ProductOrderDao>? = null
-    private var productList: ArrayList<ProductDao>? = null
+    private var productList: ArrayList<ProductPackDao>? = null
     private lateinit var adapter: RV_Adapter_Order_List
     private lateinit var auth: FirebaseAuth
     var currentUser: FirebaseUser? = null
@@ -82,7 +83,7 @@ class ShowCartFragment : Fragment(), View.OnClickListener {
                 productOrderList = it
 
 
-                productVM!!.getProductByOrder(it!!).observe(this, Observer {
+                productVM!!.getProductPackByOrder(it!!).observe(this, Observer {
                     productList = it
 
                     adapter = RV_Adapter_Order_List(productOrderList!!, productList!!, fragmentManager!!, productOrderVM!!)

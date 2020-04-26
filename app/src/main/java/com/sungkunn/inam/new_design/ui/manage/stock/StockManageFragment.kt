@@ -9,6 +9,8 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.Toolbar
+import androidx.core.content.ContextCompat
+import androidx.core.graphics.drawable.toDrawable
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -16,12 +18,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
-import com.istyleglobalnetwork.talatnoi.rv.adapter.RV_Adapter_Stock_List
 import com.sungkunn.inam.R
 import com.sungkunn.inam.new_design.firestore.StockLogViewModel
 import com.sungkunn.inam.new_design.firestore.StockViewModel
 import com.sungkunn.inam.new_design.firestore.UserViewModel
 import com.sungkunn.inam.new_design.model.*
+import com.sungkunn.inam.new_design.rv.adapter.RV_Adapter_Stock_List
 
 
 class StockManageFragment : Fragment(), View.OnClickListener, Toolbar.OnMenuItemClickListener {
@@ -203,8 +205,8 @@ class StockManageFragment : Fragment(), View.OnClickListener, Toolbar.OnMenuItem
                 dialog.show()
                 val positiveButton: Button = dialog.getButton(AlertDialog.BUTTON_POSITIVE)
                 val negativeButton: Button = dialog.getButton(AlertDialog.BUTTON_NEGATIVE)
-                positiveButton.setTextColor(Color.BLACK)
-                negativeButton.setTextColor(Color.BLACK)
+                positiveButton.setTextColor(ContextCompat.getColor(inflater!!.context, R.color.colorSecondary))
+                negativeButton.setTextColor(ContextCompat.getColor(inflater!!.context, R.color.colorSecondary))
             }
         }
         return true

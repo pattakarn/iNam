@@ -15,6 +15,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -22,15 +24,17 @@ import com.sungkunn.inam.R
 import com.sungkunn.inam.new_design.activity.ShowCartActivity
 import com.sungkunn.inam.new_design.activity.ShowPlaceActivity
 import com.sungkunn.inam.new_design.firestore.OrderViewModel
+import com.sungkunn.inam.new_design.firestore.PhotoViewModel
 import com.sungkunn.inam.new_design.firestore.PlaceViewModel
 import com.sungkunn.inam.new_design.firestore.ProductOrderViewModel
 import com.sungkunn.inam.new_design.model.*
+import com.sungkunn.inam.new_design.rv.adapter.RV_Adapter_Photo_Show_Hori_List
 
 
 class ShowProductFragment : Fragment(), View.OnClickListener, Toolbar.OnMenuItemClickListener {
 
     companion object {
-        fun newInstance(productItem: ProductDao?) = ShowProductFragment().apply {
+        fun newInstance(productItem: ProductPackDao?) = ShowProductFragment().apply {
             arguments = Bundle().apply {
                 putParcelable("item", productItem)
             }
@@ -46,11 +50,12 @@ class ShowProductFragment : Fragment(), View.OnClickListener, Toolbar.OnMenuItem
         currentUser = auth.currentUser
     }
 
-    private var placeVM: PlaceViewModel? = null
-    private var orderVM: OrderViewModel? = null
-    private var productOrderVM: ProductOrderViewModel? = null
-    private var productItem: ProductDao? = null
-    private var placeItem: PlaceDao? = null
+    private lateinit var placeVM: PlaceViewModel
+    private lateinit var orderVM: OrderViewModel
+    private lateinit var photoVM: PhotoViewModel
+    private lateinit var productOrderVM: ProductOrderViewModel
+    private var productItem: ProductPackDao? = null
+    private var placeItem: PlacePackDao? = null
     private var productOrderList: ArrayList<ProductOrderDao>? = null
     private var orderItem: ArrayList<OrderDao> = ArrayList()
     var lifecycleOwner: LifecycleOwner? = null
@@ -63,7 +68,9 @@ class ShowProductFragment : Fragment(), View.OnClickListener, Toolbar.OnMenuItem
 
     var toolbar: Toolbar? = null
     var tvToolbar: TextView? = null
-    var iv: ImageView? = null
+
+    // ----------------- Photo -----------------
+    var rvPhoto: RecyclerView? = null
 
     // -------------------- Row Price --------------------
     var tvPrice: TextView? = null
@@ -88,6 +95,8 @@ class ShowProductFragment : Fragment(), View.OnClickListener, Toolbar.OnMenuItem
             ViewModelProviders.of(this).get(OrderViewModel::class.java)
         productOrderVM =
             ViewModelProviders.of(this).get(ProductOrderViewModel::class.java)
+        photoVM =
+            ViewModelProviders.of(this).get(PhotoViewModel::class.java)
         var rootView = inflater.inflate(R.layout.show_product_fragment, container, false)
         this.inflater = inflater
         init(rootView)
@@ -98,15 +107,36 @@ class ShowProductFragment : Fragment(), View.OnClickListener, Toolbar.OnMenuItem
         toolbar!!.setOnMenuItemClickListener(this)
         tvToolbar!!.setText(productItem!!.data.name)
 
-        Glide.with(inflater.context)
-            .load(productItem!!.data.image_url)
-            .placeholder(R.drawable.inam_logo)
-            .into(iv!!)
+//        photoVM.getPhotoByItem(productItem!!.id).observe(this, Observer {
+//            if (it != null) {
+//                var adapterPhoto = RV_Adapter_Photo_Show_Hori_List(it, fragmentManager!!, photoVM)
+//                val llm = LinearLayoutManager(
+//                    inflater!!.context,
+//                    LinearLayoutManager.HORIZONTAL,
+//                    false
+//                )
+//                rvPhoto!!.setLayoutManager(llm)
+//                rvPhoto!!.setAdapter(adapterPhoto)
+//
+//            }
+//
+//        })
+
+        if (productItem!!.photo != null) {
+            var adapterPhoto = RV_Adapter_Photo_Show_Hori_List(productItem!!.photo, fragmentManager!!, photoVM)
+            val llm = LinearLayoutManager(
+                inflater!!.context,
+                LinearLayoutManager.HORIZONTAL,
+                false
+            )
+            rvPhoto!!.setLayoutManager(llm)
+            rvPhoto!!.setAdapter(adapterPhoto)
+        }
 
         tvPrice!!.setText("฿" + productItem!!.data.price)
 
         tvNameProduct!!.setText(productItem!!.data.name)
-        placeVM!!.getPlace(productItem!!.data.place_id!!).observe(this, Observer {
+        placeVM!!.getPlacePack(productItem!!.data.place_id!!).observe(this, Observer {
             placeItem = it
             tvNamePlace!!.setText(it.data.name)
         })
@@ -132,7 +162,9 @@ class ShowProductFragment : Fragment(), View.OnClickListener, Toolbar.OnMenuItem
     fun init(rootView: View) {
         toolbar = rootView.findViewById(R.id.toolbar)
         tvToolbar = rootView.findViewById(R.id.toolbar_title)
-        iv = rootView.findViewById(R.id.iv)
+
+        // ----------------- Photo -----------------
+        rvPhoto = rootView.findViewById(R.id.photo_rv)
 
         // -------------------- Row Price --------------------
         tvPrice = rootView.findViewById(R.id.tv_price_price)

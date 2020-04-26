@@ -4,9 +4,12 @@
     <color name="colorPrimaryDark">#004ba0</color>
     <color name="colorPrimaryLight">#63a4ff</color>
 
-    <color name="colorSecondary">#4caf50</color>
-    <color name="colorSecondaryDark">#087f23</color>
-    <color name="colorSecondaryLight">#80e27e</color>
+<!--    <color name="colorSecondary">#4caf50</color>-->
+<!--    <color name="colorSecondaryDark">#087f23</color>-->
+<!--    <color name="colorSecondaryLight">#80e27e</color>-->
+    <color name="colorSecondary">#1976d2</color>
+    <color name="colorSecondaryDark">#004ba0</color>
+    <color name="colorSecondaryLight">#63a4ff</color>
 
     <color name="black">#000000</color>
     <color name="white">#FFFFFF</color>
@@ -14,8 +17,15 @@
 
     <color name="colorPrimaryNew">#fafafa</color>
     <color name="colorPrimaryDarkNew">#c7c7c7</color>
+    <color name="colorPrimaryLightNew">#e0e0e0</color>
+
+    <color name="colorTextPrimaryNew">#000000</color>
+    <color name="colorTextSecondary">#FFFFFF</color>
+
+    <color name="colorTextPrice">#D81B60</color>
+    <color name="colorChip">#1976d2</color>
+
     <color name="colorAccentNew">#D81B60</color>
-    <color name="bg">#e0e0e0</color>
     <color name="colorText">#000000</color>
     <color name="chipTravel">#42a5f5</color>
     <color name="chipHostel">#66bb6a</color>

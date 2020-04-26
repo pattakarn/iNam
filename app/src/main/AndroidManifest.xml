@@ -37,11 +37,9 @@
                 android:name=".new_design.activity.NewMainActivity"
                 android:label="@string/title_activity_new_main" />
         <activity
-                android:name=".activity.PhotoItemActivity"
-                android:screenOrientation="portrait" />
+                android:name="com.sungkunn.inam.old_ver.activity.PhotoItemActivity" />
         <activity
-                android:name=".activity.UIItemActivity"
-                android:screenOrientation="portrait" />
+                android:name="com.sungkunn.inam.old_ver.activity.UIItemActivity" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -55,50 +53,25 @@
                 android:value="@string/google_maps_key" />
 
         <activity
-                android:name=".example.MapsTestActivity"
-                android:label="@string/title_activity_maps_test"
-                android:screenOrientation="portrait" />
+                android:name="com.sungkunn.inam.old_ver.example.MapsTestActivity"
+                android:label="@string/title_activity_maps_test" />
         <activity
-                android:name=".example.HomeActivity"
-                android:screenOrientation="portrait" />
+                android:name="com.sungkunn.inam.old_ver.example.HomeActivity" />
         <activity
-                android:name=".activity.AccountActivity"
-                android:screenOrientation="portrait" />
+                android:name="com.sungkunn.inam.old_ver.activity.HomeNewActivity"
+                android:label="@string/title_activity_home_new" />
         <activity
-                android:name=".activity.HomeNewActivity"
-                android:label="@string/title_activity_home_new"
-                android:screenOrientation="portrait" />
+                android:name="com.sungkunn.inam.old_ver.example.HomeRegionActivity" />
         <activity
-                android:name=".example.HomeRegionActivity"
-                android:screenOrientation="portrait" />
+                android:name="com.sungkunn.inam.old_ver.activity.ManageActivity" />
         <activity
-                android:name=".example.TestSettingsActivity"
-                android:label="@string/title_activity_test_settings"
-                android:screenOrientation="portrait" />
-        <activity
-                android:name=".activity.ManageActivity"
-                android:screenOrientation="portrait" />
-        <activity
-                android:name=".example.Home"
-                android:label="@string/title_activity_home"
-                android:screenOrientation="portrait"
-                android:theme="@style/AppTheme.NoActionBar.NoActionBar" />
-        <activity
-                android:name=".activity.SplashScreen"
-                android:screenOrientation="portrait">
+                android:name="com.sungkunn.inam.new_design.activity.SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-                android:name=".example.Temp"
-                android:label="@string/title_activity_temp"
-                android:screenOrientation="portrait" />
-        <activity
-                android:name=".example.MainActivity"
-                android:screenOrientation="portrait" />
     </application>
 
 </manifest>

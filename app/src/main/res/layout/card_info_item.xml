@@ -7,7 +7,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         style="@style/CardViewItem"
-        app:cardBackgroundColor="@color/bg"
+        app:cardBackgroundColor="@color/colorPrimaryLightNew"
         android:elevation="@dimen/row_show_elevation"
         card_view:cardCornerRadius="10dp"
         card_view:cardUseCompatPadding="true">

@@ -76,6 +76,46 @@ class PhotoViewModel : ViewModel() {
         return photo
     }
 
+    fun getPhotoByItemOne(itemId: String): LiveData<ArrayList<PhotoDao>> {
+        firebaseRepository.getPhotoByItemOne(itemId).addSnapshotListener(EventListener<QuerySnapshot> { value, e ->
+            if (e != null) {
+                Log.w(TAG, "Listen failed.", e)
+                photo.value = null
+                return@EventListener
+            }
+
+            var itemList : ArrayList<PhotoDao> = ArrayList()
+            for (doc in value!!) {
+                var item = doc.toObject(Photo::class.java)
+
+                itemList.add(PhotoDao(doc.id, item))
+            }
+            photo.value = itemList
+        })
+
+        return photo
+    }
+
+    fun getPhotoByItemList(itemList: ArrayList<String>): LiveData<ArrayList<PhotoDao>> {
+        firebaseRepository.getPhotoByItemList(itemList).addSnapshotListener(EventListener<QuerySnapshot> { value, e ->
+            if (e != null) {
+                Log.w(TAG, "Listen failed.", e)
+                photo.value = null
+                return@EventListener
+            }
+
+            var itemList : ArrayList<PhotoDao> = ArrayList()
+            for (doc in value!!) {
+                var item = doc.toObject(Photo::class.java)
+
+                itemList.add(PhotoDao(doc.id, item))
+            }
+            photo.value = itemList
+        })
+
+        return photo
+    }
+
     fun getPhoto(photoId: String): LiveData<PhotoDao> {
         firebaseRepository.getPhoto(photoId).addSnapshotListener { value, e ->
             if (e != null) {

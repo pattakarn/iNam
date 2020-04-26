@@ -1,4 +1,4 @@
-package com.istyleglobalnetwork.talatnoi.rv.adapter
+package com.sungkunn.inam.new_design.rv.adapter
 
 import android.content.Intent
 import android.view.LayoutInflater
@@ -9,7 +9,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.sungkunn.inam.R
 import com.sungkunn.inam.new_design.activity.ShowPlaceActivity
+import com.sungkunn.inam.new_design.model.PhotoDao
 import com.sungkunn.inam.new_design.model.PlaceDao
+import com.sungkunn.inam.new_design.model.PlacePackDao
 import com.sungkunn.inam.new_design.rv.viewholder.ViewHolderShowPlace
 import java.util.*
 
@@ -17,13 +19,13 @@ import java.util.*
 class RV_Adapter_Place_Hori_List() :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    var items: ArrayList<PlaceDao>? = null
+    var items: ArrayList<PlacePackDao>? = null
     var fragmentManager: FragmentManager? = null
-    var arrList = ArrayList<PlaceDao>()
+    var arrList = ArrayList<PlacePackDao>()
     lateinit var inflater: LayoutInflater
 //    var listField : Array<String> = inflater.context.resources.getStringArray(R.array.information)
 
-    constructor(items: ArrayList<PlaceDao>, fragmentManager: FragmentManager) : this() {
+    constructor(items: ArrayList<PlacePackDao>, fragmentManager: FragmentManager) : this() {
         this.items = items
         this.arrList!!.addAll(items)
         this.fragmentManager = fragmentManager
@@ -32,7 +34,7 @@ class RV_Adapter_Place_Hori_List() :
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         inflater = LayoutInflater.from(parent.getContext())
 //        arrList = items
-        var itemView = inflater.inflate(R.layout.card_show_hori, parent, false)
+        var itemView = inflater.inflate(R.layout.card_show_item_hori, parent, false)
         return ViewHolderShowPlace(itemView)
     }
 
@@ -50,10 +52,17 @@ class RV_Adapter_Place_Hori_List() :
 //        vh1.iv.setImageResource(items!!.get(position).image)
         vh1.tv_name.text = items!!.get(position).data.name
         vh1.chip_type.text = items!!.get(position).data.type!!.capitalize()
-        Glide.with(inflater.context)
-            .load(items!!.get(position).data.image_url)
-            .placeholder(R.drawable.inam_logo)
-            .into(vh1.iv!!)
+//        Glide.with(inflater.context)
+//            .load(items!!.get(position).data.image_url)
+//            .placeholder(R.drawable.inam_logo)
+//            .into(vh1.iv!!)
+        var temp: List<PhotoDao> = items!!.get(position).photo.filter { it.data.item_id.equals(items!!.get(position).id) }
+        if (temp.size != 0){
+            Glide.with(inflater.context)
+                .load(temp.get(0).data.image_url)
+                .placeholder(R.drawable.inam_logo)
+                .into(vh1.iv!!)
+        }
 //        when(items!!.get(position).type){
 //            "travel" -> vh1.chip_type.chipBackgroundColor = ColorStateList.valueOf(ContextCompat.getColor(inflater.context, R.color.chipTravel))
 //            "hostel" -> vh1.chip_type.chipBackgroundColor = ColorStateList.valueOf(ContextCompat.getColor(inflater.context, R.color.chipHostel))

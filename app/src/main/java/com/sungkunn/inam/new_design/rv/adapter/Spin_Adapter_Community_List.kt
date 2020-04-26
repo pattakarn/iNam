@@ -1,3 +1,4 @@
+package com.sungkunn.inam.new_design.rv.adapter
 
 import android.content.Context
 import android.view.LayoutInflater

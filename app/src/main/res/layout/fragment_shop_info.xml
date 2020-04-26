@@ -5,7 +5,7 @@
               android:layout_height="match_parent"
               android:orientation="vertical"
               style="@style/LinearLayoutDivider"
-              tools:context=".fragment.ui.shop.ShopInfoFragment">
+              tools:context=".old_ver.fragment.ui.shop.ShopInfoFragment">
 
     <include layout="@layout/row_info_item"/>
 

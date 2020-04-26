@@ -12,16 +12,25 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.chip.ChipGroup
-import com.istyleglobalnetwork.talatnoi.rv.adapter.RV_Adapter_Community_List
 import com.sungkunn.inam.R
 import com.sungkunn.inam.new_design.firestore.CommunityViewModel
+import com.sungkunn.inam.new_design.firestore.PhotoViewModel
+import com.sungkunn.inam.new_design.model.Community
+import com.sungkunn.inam.new_design.model.CommunityDao
+import com.sungkunn.inam.new_design.model.PhotoDao
+import com.sungkunn.inam.new_design.rv.adapter.RV_Adapter_Community_List
+import com.sungkunn.inam.new_design.rv.adapter.RV_Adapter_Community_Pack_List
 
 class HomeFragment : Fragment(), SearchView.OnQueryTextListener,
     ChipGroup.OnCheckedChangeListener {
 
 //    private lateinit var homeViewModel: HomeViewModel
     private lateinit var communityVM: CommunityViewModel
+    private lateinit var photoVM: PhotoViewModel
     private lateinit var adapter: RV_Adapter_Community_List
+
+    private var communityList: ArrayList<CommunityDao>? = null
+    private var photoList: ArrayList<PhotoDao>? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -32,6 +41,7 @@ class HomeFragment : Fragment(), SearchView.OnQueryTextListener,
 //            ViewModelProviders.of(this).get(HomeViewModel::class.java)
         communityVM =
             ViewModelProviders.of(this).get(CommunityViewModel::class.java)
+        photoVM = ViewModelProviders.of(this).get(PhotoViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_home, container, false)
         val rv: RecyclerView = root.findViewById(R.id.rv)
         val sv: SearchView = root.findViewById(R.id.search)
@@ -46,13 +56,36 @@ class HomeFragment : Fragment(), SearchView.OnQueryTextListener,
 //            rv!!.setLayoutManager(llm)
 //            rv!!.setAdapter(adapter)
 //        })
-        communityVM.getCommunityAll().observe(this, Observer {
-            adapter = RV_Adapter_Community_List(it, fragmentManager!!)
+//        communityVM.getCommunityAll().observe(this, Observer {
+//            communityList = it
+//
+//            var strList: ArrayList<String> = ArrayList()
+//            for (temp in it){
+//                strList.add(temp.id)
+//            }
+//            photoVM.getPhotoByItemList(strList).observe(this, Observer {
+//                photoList = it
+//
+//                adapter = RV_Adapter_Community_Pack_List(communityList!!, photoList!!, fragmentManager!!)
+//                val llm = LinearLayoutManager(inflater!!.context)
+//
+//                rv!!.setLayoutManager(llm)
+//                rv!!.setAdapter(adapter)
+//
+//            })
+//
+//        })
+
+        communityVM.getCommunityPackAll().observe(this, Observer {
+
+            var adapter = RV_Adapter_Community_Pack_List(it, fragmentManager!!)
             val llm = LinearLayoutManager(inflater!!.context)
 
             rv!!.setLayoutManager(llm)
             rv!!.setAdapter(adapter)
+
         })
+
 
         chip_group.setOnCheckedChangeListener(this)
 

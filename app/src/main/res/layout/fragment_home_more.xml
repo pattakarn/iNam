@@ -20,7 +20,7 @@
                     app:layout_collapseMode="pin"
                     app:popupTheme="@style/AppTheme.NoActionBar.PopupOverlay"
                     app:title="More"
-                    app:titleTextColor="@color/black" />
+                    app:titleTextColor="@color/colorTextPrimaryNew" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -45,7 +45,7 @@
                         android:layout_height="wrap_content"
                         android:elevation="8dp"
                         card_view:cardCornerRadius="10dp"
-                        app:cardBackgroundColor="@color/bg"
+                        app:cardBackgroundColor="@color/colorPrimaryLightNew"
                         android:layout_margin="4dp"
                         card_view:cardUseCompatPadding="true">
 
@@ -69,7 +69,7 @@
 
                             <TextView
                                     android:id="@+id/tv_username"
-                                    android:textColor="@color/black"
+                                    android:textColor="@color/colorTextPrimaryNew"
                                     android:textSize="20sp"
                                     android:textStyle="bold"
                                     android:layout_gravity="center"
@@ -80,14 +80,15 @@
                             <TextView
                                     android:id="@+id/tv_email"
                                     android:textSize="16sp"
-                                    android:textColor="@color/black"
+                                    android:textColor="@color/colorTextPrimaryNew"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="Email"/>
 
                             <com.google.android.material.button.MaterialButton
                                     android:id="@+id/btn_signout"
-                                    android:backgroundTint="@color/colorPrimary"
+                                    android:backgroundTint="@color/colorSecondary"
+                                    android:textColor="@color/colorTextSecondary"
                                     android:layout_width="200dp"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center"
@@ -99,7 +100,8 @@
 
                         <com.google.android.material.button.MaterialButton
                                 android:id="@+id/btn_login"
-                                android:backgroundTint="@color/colorPrimary"
+                                android:backgroundTint="@color/colorSecondary"
+                                android:textColor="@color/colorTextSecondary"
                                 android:layout_width="200dp"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"

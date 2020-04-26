@@ -20,7 +20,7 @@
                 app:layout_collapseMode="pin"
                 app:popupTheme="@style/AppTheme.NoActionBar.PopupOverlay"
                 app:title="Photo"
-                app:titleTextColor="@color/black" />
+                app:titleTextColor="@color/colorTextPrimaryNew" />
 
     </com.google.android.material.appbar.AppBarLayout>
 

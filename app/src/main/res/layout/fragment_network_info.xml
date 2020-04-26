@@ -5,7 +5,7 @@
               android:layout_height="match_parent"
               android:orientation="vertical"
               style="@style/LinearLayoutDivider"
-              tools:context=".fragment.ui.network.NetworkInfoFragment">
+              tools:context=".old_ver.fragment.ui.network.NetworkInfoFragment">
 
     <include layout="@layout/row_info_item"/>
 

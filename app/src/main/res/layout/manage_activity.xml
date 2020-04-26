@@ -5,4 +5,4 @@
         android:id="@+id/container_manage"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".activity.ManageActivity"/>
+        tools:context=".old_ver.activity.ManageActivity"/>

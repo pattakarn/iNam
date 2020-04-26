@@ -8,32 +8,29 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.Toolbar
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
-import com.istyleglobalnetwork.talatnoi.rv.adapter.RV_Adapter_Comment_List
-import com.istyleglobalnetwork.talatnoi.rv.adapter.RV_Adapter_Place_Hori_List
-import com.istyleglobalnetwork.talatnoi.rv.adapter.RV_Adapter_Product_Hori_List
 import com.sungkunn.inam.R
-import com.sungkunn.inam.new_design.firestore.CommentViewModel
-import com.sungkunn.inam.new_design.firestore.PlaceViewModel
-import com.sungkunn.inam.new_design.firestore.ProductViewModel
-import com.sungkunn.inam.new_design.firestore.UserViewModel
-import com.sungkunn.inam.new_design.model.Comment
-import com.sungkunn.inam.new_design.model.CommentDao
-import com.sungkunn.inam.new_design.model.CommunityDao
-import com.sungkunn.inam.new_design.model.UserDao
+import com.sungkunn.inam.new_design.firestore.*
+import com.sungkunn.inam.new_design.model.*
+import com.sungkunn.inam.new_design.rv.adapter.RV_Adapter_Comment_List
+import com.sungkunn.inam.new_design.rv.adapter.RV_Adapter_Photo_Show_Hori_List
+import com.sungkunn.inam.new_design.rv.adapter.RV_Adapter_Place_Hori_List
+import com.sungkunn.inam.new_design.rv.adapter.RV_Adapter_Product_Hori_List
 
 class ShowCommunityFragment : Fragment(), View.OnClickListener {
 
     companion object {
-        fun newInstance(communityItem: CommunityDao?) = ShowCommunityFragment().apply {
+        fun newInstance(communityItem: CommunityPackDao?) = ShowCommunityFragment().apply {
             arguments = Bundle().apply {
                 putParcelable("item", communityItem)
             }
@@ -52,8 +49,9 @@ class ShowCommunityFragment : Fragment(), View.OnClickListener {
     private lateinit var placeVM: PlaceViewModel
     private lateinit var productVM: ProductViewModel
     private lateinit var commentVM: CommentViewModel
+    private lateinit var photoVM: PhotoViewModel
     private var userVM: UserViewModel? = null
-    private var communityItem: CommunityDao? = null
+    private var communityItem: CommunityPackDao? = null
     private var commentList: ArrayList<CommentDao>? = null
     private var userList: ArrayList<UserDao>? = null
     var inflater: LayoutInflater? = null
@@ -63,13 +61,15 @@ class ShowCommunityFragment : Fragment(), View.OnClickListener {
 
     var toolbar: Toolbar? = null
     var tvToolbar: TextView? = null
-    var iv: ImageView? = null
+
 
     var rvPlace: RecyclerView? = null
     var rvProduct: RecyclerView? = null
     var adapt_place: RV_Adapter_Place_Hori_List? = null
     var adapt_product: RV_Adapter_Product_Hori_List? = null
 
+    // ----------------- Photo -----------------
+    var rvPhoto: RecyclerView? = null
 
     // ----------------- Rating -----------------
     var rb: RatingBar? = null
@@ -96,6 +96,8 @@ class ShowCommunityFragment : Fragment(), View.OnClickListener {
             ViewModelProviders.of(this).get(CommentViewModel::class.java)
         userVM =
             ViewModelProviders.of(this).get(UserViewModel::class.java)
+        photoVM =
+            ViewModelProviders.of(this).get(PhotoViewModel::class.java)
         var rootView = inflater.inflate(R.layout.show_community_fragment, container, false)
         init(rootView)
 
@@ -103,12 +105,33 @@ class ShowCommunityFragment : Fragment(), View.OnClickListener {
         toolbar!!.setNavigationOnClickListener(this)
         tvToolbar!!.setText(communityItem!!.data.community_name)
 
-        Glide.with(inflater.context)
-            .load(communityItem!!.data.image_url)
-            .placeholder(R.drawable.inam_logo)
-            .into(iv!!)
+//        photoVM.getPhotoByItem(communityItem!!.id).observe(this, Observer {
+//            if (it != null) {
+//                var adapterPhoto = RV_Adapter_Photo_Show_Hori_List(it, fragmentManager!!, photoVM)
+//                val llm = LinearLayoutManager(
+//                    inflater!!.context,
+//                    LinearLayoutManager.HORIZONTAL,
+//                    false
+//                )
+//                rvPhoto!!.setLayoutManager(llm)
+//                rvPhoto!!.setAdapter(adapterPhoto)
+//
+//            }
+//
+//        })
+        if (communityItem!!.photo != null) {
+            var adapterPhoto = RV_Adapter_Photo_Show_Hori_List(communityItem!!.photo, fragmentManager!!, photoVM)
+            val llm = LinearLayoutManager(
+                inflater!!.context,
+                LinearLayoutManager.HORIZONTAL,
+                false
+            )
+            rvPhoto!!.setLayoutManager(llm)
+            rvPhoto!!.setAdapter(adapterPhoto)
 
-        placeVM.getPlaceAll().observe(this, Observer {
+        }
+
+        placeVM.getPlacePackAll().observe(this, Observer {
             adapt_place = RV_Adapter_Place_Hori_List(it, fragmentManager!!)
             val llm = LinearLayoutManager(inflater!!.context, LinearLayoutManager.HORIZONTAL, false)
 
@@ -116,7 +139,7 @@ class ShowCommunityFragment : Fragment(), View.OnClickListener {
             rvPlace!!.setAdapter(adapt_place)
         })
 
-        productVM.getProductAll().observe(this, Observer {
+        productVM.getProductPackAll().observe(this, Observer {
             adapt_product = RV_Adapter_Product_Hori_List(it, fragmentManager!!)
             val llm = LinearLayoutManager(inflater!!.context, LinearLayoutManager.HORIZONTAL, false)
 
@@ -129,7 +152,8 @@ class ShowCommunityFragment : Fragment(), View.OnClickListener {
 
             userVM!!.getUserByComment(commentList!!).observe(this, Observer {
                 userList = it
-                var adapt_product = RV_Adapter_Comment_List(commentList!!, userList!!, fragmentManager!!)
+                var adapt_product =
+                    RV_Adapter_Comment_List(commentList!!, userList!!, fragmentManager!!)
                 val llm = LinearLayoutManager(inflater!!.context)
 
                 rvComment!!.setLayoutManager(llm)
@@ -160,16 +184,15 @@ class ShowCommunityFragment : Fragment(), View.OnClickListener {
                 }
 
 
-
-            var countAll = count[0] + count[1] + count[2] + count[3] + count[4]
-            var mean: Float = sum / countAll
-            tv5Star!!.setText("5 stars : " + count[4])
-            tv4Star!!.setText("4 stars : " + count[3])
-            tv3Star!!.setText("3 stars : " + count[2])
-            tv2Star!!.setText("2 stars : " + count[1])
-            tv1Star!!.setText("1 stars : " + count[0])
-            tvRatingSum!!.setText(countAll.toString() + " reviews")
-            tvRatingMean!!.setText(mean.toInt().toString() + " out of 5")
+                var countAll = count[0] + count[1] + count[2] + count[3] + count[4]
+                var mean: Float = sum / countAll
+                tv5Star!!.setText("5 stars : " + count[4])
+                tv4Star!!.setText("4 stars : " + count[3])
+                tv3Star!!.setText("3 stars : " + count[2])
+                tv2Star!!.setText("2 stars : " + count[1])
+                tv1Star!!.setText("1 stars : " + count[0])
+                tvRatingSum!!.setText(countAll.toString() + " reviews")
+                tvRatingMean!!.setText(mean.toInt().toString() + " out of 5")
             })
         })
 
@@ -181,10 +204,12 @@ class ShowCommunityFragment : Fragment(), View.OnClickListener {
     fun init(rootView: View) {
         toolbar = rootView.findViewById(R.id.toolbar)
         tvToolbar = rootView.findViewById(R.id.toolbar_title)
-        iv = rootView.findViewById(R.id.iv)
 
         rvPlace = rootView.findViewById(R.id.rv_place)
         rvProduct = rootView.findViewById(R.id.rv_product)
+
+        // ----------------- Photo -----------------
+        rvPhoto = rootView.findViewById(R.id.photo_rv)
 
         // ----------------- Rating -----------------
         rb = rootView.findViewById(R.id.rating_bar)
@@ -236,6 +261,20 @@ class ShowCommunityFragment : Fragment(), View.OnClickListener {
                     }
                 val dialog: AlertDialog = builder.create()
                 dialog.show()
+                val positiveButton: Button = dialog.getButton(AlertDialog.BUTTON_POSITIVE)
+                val negativeButton: Button = dialog.getButton(AlertDialog.BUTTON_NEGATIVE)
+                positiveButton.setTextColor(
+                    ContextCompat.getColor(
+                        inflater!!.context,
+                        R.color.colorSecondary
+                    )
+                )
+                negativeButton.setTextColor(
+                    ContextCompat.getColor(
+                        inflater!!.context,
+                        R.color.colorSecondary
+                    )
+                )
             }
             else -> {
                 if (fragmentManager!!.backStackEntryCount > 0) {

@@ -6,4 +6,4 @@
         android:id="@+id/rv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".fragment.ui.shop.ShopProductFragment"/>
+        tools:context=".old_ver.fragment.ui.shop.ShopProductFragment"/>

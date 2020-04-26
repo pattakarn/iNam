@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.sungkunn.inam.R
 import com.sungkunn.inam.new_design.model.ProductDao
+import com.sungkunn.inam.new_design.model.ProductPackDao
 import com.sungkunn.inam.new_design.ui.show.ShowProductFragment
 
 class ShowProductActivity : AppCompatActivity() {
@@ -13,7 +14,7 @@ class ShowProductActivity : AppCompatActivity() {
         setContentView(R.layout.show_product_activity)
 
         var bundle = intent.extras
-        var item: ProductDao = bundle.getParcelable("item")
+        var item: ProductPackDao = bundle.getParcelable("item")
 
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()

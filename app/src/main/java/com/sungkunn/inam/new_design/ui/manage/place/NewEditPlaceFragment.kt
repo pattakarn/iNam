@@ -1,6 +1,5 @@
 package com.sungkunn.inam.new_design.ui.manage.place
 
-import Spin_Adapter_Community_List
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -22,7 +21,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.firestore.FirebaseFirestore
-import com.istyleglobalnetwork.talatnoi.rv.adapter.RV_Adapter_Photo_Hori_List
 import com.sungkunn.inam.R
 import com.sungkunn.inam.new_design.activity.NewEditPhotoActivity
 import com.sungkunn.inam.new_design.firestore.CommunityViewModel
@@ -31,6 +29,8 @@ import com.sungkunn.inam.new_design.firestore.PlaceViewModel
 import com.sungkunn.inam.new_design.model.CommunityDao
 import com.sungkunn.inam.new_design.model.Place
 import com.sungkunn.inam.new_design.model.PlaceDao
+import com.sungkunn.inam.new_design.rv.adapter.RV_Adapter_Photo_Hori_List
+import com.sungkunn.inam.new_design.rv.adapter.Spin_Adapter_Community_List
 
 class NewEditPlaceFragment : Fragment(), Toolbar.OnMenuItemClickListener, View.OnClickListener {
 

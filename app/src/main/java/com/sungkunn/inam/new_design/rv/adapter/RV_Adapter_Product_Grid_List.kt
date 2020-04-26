@@ -1,4 +1,4 @@
-package com.istyleglobalnetwork.talatnoi.rv.adapter
+package com.sungkunn.inam.new_design.rv.adapter
 
 import android.content.Intent
 import android.view.LayoutInflater
@@ -32,7 +32,7 @@ class RV_Adapter_Product_Grid_List() :
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         inflater = LayoutInflater.from(parent.getContext())
 //        arrList = items
-        var itemView = inflater.inflate(R.layout.card_show_grid, parent, false)
+        var itemView = inflater.inflate(R.layout.card_show_item_grid, parent, false)
         return ViewHolderShowPlace(itemView)
     }
 

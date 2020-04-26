@@ -7,22 +7,17 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-    <View
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/row_show_border"
-            android:background="@color/bg"/>
-
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/row_show_margin">
+            android:layout_margin="@dimen/row_show_view_margin">
 
         <TextView
                 android:id="@+id/tv_price_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Text"
-                android:textColor="@android:color/holo_red_light"
+                android:textColor="@color/colorTextPrice"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -49,10 +44,5 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <View
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/row_show_border"
-            android:background="@color/bg"/>
 
 </LinearLayout>

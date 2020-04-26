@@ -17,16 +17,14 @@ import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.gms.common.internal.Constants
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
-import com.istyleglobalnetwork.talatnoi.rv.adapter.RV_Adapter_Photo_List
 import com.sungkunn.inam.R
-import com.sungkunn.inam.activity.PhotoItemActivity
 import com.sungkunn.inam.new_design.firestore.PhotoViewModel
 import com.sungkunn.inam.new_design.model.Photo
 import com.sungkunn.inam.new_design.model.PhotoDao
+import com.sungkunn.inam.new_design.rv.adapter.RV_Adapter_Photo_Edit_List
 
 class NewEditPhotoFragment : Fragment(), View.OnClickListener, Toolbar.OnMenuItemClickListener {
 
@@ -49,7 +47,7 @@ class NewEditPhotoFragment : Fragment(), View.OnClickListener, Toolbar.OnMenuIte
     }
 
     private lateinit var photoVM: PhotoViewModel
-    private lateinit var adapter: RV_Adapter_Photo_List
+    private lateinit var adapterEdit: RV_Adapter_Photo_Edit_List
     private var arrItem: ArrayList<PhotoDao> = ArrayList()
     private var photoItem: PhotoDao? = null
     private var itemId: String? = ""
@@ -79,11 +77,11 @@ class NewEditPhotoFragment : Fragment(), View.OnClickListener, Toolbar.OnMenuIte
         photoVM.getPhotoByItem(itemId!!).observe(this, Observer {
             if (it != null) {
                 arrItem = it
-                adapter = RV_Adapter_Photo_List(arrItem, fragmentManager!!, photoVM)
+                adapterEdit = RV_Adapter_Photo_Edit_List(arrItem, fragmentManager!!, photoVM)
 //            val llm = LinearLayoutManager(inflater!!.context)
 //            rv!!.setLayoutManager(llm)
                 rv!!.setLayoutManager(GridLayoutManager(inflater.context, 2))
-                rv!!.setAdapter(adapter)
+                rv!!.setAdapter(adapterEdit)
             }
         })
 
