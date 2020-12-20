@@ -8,10 +8,10 @@ import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
-import com.istyleglobalnetwork.istyleapplication.istyle.pack_new.viewholder.VHInfoMenuKT
-import com.istyleglobalnetwork.istyleapplication.istyle.pack_new.viewholder.VHInfoTitleKT
 import com.sungkunn.inam.R
 import com.sungkunn.inam.old_ver.fragment.manage.list.*
+import com.sungkunn.inam.old_ver.viewholder.VHInfoMenuKT
+import com.sungkunn.inam.old_ver.viewholder.VHInfoTitleKT
 
 class RV_Adapter_Manage_Main(var items: Array<String>, var fragmentManager: FragmentManager) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {

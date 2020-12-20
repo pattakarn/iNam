@@ -8,19 +8,14 @@ import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
-import com.istyleglobalnetwork.istyleapplication.istyle.pack_new.viewholder.VHInfoMenuKT
-import com.istyleglobalnetwork.istyleapplication.istyle.pack_new.viewholder.VHInfoTitleKT
+import com.sungkunn.inam.old_ver.viewholder.VHInfoMenuKT
+import com.sungkunn.inam.old_ver.viewholder.VHInfoTitleKT
 import com.sungkunn.inam.R
 import com.sungkunn.inam.new_design.activity.NewAccountActivity
 import com.sungkunn.inam.new_design.activity.NewManageActivity
 import com.sungkunn.inam.new_design.activity.ShowCartActivity
-import com.sungkunn.inam.new_design.activity.ShowPlaceActivity
-import com.sungkunn.inam.new_design.model.CommunityDao
-import com.sungkunn.inam.new_design.model.PlaceDao
 import com.sungkunn.inam.new_design.model.UserDao
-import com.sungkunn.inam.new_design.rv.viewholder.ViewHolderShowPlace
 import java.util.*
 
 

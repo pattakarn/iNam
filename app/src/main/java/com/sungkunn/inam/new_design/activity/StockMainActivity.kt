@@ -1,84 +1,72 @@
-package com.sungkunn.inam.new_design.ui.manage.stock
+package com.sungkunn.inam.new_design.activity
 
-import android.graphics.Color
 import android.os.Bundle
-import android.view.LayoutInflater
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.snackbar.Snackbar
+import com.google.android.material.tabs.TabLayout
+import androidx.viewpager.widget.ViewPager
+import androidx.appcompat.app.AppCompatActivity
+import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.view.ViewGroup
+import android.view.View.inflate
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
-import androidx.core.graphics.drawable.toDrawable
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.sungkunn.inam.R
 import com.sungkunn.inam.new_design.firestore.StockLogViewModel
 import com.sungkunn.inam.new_design.firestore.StockViewModel
-import com.sungkunn.inam.new_design.firestore.UserViewModel
-import com.sungkunn.inam.new_design.model.*
-import com.sungkunn.inam.new_design.rv.adapter.RV_Adapter_Stock_List
+import com.sungkunn.inam.new_design.model.ProductDao
+import com.sungkunn.inam.new_design.model.Stock
+import com.sungkunn.inam.new_design.model.StockDao
+import com.sungkunn.inam.new_design.model.StockLog
+import com.sungkunn.inam.new_design.ui.main.StockPagerAdapter
+import com.sungkunn.inam.new_design.ui.manage.stock.StockManageFragment
 
-
-class StockManageFragment : Fragment(), View.OnClickListener, Toolbar.OnMenuItemClickListener {
-
-    companion object {
-        fun newInstance(productItem: ProductDao?) = StockManageFragment().apply {
-            arguments = Bundle().apply {
-                putParcelable("item", productItem)
-            }
-        }
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            productItem = it.getParcelable("item")
-        }
-        auth = FirebaseAuth.getInstance()
-        currentUser = auth.currentUser
-    }
+class StockMainActivity : AppCompatActivity(), View.OnClickListener,
+    Toolbar.OnMenuItemClickListener {
 
     private lateinit var stockVM: StockViewModel
     private lateinit var stockLogVM: StockLogViewModel
-    private lateinit var userVM: UserViewModel
+
     private var productItem: ProductDao? = null
     private var stockItem: StockDao? = null
-    private var stockLogList: ArrayList<StockLogDao>? = null
-    private var userList: ArrayList<UserDao>? = null
 
-    private lateinit var adapter: RV_Adapter_Stock_List
     private lateinit var auth: FirebaseAuth
     var currentUser: FirebaseUser? = null
-    var inflater: LayoutInflater? = null
-    var TAG = "STOCK FRAGMENT"
 
     var toolbar: Toolbar? = null
     var tvToolbar: TextView? = null
 
+    var viewPager: ViewPager? = null
+    var tabs: TabLayout? = null
     var tvNameProduct: TextView? = null
     var tvQuantity: TextView? = null
-    var rvStockLog: RecyclerView? = null
+    var fab: FloatingActionButton? = null
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        stockVM =
-            ViewModelProviders.of(this).get(StockViewModel::class.java)
-        stockLogVM =
-            ViewModelProviders.of(this).get(StockLogViewModel::class.java)
-        userVM =
-            ViewModelProviders.of(this).get(UserViewModel::class.java)
-        var rootView = inflater.inflate(R.layout.stock_manage_fragment, container, false)
-        this.inflater = inflater
-        initInstances(rootView)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_stock_main)
+
+        var bundle = intent.extras
+
+        if (bundle != null){
+            productItem = bundle.getParcelable("item")
+        }
+        auth = FirebaseAuth.getInstance()
+        currentUser = auth.currentUser
+
+        stockVM = ViewModelProviders.of(this).get(StockViewModel::class.java)
+        stockLogVM = ViewModelProviders.of(this).get(StockLogViewModel::class.java)
+
+        initInstances()
+        val sectionsPagerAdapter = StockPagerAdapter(this, productItem!!, supportFragmentManager)
 
         toolbar!!.inflateMenu(R.menu.menu_new_manage)
         toolbar!!.setNavigationIcon(R.drawable.ic_back)
@@ -96,50 +84,30 @@ class StockManageFragment : Fragment(), View.OnClickListener, Toolbar.OnMenuItem
             }
         })
 
-        stockLogVM!!.getStockLogByItem(productItem!!.id).observe(this, Observer {
-            //                Log.d("Show Cart", "===================== " + it.size)
-            stockLogList = it
+        viewPager!!.adapter = sectionsPagerAdapter
+        tabs!!.setupWithViewPager(viewPager)
 
-
-            userVM!!.getUserByStockLog(stockLogList!!).observe(this, Observer {
-                userList = it
-
-                adapter = RV_Adapter_Stock_List(stockLogList!!, userList!!, fragmentManager!!)
-                val llm = LinearLayoutManager(inflater!!.context)
-                rvStockLog!!.setLayoutManager(llm)
-                rvStockLog!!.setAdapter(adapter)
-
-            })
-
-
-
-        })
-
-        return rootView
+        fab!!.setOnClickListener { view ->
+            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                .setAction("Action", null).show()
+        }
     }
 
-    fun initInstances(rootView: View) {
-        toolbar = rootView.findViewById(R.id.toolbar)
-        tvToolbar = rootView.findViewById(R.id.toolbar_title)
+    fun initInstances() {
+        toolbar = findViewById(R.id.toolbar)
+        tvToolbar = findViewById(R.id.toolbar_title)
 
-        tvNameProduct = rootView.findViewById(R.id.tv_name_product)
-        tvQuantity = rootView.findViewById(R.id.tv_qunatity)
-        rvStockLog = rootView.findViewById(R.id.rv_stocklog)
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        // TODO: Use the ViewModel
+        viewPager = findViewById(R.id.view_pager)
+        tabs = findViewById(R.id.tabs)
+        tvNameProduct = findViewById(R.id.tv_name_product)
+        tvQuantity = findViewById(R.id.tv_qunatity)
+        fab = findViewById(R.id.fab)
     }
 
     override fun onClick(v: View?) {
         when (v) {
             else -> {
-                if (fragmentManager!!.backStackEntryCount > 0) {
-                    fragmentManager!!.popBackStack()
-                } else {
-                    activity!!.finish()
-                }
+                finish()
             }
         }
     }
@@ -149,12 +117,12 @@ class StockManageFragment : Fragment(), View.OnClickListener, Toolbar.OnMenuItem
             R.id.action_add -> {
 //                var intent = Intent(inflater!!.context, NewEditPlaceActivity::class.java)
 //                inflater!!.context.startActivity(intent)
-                var layout_popup: View = inflater!!.inflate(R.layout.dialog_edit_stock, null)
+                var layout_popup: View = inflate(this, R.layout.dialog_edit_stock, null)
                 var radioGroup: RadioGroup = layout_popup.findViewById(R.id.radio_group)
                 var radioAdd: RadioButton = layout_popup.findViewById(R.id.radio_add)
                 var radioReduce: RadioButton = layout_popup.findViewById(R.id.radio_reduce)
                 var etQuantity: EditText = layout_popup.findViewById(R.id.et_quantity)
-                val builder = AlertDialog.Builder(inflater!!.context)
+                val builder = AlertDialog.Builder(this)
                 builder.setView(layout_popup)
                     .setTitle("Edit Stock")
 //                    .setCancelable(false)
@@ -205,11 +173,10 @@ class StockManageFragment : Fragment(), View.OnClickListener, Toolbar.OnMenuItem
                 dialog.show()
                 val positiveButton: Button = dialog.getButton(AlertDialog.BUTTON_POSITIVE)
                 val negativeButton: Button = dialog.getButton(AlertDialog.BUTTON_NEGATIVE)
-                positiveButton.setTextColor(ContextCompat.getColor(inflater!!.context, R.color.colorSecondary))
-                negativeButton.setTextColor(ContextCompat.getColor(inflater!!.context, R.color.colorSecondary))
+                positiveButton.setTextColor(ContextCompat.getColor(this, R.color.colorSecondary))
+                negativeButton.setTextColor(ContextCompat.getColor(this, R.color.colorSecondary))
             }
         }
         return true
     }
-
 }

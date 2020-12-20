@@ -7,11 +7,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
 import com.sungkunn.inam.R
+import com.sungkunn.inam.new_design.activity.StockMainActivity
 import com.sungkunn.inam.new_design.activity.*
-import com.sungkunn.inam.new_design.model.CommunityDao
-import com.sungkunn.inam.new_design.model.PlaceDao
-import com.sungkunn.inam.new_design.model.ProductDao
-import com.sungkunn.inam.new_design.model.UserDao
+import com.sungkunn.inam.new_design.model.*
 import com.sungkunn.inam.new_design.rv.viewholder.ShowManageViewHolder
 import java.util.*
 
@@ -95,8 +93,12 @@ class RV_Adapter_Manage_List() :
                 vh1.ib_stock.visibility = View.VISIBLE
                 vh1.ib_stock.setOnClickListener(object: View.OnClickListener{
                     override fun onClick(v: View?) {
+//                        val intent =
+//                            Intent(inflater.context, StockManageActivity::class.java).apply {
+//                                putExtra("item", temp)
+//                            }
                         val intent =
-                            Intent(inflater.context, StockManageActivity::class.java).apply {
+                            Intent(inflater.context, StockMainActivity::class.java).apply {
                                 putExtra("item", temp)
                             }
                         inflater.context.startActivity(intent)

@@ -6,6 +6,7 @@ import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.sungkunn.inam.new_design.model.Community
 import com.sungkunn.inam.new_design.model.CommunityDao
+import com.sungkunn.inam.new_design.model.OrderDao
 
 class CommunityRepository {
 
@@ -33,7 +34,7 @@ class CommunityRepository {
         return documentReference
     }
 
-    fun deleteCommunity(item: CommunityDao): Task<Void> {
+    fun deleteCommunity(item: OrderDao): Task<Void> {
         var documentReference =  firestoreDB.collection(collectionPath).document(item.id)
         return documentReference.delete()
     }

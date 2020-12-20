@@ -111,6 +111,26 @@ class ProductViewModel : ViewModel() {
         return productItem!!
     }
 
+    fun getProductByList(productList: ArrayList<String>): LiveData<ArrayList<ProductDao>> {
+        firebaseRepository.getProductByList(productList).addSnapshotListener(EventListener<QuerySnapshot> { value, e ->
+            if (e != null) {
+                Log.w(TAG, "Listen failed.", e)
+                product.value = null
+                return@EventListener
+            }
+
+            var itemList : ArrayList<ProductDao> = ArrayList()
+            for (doc in value!!) {
+                var item = doc.toObject(Product::class.java)
+
+                itemList.add(ProductDao(doc.id, item))
+            }
+            product.value = itemList
+        })
+
+        return product
+    }
+
     fun getProductPackAll(): LiveData<ArrayList<ProductPackDao>> {
         firebaseRepository.getProductAll().addSnapshotListener(EventListener<QuerySnapshot> { value, e ->
             if (e != null) {
@@ -264,6 +284,57 @@ class ProductViewModel : ViewModel() {
         return productPack
     }
 
+    fun getProductPackByList(productList: ArrayList<String>): LiveData<ArrayList<ProductPackDao>> {
+        firebaseRepository.getProductByList(productList).addSnapshotListener(EventListener<QuerySnapshot> { value, e ->
+            if (e != null) {
+                Log.w(TAG, "Listen failed.", e)
+                product.value = null
+                return@EventListener
+            }
+
+            var itemList : ArrayList<ProductDao> = ArrayList()
+            var idList : ArrayList<String> = ArrayList()
+            for (doc in value!!) {
+                var item = doc.toObject(Product::class.java)
+
+                itemList.add(ProductDao(doc.id, item))
+                idList.add(doc.id)
+            }
+            product.value = itemList
+
+            PhotoFR.getPhotoByItemList(idList).addSnapshotListener(EventListener<QuerySnapshot> { value, e ->
+                if (e != null) {
+                    Log.w(TAG, "Listen failed.", e)
+                    photo.value = null
+                    return@EventListener
+                }
+
+                var itemList : ArrayList<PhotoDao> = ArrayList()
+                for (doc in value!!) {
+                    var item = doc.toObject(Photo::class.java)
+
+                    itemList.add(PhotoDao(doc.id, item))
+                }
+                photo.value = itemList
+
+                var packList : ArrayList<ProductPackDao> = ArrayList()
+                for (i in product.value!!){
+                    var photoList: ArrayList<PhotoDao> = ArrayList()
+                    photoList.addAll(
+                        photo.value!!
+                            .filter { it.data.item_id.equals(i.id) }
+                            .sortedWith(compareBy({ it.data.status })).reversed()
+                    )
+                    packList.add(ProductPackDao(i.id, i.data, photoList))
+                }
+
+                productPack.value = packList
+            })
+        })
+
+        return productPack
+    }
+
     fun getProductPack(productId: String): LiveData<ProductPackDao> {
         firebaseRepository.getProduct(productId).addSnapshotListener { value, e ->
             if (e != null) {
@@ -288,6 +359,7 @@ class ProductViewModel : ViewModel() {
                 }
 
                 if (itemList.size > 0) {
+                    photo.value = ArrayList()
                     photo.value!!.addAll(
                         itemList.sortedWith(compareBy({ it.data.status })).reversed()
                     )

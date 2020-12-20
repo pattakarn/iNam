@@ -1,20 +1,14 @@
 package com.sungkunn.inam.new_design.rv.adapter
 
 import android.content.Intent
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.FragmentManager
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.LifecycleOwner
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.sungkunn.inam.R
 import com.sungkunn.inam.new_design.activity.ShowCommunityActivity
-import com.sungkunn.inam.new_design.firestore.PhotoViewModel
-import com.sungkunn.inam.new_design.model.CommunityDao
 import com.sungkunn.inam.new_design.model.CommunityPackDao
 import com.sungkunn.inam.new_design.model.PhotoDao
 import com.sungkunn.inam.new_design.rv.viewholder.ViewHolderShowPlace

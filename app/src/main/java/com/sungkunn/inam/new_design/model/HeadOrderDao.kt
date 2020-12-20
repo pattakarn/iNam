@@ -4,12 +4,12 @@ import android.os.Parcel
 import android.os.Parcelable
 
 
-class CommunityDao(var id: String,
-                  var data: Community): Parcelable {
+class HeadOrderDao(var id: String,
+                   var data: HeadOrder): Parcelable {
 
     constructor(parcel: Parcel) : this(
         parcel.readString(),
-        parcel.readParcelable(Community::class.java.classLoader)
+        parcel.readParcelable(HeadOrder::class.java.classLoader)
     ) {
     }
 
@@ -22,12 +22,12 @@ class CommunityDao(var id: String,
         return 0
     }
 
-    companion object CREATOR : Parcelable.Creator<CommunityDao> {
-        override fun createFromParcel(parcel: Parcel): CommunityDao {
-            return CommunityDao(parcel)
+    companion object CREATOR : Parcelable.Creator<HeadOrderDao> {
+        override fun createFromParcel(parcel: Parcel): HeadOrderDao {
+            return HeadOrderDao(parcel)
         }
 
-        override fun newArray(size: Int): Array<CommunityDao?> {
+        override fun newArray(size: Int): Array<HeadOrderDao?> {
             return arrayOfNulls(size)
         }
     }

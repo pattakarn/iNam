@@ -8,11 +8,11 @@ import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
-import com.istyleglobalnetwork.istyleapplication.istyle.pack_new.viewholder.VHInfoMenuKT
-import com.istyleglobalnetwork.istyleapplication.istyle.pack_new.viewholder.VHInfoTitleKT
 import com.sungkunn.inam.R
 import com.sungkunn.inam.new_design.activity.ShowCartActivity
 import com.sungkunn.inam.new_design.activity.NewManageActivity
+import com.sungkunn.inam.old_ver.viewholder.VHInfoMenuKT
+import com.sungkunn.inam.old_ver.viewholder.VHInfoTitleKT
 
 class RV_Adapter_More_Menu(var items: Array<String>) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {

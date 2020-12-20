@@ -6,10 +6,7 @@ import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LifecycleOwner
@@ -17,16 +14,13 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.sungkunn.inam.R
 import com.sungkunn.inam.new_design.activity.ShowCartActivity
 import com.sungkunn.inam.new_design.activity.ShowPlaceActivity
-import com.sungkunn.inam.new_design.firestore.OrderViewModel
-import com.sungkunn.inam.new_design.firestore.PhotoViewModel
-import com.sungkunn.inam.new_design.firestore.PlaceViewModel
-import com.sungkunn.inam.new_design.firestore.ProductOrderViewModel
+import com.sungkunn.inam.new_design.firestore.*
 import com.sungkunn.inam.new_design.model.*
 import com.sungkunn.inam.new_design.rv.adapter.RV_Adapter_Photo_Show_Hori_List
 
@@ -51,13 +45,15 @@ class ShowProductFragment : Fragment(), View.OnClickListener, Toolbar.OnMenuItem
     }
 
     private lateinit var placeVM: PlaceViewModel
-    private lateinit var orderVM: OrderViewModel
+    private lateinit var headOrderVM: HeadOrderViewModel
     private lateinit var photoVM: PhotoViewModel
     private lateinit var productOrderVM: ProductOrderViewModel
+    private lateinit var orderVM: OrderViewModel
     private var productItem: ProductPackDao? = null
     private var placeItem: PlacePackDao? = null
     private var productOrderList: ArrayList<ProductOrderDao>? = null
-    private var orderItem: ArrayList<OrderDao> = ArrayList()
+    private var orderList: ArrayList<OrderDao>? = null
+    private var headOrderItem: ArrayList<HeadOrderDao> = ArrayList()
     var lifecycleOwner: LifecycleOwner? = null
     var observer: Observer<ArrayList<ProductOrderDao>>? = null
 
@@ -67,6 +63,7 @@ class ShowProductFragment : Fragment(), View.OnClickListener, Toolbar.OnMenuItem
     var TAG = "SHOW PRODUCT FRAGMENT"
 
     var toolbar: Toolbar? = null
+    var ll: LinearLayout? = null
     var tvToolbar: TextView? = null
 
     // ----------------- Photo -----------------
@@ -91,12 +88,14 @@ class ShowProductFragment : Fragment(), View.OnClickListener, Toolbar.OnMenuItem
     ): View {
         placeVM =
             ViewModelProviders.of(this).get(PlaceViewModel::class.java)
-        orderVM =
-            ViewModelProviders.of(this).get(OrderViewModel::class.java)
+        headOrderVM =
+            ViewModelProviders.of(this).get(HeadOrderViewModel::class.java)
         productOrderVM =
             ViewModelProviders.of(this).get(ProductOrderViewModel::class.java)
         photoVM =
             ViewModelProviders.of(this).get(PhotoViewModel::class.java)
+        orderVM =
+            ViewModelProviders.of(this).get(OrderViewModel::class.java)
         var rootView = inflater.inflate(R.layout.show_product_fragment, container, false)
         this.inflater = inflater
         init(rootView)
@@ -150,6 +149,9 @@ class ShowProductFragment : Fragment(), View.OnClickListener, Toolbar.OnMenuItem
                 .observe(this, Observer {
                     productOrderList = it
                 })
+            orderVM.getOrderByProduct(currentUser!!.uid, productItem!!.id, "waiting").observe(this, Observer {
+                orderList = it
+            })
         }
 
 
@@ -161,6 +163,7 @@ class ShowProductFragment : Fragment(), View.OnClickListener, Toolbar.OnMenuItem
 
     fun init(rootView: View) {
         toolbar = rootView.findViewById(R.id.toolbar)
+        ll = rootView.findViewById(R.id.ll)
         tvToolbar = rootView.findViewById(R.id.toolbar_title)
 
         // ----------------- Photo -----------------
@@ -197,35 +200,62 @@ class ShowProductFragment : Fragment(), View.OnClickListener, Toolbar.OnMenuItem
             }
             btnAddCart -> {
                 if (currentUser != null) {
-                    if (productOrderList!!.size == 0) {
-                        var productOrderItem = ProductOrder(
+//                    if (productOrderList!!.size == 0) {
+//                        var productOrderItem = ProductOrder(
+//                            currentUser!!.uid,
+//                            productItem!!.id,
+//                            placeItem!!.id,
+//                            "1",
+//                            productItem!!.data.price,
+//                            "waiting",
+//                            "",
+//                            ""
+//                        )
+//                        productOrderVM!!.addProductOrder(productOrderItem)
+//                    } else {
+//                        var productOrderItem = productOrderList!!.get(0)
+//                        var quantity = productOrderItem.data.quantity!!.toInt() + 1
+//                        productOrderItem.data.quantity = quantity.toString()
+//                        var totalPrice = quantity * productItem!!.data.price!!.toInt()
+//                        productOrderItem.data.total_price = totalPrice.toString()
+//                        productOrderVM!!.saveProductOrder(productOrderItem)
+//                        Toast.makeText(
+//                            inflater!!.context,
+//                            "Add " + productItem!!.data.name,
+//                            Toast.LENGTH_SHORT
+//                        ).show()
+//                    }
+                    if (orderList!!.size == 0){
+                        var subOrderItem = Order(
+                            "",
                             currentUser!!.uid,
                             productItem!!.id,
                             placeItem!!.id,
                             "1",
                             productItem!!.data.price,
                             "waiting",
-                            "",
                             ""
                         )
-                        productOrderVM!!.addProductOrder(productOrderItem)
+                        orderVM!!.addOrder(subOrderItem)
                         Toast.makeText(
                             inflater!!.context,
                             "Add " + productItem!!.data.name,
                             Toast.LENGTH_SHORT
                         ).show()
+//                        Snackbar.make(ll!!, "Add " + productItem!!.data.name, Snackbar.LENGTH_SHORT).show()
                     } else {
-                        var productOrderItem = productOrderList!!.get(0)
-                        var quantity = productOrderItem.data.quantity!!.toInt() + 1
-                        productOrderItem.data.quantity = quantity.toString()
+                        var subOrderItem = orderList!!.get(0)
+                        var quantity = subOrderItem.data.quantity!!.toInt() + 1
+                        subOrderItem.data.quantity = quantity.toString()
                         var totalPrice = quantity * productItem!!.data.price!!.toInt()
-                        productOrderItem.data.total_price = totalPrice.toString()
-                        productOrderVM!!.saveProductOrder(productOrderItem)
+                        subOrderItem.data.total_price = totalPrice.toString()
+                        orderVM!!.saveOrder(subOrderItem)
                         Toast.makeText(
                             inflater!!.context,
                             "Add " + productItem!!.data.name,
                             Toast.LENGTH_SHORT
                         ).show()
+//                        Snackbar.make(ll!!, "Add " + productItem!!.data.name, Snackbar.LENGTH_SHORT).show()
                     }
                 }
             }

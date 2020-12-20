@@ -21,7 +21,11 @@
             android:screenOrientation="portrait"
             android:supportsRtl="true"
             android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".new_design.activity.NewAccountActivity"></activity>
+        <activity
+                android:name=".new_design.activity.StockMainActivity"
+                android:label="@string/title_activity_stock_main"
+                android:theme="@style/AppTheme.NoActionBar.NoActionBar"></activity>
+        <activity android:name=".new_design.activity.NewAccountActivity" />
         <activity android:name=".new_design.activity.NewEditUserActivity" />
         <activity android:name=".new_design.activity.NewEditPhotoActivity" />
         <activity android:name=".new_design.activity.StockManageActivity" />
@@ -36,10 +40,8 @@
         <activity
                 android:name=".new_design.activity.NewMainActivity"
                 android:label="@string/title_activity_new_main" />
-        <activity
-                android:name="com.sungkunn.inam.old_ver.activity.PhotoItemActivity" />
-        <activity
-                android:name="com.sungkunn.inam.old_ver.activity.UIItemActivity" />
+        <activity android:name=".old_ver.activity.PhotoItemActivity" />
+        <activity android:name=".old_ver.activity.UIItemActivity" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -53,19 +55,15 @@
                 android:value="@string/google_maps_key" />
 
         <activity
-                android:name="com.sungkunn.inam.old_ver.example.MapsTestActivity"
+                android:name=".old_ver.example.MapsTestActivity"
                 android:label="@string/title_activity_maps_test" />
+        <activity android:name=".old_ver.example.HomeActivity" />
         <activity
-                android:name="com.sungkunn.inam.old_ver.example.HomeActivity" />
-        <activity
-                android:name="com.sungkunn.inam.old_ver.activity.HomeNewActivity"
+                android:name=".old_ver.activity.HomeNewActivity"
                 android:label="@string/title_activity_home_new" />
-        <activity
-                android:name="com.sungkunn.inam.old_ver.example.HomeRegionActivity" />
-        <activity
-                android:name="com.sungkunn.inam.old_ver.activity.ManageActivity" />
-        <activity
-                android:name="com.sungkunn.inam.new_design.activity.SplashScreen">
+        <activity android:name=".old_ver.example.HomeRegionActivity" />
+        <activity android:name=".old_ver.activity.ManageActivity" />
+        <activity android:name=".new_design.activity.SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

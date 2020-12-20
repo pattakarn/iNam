@@ -3,7 +3,6 @@ package com.sungkunn.inam.new_design.activity
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.sungkunn.inam.R
-import com.sungkunn.inam.new_design.model.CommunityDao
 import com.sungkunn.inam.new_design.model.CommunityPackDao
 import com.sungkunn.inam.new_design.ui.show.ShowCommunityFragment
 

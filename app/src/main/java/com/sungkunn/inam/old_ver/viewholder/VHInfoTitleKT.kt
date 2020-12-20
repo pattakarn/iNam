@@ -1,4 +1,4 @@
-package com.istyleglobalnetwork.istyleapplication.istyle.pack_new.viewholder
+package com.sungkunn.inam.old_ver.viewholder
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView

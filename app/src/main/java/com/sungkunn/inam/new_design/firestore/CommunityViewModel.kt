@@ -7,7 +7,6 @@ import androidx.lifecycle.ViewModel
 import com.google.firebase.firestore.EventListener
 import com.google.firebase.firestore.QuerySnapshot
 import com.sungkunn.inam.new_design.model.*
-import java.util.*
 import kotlin.collections.ArrayList
 
 class CommunityViewModel : ViewModel() {
@@ -146,6 +145,7 @@ class CommunityViewModel : ViewModel() {
                 }
 
                 if (itemList.size > 0) {
+                    photo.value = ArrayList()
                     photo.value!!.addAll(
                         itemList.sortedWith(compareBy({ it.data.status })).reversed()
                     )
@@ -160,7 +160,7 @@ class CommunityViewModel : ViewModel() {
     }
 
     // delete an community from firebase
-    fun deleteCommunity(item: CommunityDao){
+    fun deleteCommunity(item: OrderDao){
         firebaseRepository.deleteCommunity(item).addOnFailureListener {
             Log.e(TAG,"Failed to delete Address")
         }

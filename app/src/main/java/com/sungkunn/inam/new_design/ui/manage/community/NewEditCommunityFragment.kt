@@ -9,7 +9,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.LinearLayout
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
@@ -26,6 +25,7 @@ import com.sungkunn.inam.new_design.firestore.CommunityViewModel
 import com.sungkunn.inam.new_design.firestore.PhotoViewModel
 import com.sungkunn.inam.new_design.model.Community
 import com.sungkunn.inam.new_design.model.CommunityDao
+import com.sungkunn.inam.new_design.model.OrderDao
 import com.sungkunn.inam.new_design.rv.adapter.RV_Adapter_Photo_Hori_List
 
 class NewEditCommunityFragment : Fragment(), Toolbar.OnMenuItemClickListener, View.OnClickListener {

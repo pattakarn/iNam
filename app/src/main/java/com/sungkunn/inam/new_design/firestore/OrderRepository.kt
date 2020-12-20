@@ -5,8 +5,8 @@ import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
-import com.sungkunn.inam.new_design.model.Order
 import com.sungkunn.inam.new_design.model.OrderDao
+import com.sungkunn.inam.new_design.model.Order
 
 class OrderRepository {
 
@@ -29,18 +29,33 @@ class OrderRepository {
         return collectionReference
     }
 
-    fun getOrderByUser(userId: String): Query {
-        var queryReference = firestoreDB.collection(collectionPath).whereEqualTo("user_id", userId)
+    fun getOrderByHeadOrder(headorderId: String): Query {
+        var queryReference = firestoreDB.collection(collectionPath).whereEqualTo("headorder_id", headorderId)
         return queryReference
     }
 
-    fun getOrderByStatus(userId: String, status: String): Query {
+    fun getOrderByUserAndStatus(userId: String, status: String): Query {
         var queryReference = firestoreDB.collection(collectionPath).whereEqualTo("user_id", userId).whereEqualTo("status", status)
         return queryReference
     }
 
-    fun getOrder(orderId: String): DocumentReference {
-        var documentReference = firestoreDB.collection(collectionPath).document(orderId)
+    fun getOrderByProductAndStatus(productId: String, status: String): Query {
+        var queryReference = firestoreDB.collection(collectionPath).whereEqualTo("product_id", productId).whereEqualTo("status", status)
+        return queryReference
+    }
+
+    fun getOrderByPlaceAndStatus(placeId: String, status: String): Query {
+        var queryReference = firestoreDB.collection(collectionPath).whereEqualTo("place_id", placeId).whereEqualTo("status", status)
+        return queryReference
+    }
+
+    fun getOrderByProduct(userId: String, productId: String, status: String): Query {
+        var queryReference = firestoreDB.collection(collectionPath).whereEqualTo("user_id", userId).whereEqualTo("product_id", productId).whereEqualTo("status", status)
+        return queryReference
+    }
+
+    fun getOrder(subOrderId: String): DocumentReference {
+        var documentReference = firestoreDB.collection(collectionPath).document(subOrderId)
         return documentReference
     }
 

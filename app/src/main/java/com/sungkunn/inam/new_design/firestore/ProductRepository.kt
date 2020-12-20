@@ -44,6 +44,13 @@ class ProductRepository {
         return documentReference
     }
 
+    fun getProductByList(productIdList: ArrayList<String>): Query {
+        var queryReference = firestoreDB.collection(collectionPath)
+        for (temp in productIdList)
+            queryReference.whereEqualTo(FieldPath.documentId(), temp)
+        return queryReference
+    }
+
     fun deleteProduct(item: ProductDao): Task<Void> {
         var documentReference =  firestoreDB.collection(collectionPath).document(item.id)
         return documentReference.delete()

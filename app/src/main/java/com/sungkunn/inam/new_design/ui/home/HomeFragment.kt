@@ -15,8 +15,7 @@ import com.google.android.material.chip.ChipGroup
 import com.sungkunn.inam.R
 import com.sungkunn.inam.new_design.firestore.CommunityViewModel
 import com.sungkunn.inam.new_design.firestore.PhotoViewModel
-import com.sungkunn.inam.new_design.model.Community
-import com.sungkunn.inam.new_design.model.CommunityDao
+import com.sungkunn.inam.new_design.model.OrderDao
 import com.sungkunn.inam.new_design.model.PhotoDao
 import com.sungkunn.inam.new_design.rv.adapter.RV_Adapter_Community_List
 import com.sungkunn.inam.new_design.rv.adapter.RV_Adapter_Community_Pack_List
@@ -27,9 +26,9 @@ class HomeFragment : Fragment(), SearchView.OnQueryTextListener,
 //    private lateinit var homeViewModel: HomeViewModel
     private lateinit var communityVM: CommunityViewModel
     private lateinit var photoVM: PhotoViewModel
-    private lateinit var adapter: RV_Adapter_Community_List
+    private lateinit var adapter: RV_Adapter_Community_Pack_List
 
-    private var communityList: ArrayList<CommunityDao>? = null
+    private var communityList: ArrayList<OrderDao>? = null
     private var photoList: ArrayList<PhotoDao>? = null
 
     override fun onCreateView(
@@ -78,7 +77,7 @@ class HomeFragment : Fragment(), SearchView.OnQueryTextListener,
 
         communityVM.getCommunityPackAll().observe(this, Observer {
 
-            var adapter = RV_Adapter_Community_Pack_List(it, fragmentManager!!)
+            adapter = RV_Adapter_Community_Pack_List(it, fragmentManager!!)
             val llm = LinearLayoutManager(inflater!!.context)
 
             rv!!.setLayoutManager(llm)

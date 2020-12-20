@@ -4,10 +4,10 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
-import com.istyleglobalnetwork.istyleapplication.istyle.pack_new.viewholder.VHInfoMenuKT
 import com.sungkunn.inam.R
 import com.sungkunn.inam.old_ver.model.*
 import com.sungkunn.inam.old_ver.fragment.manage.item.*
+import com.sungkunn.inam.old_ver.viewholder.VHInfoMenuKT
 
 class RV_Adapter_Manage_List(var items: MutableList<Any>?, var fragmentManager: FragmentManager) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {

@@ -4,11 +4,14 @@ import android.os.Parcel
 import android.os.Parcelable
 
 data class Order(
+    var headorder_id: String? = "",
     var user_id: String? = "",
+    var product_id: String? = "",
+    var place_id: String? = "",
+    var quantity: String? = "",
+    var total_price: String? = "",
     var status: String? = "",
-    var created_datetime: String? = "",
-    var updated_datetime: String? = "",
-    var product_order: List<String> = ArrayList()
+    var updated_datetime: String? = ""
 ) : Parcelable {
 
     constructor(parcel: Parcel) : this(
@@ -16,16 +19,22 @@ data class Order(
         parcel.readString(),
         parcel.readString(),
         parcel.readString(),
-        parcel.createStringArrayList()
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString()
     ) {
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
+        parcel.writeString(headorder_id)
         parcel.writeString(user_id)
+        parcel.writeString(product_id)
+        parcel.writeString(place_id)
+        parcel.writeString(quantity)
+        parcel.writeString(total_price)
         parcel.writeString(status)
-        parcel.writeString(created_datetime)
         parcel.writeString(updated_datetime)
-        parcel.writeStringList(product_order)
     }
 
     override fun describeContents(): Int {
